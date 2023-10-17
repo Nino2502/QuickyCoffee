@@ -1,0 +1,111 @@
+
+
+
+
+  :root {
+    --black: #525252;
+    --orange: #ffb000;
+    --white: #f7fbfc;
+    --grey: #c2c2c2;
+  }
+  
+
+
+  
+  /* .card1 {
+    width: 17.5rem;
+    height: 11rem;
+    background-color: var(--white);
+    border-radius: 0.7rem;
+    padding: 1.3rem 1.6rem;
+    position: absolute;
+    top: -2.75rem;
+    right: 4.4rem;
+  } */
+
+  
+.chip {
+    margin-bottom: 0.7rem;
+}
+
+.input {
+    border: none;
+    border-bottom: 1px solid gray;
+    outline: none; /* opcional para eliminar el resaltado predeterminado en el enfoque */
+  }
+  
+.form-card {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+.form-card label1 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.55rem;
+    color: #c2c2c2;
+    margin-top: 0.35rem;
+  }
+.form-card label1[for=name] {
+    width: 72%;
+  }
+.form-card label1[for=date] {
+    width: 22%;
+    margin-left: 6%;
+  }
+.form-card label1[for=cvc] {
+    width: 15%;
+    position: absolute;
+    right: 7%;
+    bottom: -3.9rem;
+  }
+.form-card label1[for=remember] {
+    width: auto;
+    height: 2.8rem;
+    font-size: 0.7rem;
+    position: absolute;
+    left: -1.5rem;
+    bottom: -10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row-reverse;
+  }
+/* .form-card label1[for=remember] input {
+    margin-right: 0.5rem;
+    filter: invert(100%) hue-rotate(30deg) brightness(1.7);
+    color: red;
+    height: 1rem;
+    width: 1rem;
+  } */
+.form-card input1 {
+    border: none;
+    border-bottom: 1px solid var(--grey);
+    outline: none;
+    background-color: transparent;
+    font-size: 1.1rem;
+    padding: 0.2rem 0;
+}
+.form-card input1#cvc {
+    color: white;
+  }
+.form-card button1 {
+    height: 2.8rem;
+    width: 11.8rem;
+    font-size: 0.8rem;
+    position: absolute;
+    bottom: -10rem;
+    left: 10rem;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+.form-card button1 .fa-angle-right {
+    font-size: 2rem;
+    position: absolute;
+    left: 72%;
+}
+  

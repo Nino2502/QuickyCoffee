@@ -1,0 +1,22 @@
+/* CSS Document */
+
+#cargando{
+	display: flex;
+	position: absolute;
+	height: 150%;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+	background-color: lightgray;
+	z-index: 9000;
+	opacity: 0.4;
+	visibility: hidden;
+}
+
+#cargando h1{
+	
+	font-size: 50pt;
+	
+}
+
+
