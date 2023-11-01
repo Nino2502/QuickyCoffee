@@ -206,6 +206,10 @@
 													</div>
 												</div>
 
+
+
+
+
 											
 
 
@@ -359,16 +363,21 @@
 												<input value="0" type="number" class="form-control" id="inventarioMinimo">
 												<small class="text-danger" id="errorinventarioMinimo" style="display: none;"></small>
 											</div>
-											
+											<!--
 											<div class="col-sm-6" style="display: none;" id="divanchoMaterial">
+												
+											</div>
+
+											-->
+											<div class="col-sm-6">
+												<p>SOY UN PARRAFO</p>
+												<h5>SOI UN TEXTO</h5>
 												
 											</div>
 
 
 										</div>
 
-										</br>
-										</br>
 										<!--
 										<div class="row">
 
@@ -404,6 +413,7 @@
 
 												</div>
 												<div class="col-6">
+
 												
 												</div>
 												
@@ -429,6 +439,10 @@
 
 											</div>
 										</div>
+
+											
+
+					
 								
 								<!-- termina  div para los precios dinamicos por producto -->
 
