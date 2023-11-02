@@ -93,6 +93,31 @@ private $idusuario;
 
         
     }
+	
+	public function atributos_adicionales(){
+		$rs = $this->Servicios_model->ver_atributos_adicionales();
+		
+		$data['resultado'] = $rs != null;
+		$data['mensaje'] = $data['resultado'] ? "Se encontraron  ".count($rs)."  atributos" : "No se encontraron ningun atributo";
+		
+		$data["Atributos_adicionales"] = $rs;
+		
+		echo json_encode($data);
+
+	}
+	public function precios_bases(){
+	
+		$rs = $this->Servicios_model->ver_precios_bases();
+		
+		$data['resultado'] = $rs != null;
+		$data['mensaje'] = $data['resultado'] ? "Se encontraron  ".count($rs)." precios bases" : "No hay precios";
+		
+		$data["Precios_bases"] = $rs;
+		
+		echo json_encode($data);
+		
+	
+	}
 
 
     public function insertaServicios(){
@@ -102,6 +127,8 @@ private $idusuario;
         //$accion = $data['accion']; 
 
         $ajax_data = $this->input->post();
+
+		
         $dato1 = $ajax_data['atributos'];
         //$arrayAtributos = explode(",", $dato1);
 		

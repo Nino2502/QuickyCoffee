@@ -59,6 +59,9 @@
 										</div>
 
 									</div>
+                                                     
+                                                     
+
 
 
 									<div class="row">
@@ -363,20 +366,23 @@
 												<input value="0" type="number" class="form-control" id="inventarioMinimo">
 												<small class="text-danger" id="errorinventarioMinimo" style="display: none;"></small>
 											</div>
-											<!--
+                                            
+                                            	
+                                                
+
 											<div class="col-sm-6" style="display: none;" id="divanchoMaterial">
 												
 											</div>
 
-											-->
-											<div class="col-sm-6">
-												<p>SOY UN PARRAFO</p>
-												<h5>SOI UN TEXTO</h5>
-												
-											</div>
 
 
 										</div>
+                                        
+                                                 
+                                                 
+                                               
+
+											<!--
 
 										<!--
 										<div class="row">
@@ -412,6 +418,7 @@
 
 
 												</div>
+
 												<div class="col-6">
 
 												
@@ -433,9 +440,63 @@
 																</div>
 														</div>
 													</div><!-- fin div form group -->
-												
-												
-												</div>
+                                                    
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="custom-control custom-checkbox mb-4">
+                                                                <input onchange="mostrarPreciosBases()" type="checkbox" class="custom-control-input" id="preciosBasesCheck">
+                                                                <label class="custom-control-label" for="preciosBasesCheck">Tiene mas precios bases</label>
+                                                            </div>
+                                                    
+                                                            <div class="col-sm-12" id="divPreciosBases" style="display:none;">
+                                                            		<label>Selecciona precios bases</label>
+                                                                    
+                                                                    <select class="form-control select2-multiple" multiple="multiple" id="selectPreciosBases">
+
+                                                                    
+                                                                    </select>
+                                                                    <small class="text-danger" id="errorSelectPrecios" style="display:none"></small>
+
+                                                            </div>
+                                                        </div>
+                                                    
+                                                        <div class="col-6">
+                                                        		<div class="custom-control custom-checkbox mb-4">
+                                                                	<input type="checkbox" onchange="cambioCheckAtributos()" class="custom-control-input" id="atributosCheck">
+                                                                    <label class="custom-control-label" for="atributosCheck">Tiene mas atributos</label>
+        
+                                                                </div>
+                                                                
+                                                                <div class="col-sm-12" id="divSelectAtributos" style="display:none;">
+                                                                		<label>Selecciona atributos adicionales</label>
+                                                                        
+                                                                        <select class="form-control select2-multiple" multiple="multiple" id="selectAtributosAdicionales">
+
+                                                                        
+                                                                        </select>
+                                                                        
+                                                                        <small class="text-danger" id="errorAtributoAdicional" style="display:none;"></small>
+                                                                
+                                                                </div>
+
+                                                        </div>
+                                                    </div>
+       
+                                                    <br>
+                  
+                                                    
+                                                
+                                                                
+
+                                                    
+
+                                                    
+                                                    
+
+                                                    
+                                                 
+                                                 
+
 
 											</div>
 										</div>

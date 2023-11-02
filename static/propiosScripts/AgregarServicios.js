@@ -4,6 +4,9 @@ $(document).ready(()=>{
     listaUnidades();
     listaPoliticas();
 	agrupacionServicios();
+	listaAtributos_adicionales();
+	listaPrecios_bases();
+	//mostrarOcultarSelect();
     //cambioCheckImpresion();
     //cambioCheckPoliticas();
     //muestraAtributosSC();
@@ -171,6 +174,27 @@ $(document).ready(()=>{
        
 });//termina ready
 
+function  cambioCheckCodigoBarras2(){
+		
+	let contenidoCodigoBarras3 = document.getElementById("divCodigoBarras2");
+    let checkCodigoBarras3 = document.getElementById("codigoBarrasCheck2");
+	
+	
+	console.log("llegue al check 22222");
+	
+        if (checkCodigoBarras3.checked) {
+            contenidoCodigoBarras3.style.display='block';
+			
+		
+			
+        }
+        else {
+            contenidoCodigoBarras3.style.display='none';
+			
+			
+        }
+	
+}
 
 
 function muestraAnchoMaterial(){
@@ -749,6 +773,10 @@ function insertaServicios(){
     let impresion = 0;
 	let noImpresion = 0;
     let inventarioMinimo = $("#inventarioMinimo").val();
+	
+	let selectPrecios = $("#selectPreciosBases").val();
+	
+	let selectAtributos = $("#selectAtributosAdicionales").val();
 	//let cantidadMedioMayoreo = $("#cantidadMedioMayoreo").val();
     //let precioMedioMayoreo = $("#precioMedioMayoreo").val();
     //let cantidadMayoreo = $("#cantidadMayoreo").val();
@@ -1254,6 +1282,15 @@ function insertaServicios(){
 	
 	fd.append("idCS", categoriaServicios);
 	
+	fd.append("preciosBases",selectPrecios);
+	
+	console.log("Spy precios bases",selectPrecios);
+	
+	fd.append("Atributos_mas",selectAtributos);
+	
+	console.log("Soy los atributos",selectAtributos);
+	
+	
 	console.log("Soy idCS",categoriaServicios);
 	
     fd.append("impresion", impresion);
@@ -1322,6 +1359,12 @@ function insertaServicios(){
 	
 	
 	
+	
+	console.table(selectPrecios);
+	
+	console.table(selectAtributos);
+	
+
 	
 
 	
@@ -1642,4 +1685,131 @@ function quitaErroresCamposVaciosAS(){
     $("#errornombreAgrupacionesServicios").hide();
     
 }
+function mostrarPreciosBases(){
+
+	console.log("Se le dio click en la function de chech box");
+	
+	let contenidoPreciosBases = document.getElementById("divPreciosBases");
+	
+	let checkBases = document.getElementById("preciosBasesCheck");
+	
+	if(checkBases.checked){
+		contenidoPreciosBases.style.display='block';
+	
+	}else{
+		contenidoPreciosBases.style.display='none';
+	
+	
+	}
+
+}
+function cambioCheckAtributos(){
+
+	console.log("sOY CHEXBOX DE LOS ATRIBUTOS");
+	
+	let contenidoAtributos = document.getElementById("divSelectAtributos");
+	
+	let checkAtributos = document.getElementById("atributosCheck");
+	
+	if(checkAtributos.checked){
+		contenidoAtributos.style.display='block';
+	
+	
+	
+	}else{
+		contenidoAtributos.style.display='none';
+	
+	
+	
+	}
+
+
+}
+
+function listaAtributos_adicionales(){
+	
+	$("#selectAtributosAdicionales").html("");
+	        $.ajax({
+            "url":base_url()+"app/AgregarServicios/atributos_adicionales",
+            "dataType":"JSON"
+        })
+        .done((data)=>{
+            if(data.resultado){
+
+                $("#divSelectAtributos").find("select").html(`
+                <option label="&nbsp;">&nbsp;</option>
+                `
+                );
+                $.each(data.Atributos_adicionales, function(i,o){
+
+                    if(o.estatus == 1){
+                        $("#divSelectAtributos").find("select").append(`
+                    <option value="`+ o.idAtrD+`">`+ o.nombreAtrD+`</option>
+                    
+                    `
+                    );
+
+                    }
+                });
+    
+            }else{
+    
+                $("#divSelectAtributos").find("select").append(`
+                <option value="Selecciona">--No existen preguntas diagnosticas para mostrar--</option>
+                `
+                );
+            }
+        })
+        .fail();
+}
+function listaPrecios_bases(){
+	$("#selectPreciosBases").html("");
+	
+		
+		
+		$.ajax({
+            "url":base_url()+"app/AgregarServicios/precios_bases",
+            "dataType":"JSON"
+        })
+        .done((data)=>{
+            if(data.resultado){
+				
+				console.log("Soy la lista de precios");
+				console.table(data);
+
+                $("#divPreciosBases").find("select").html(`
+                <option label="&nbsp;">&nbsp;</option>
+                `
+                );
+                $.each(data.Precios_bases, function(i,o){
+
+                    if(o.estatus == 1){
+                        $("#divPreciosBases").find("select").append(`
+                    <option value="`+ o.idAtrD+`">`+ o.nombreAtrD+`</option>
+                    
+                    `
+                    );
+
+                    }
+                });
+    
+            }else{
+    
+                $("#divPreciosBases").find("select").append(`
+                <option value="Selecciona">--No existen preguntas diagnosticas para mostrar--</option>
+                `
+                );
+            }
+        })
+        .fail();
+	
+
+
+}
+
+
+
+
+
+
 

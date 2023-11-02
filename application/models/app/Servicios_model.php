@@ -26,6 +26,26 @@
 
     }
 	
+	public function ver_atributos_adicionales(){
+		$this->db->select("*");
+		$this->db->where('estatus',1);
+		$this->db->where("cat",2);
+		$rs = $this->db->get("atributos_adicionales");
+		return $rs->num_rows() > 0 ? $rs->result() : null;
+		
+	
+	}
+	
+	public function ver_precios_bases(){
+		$this->db->select("*");
+		$this->db->where('estatus',1);
+		$this->db->where("cat",1);
+		$rs = $this->db->get("atributos_adicionales");
+		return $rs->num_rows() > 0 ? $rs->result() : null;
+		
+	
+	}
+	
 	
 	public function buscarDuplicado($idS){
 		$this->db->where("idS", $idS);

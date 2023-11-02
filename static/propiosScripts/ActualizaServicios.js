@@ -1598,3 +1598,46 @@ function quitaErroresCamposVaciosAS(){
     
 }
 
+
+
+function mostrarPreciosBases(){
+
+	console.log("Se le dio click en la function de chech box");
+	
+	let contenidoPreciosBases = document.getElementById("divPreciosBases");
+	
+	let checkBases = document.getElementById("preciosBasesCheck");
+	
+	if(checkBases.checked){
+		contenidoPreciosBases.style.display='block';
+	
+	}else{
+		contenidoPreciosBases.style.display='none';
+	
+	
+	}
+
+}
+function cambioCheckAtributos(){
+
+	console.log("sOY CHEXBOX DE LOS ATRIBUTOS");
+	
+	let contenidoAtributos = document.getElementById("divSelectAtributos");
+	
+	let checkAtributos = document.getElementById("atributosCheck");
+	
+	if(checkAtributos.checked){
+		contenidoAtributos.style.display='block';
+	
+	
+	
+	}else{
+		contenidoAtributos.style.display='none';
+	
+	
+	
+	}
+
+
+}
+
