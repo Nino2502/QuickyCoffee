@@ -9,10 +9,20 @@ $(document).ready(()=>{
     muestraAtributosSC();
     getAtributosDeServicios();
 	cambioAgrupaServicio();
+	lista_precios_bases();
+	mostrarPreciosBases();
+	cambioCheckAtributos();
+	listaPrecios_bases();
+	lista_atributos_mas();
+	listaAtributos_adicionales();
+	
+	
 	//agrupacionServicios();
 	//cambioCheckCodigoBarras();
 
-	
+
+
+
 	
 		
     $("#btnAgregaPreSerImp").click((e)=>{
@@ -748,6 +758,11 @@ function insertaServicios(){
 	let noImpresion = 0;
     let inventarioMinimo = $("#inventarioMinimo").val();
 	
+		
+	let selectPrecios = $("#selectPreciosBases").val();
+	
+	let selectAtributos = $("#selectAtributosAdicionales").val();
+	
 	/*
 	let cantidadMedioMayoreo = $("#cantidadMedioMayoreo").val();
     let precioMedioMayoreo = $("#precioMedioMayoreo").val();
@@ -1204,6 +1219,15 @@ if(accion == "duplicar"){
     fd.append("atributos", listaAtributos);
     fd.append("tags",tags);
 	fd.append("noImpreso",noImpresion);
+	
+	
+	fd.append("preciosBases",selectPrecios);
+	
+	console.log("Spy precios bases",selectPrecios);
+	
+	fd.append("Atributos_mas",selectAtributos);
+	
+	console.log("Soy los atributos",selectAtributos);
 	/*
 	fd.append("cantidadMedioMayoreo",cantidadMedioMayoreo);
 	fd.append("precioMedioMayoreo",precioMedioMayoreo);
@@ -1609,9 +1633,12 @@ function mostrarPreciosBases(){
 	let checkBases = document.getElementById("preciosBasesCheck");
 	
 	if(checkBases.checked){
+		console.log("entro en 1 en precios bases");
 		contenidoPreciosBases.style.display='block';
 	
 	}else{
+		
+		console.log("entro en 2 a precios bases")
 		contenidoPreciosBases.style.display='none';
 	
 	
@@ -1640,4 +1667,278 @@ function cambioCheckAtributos(){
 
 
 }
+
+function lista_precios_bases(){
+	 
+	let servicio = $("#idServiciooo").val();
+	
+	
+	
+	console.log("Soy el id del servicio",servicio);
+	
+	
+	$("#selectPreciosBases").html("");
+	
+	let arrayPreciosBases = new Array();
+	
+	$.ajax({
+		"url" : base_url() + "app/AgregarServicios/preciosBases_select",
+		"dataType" : "JSON",
+		"type" 	: "POST",
+		"data":{
+			idS:servicio
+		}
+	})
+	.done((data)=>{
+		
+		if(data.resultado){
+			
+			console.log("Listado de precios",data.todos_precios);
+			console.table(data.todos_precios);
+			
+			arrayPrecios = data.Precios_seleccionados;
+			
+			console.log("Soy precios array ",arrayPrecios);
+			
+				$.ajax({
+							"url" : base_url() + "app/AgregarServicios/preciosBases_select",
+							"dataType" : "JSON",
+							"type" 	: "POST",
+							"data":{
+								idS:servicio
+							}
+
+			})
+			.done((data)=>{
+				
+				if(data.resultado){
+				
+					$("#divPreciosBases").find("select").html(`
+                            <option label="&nbsp;">&nbsp;</option>
+                
+                    `);
+					
+					$.each(data.todos_precios, function(i,o){
+						
+						if(o.estatus == 1){
+							let bandera = 0;
+							
+							
+							$.each(arrayPrecios, function(m,n){
+								
+								if(o.idAtrD == n.idAtrD){
+									$("#divPreciosBases").find("select").append(`
+										<option value="`+ o.idAtrD+`" Selected >`+ o.nombreAtrD+`</option>
+									
+									`);
+									
+									bandera = 1;
+								}
+
+							})
+							if(bandera != 1){
+
+								$("#divPreciosBases").find("select").append(`
+                                   <option value="`+ o.idAtrD+`">`+ o.nombreAtrD+`</option>
+                                        
+                                        `
+                                        );
+
+							}else{
+								bandera = 0;
+							
+							
+							}
+
+						}
+
+					
+					})
+
+				}
+
+			})
+			.fail();
+
+		}else{
+			toastr["sucess"](data.mensaje);
+
+		}
+
+	})
+	.fail();
+
+}
+
+
+function lista_atributos_mas(){
+    let servicio = $("#idServiciooo").val();
+
+    $("#selectAtributosAdicionales").html("");
+
+    let arrayAtributos = new Array();
+
+    $.ajax({
+        "url" : base_url() + "app/AgregarServicios/atributos_seleccionados",
+        "dataType" : "JSON",
+        "type" : "POST",
+        "data" : {
+            idS:servicio
+        }
+    })
+    .done((data) => {
+            if(data.resultado){
+
+                arrayAtributos = data.atributos_seleccionados;
+
+                console.log("Soy atributos",arrayAtributos);
+
+                $.ajax({
+                    "url" : base_url() + "app/AgregarServicios/atributos_seleccionados",
+                    "dataType" : "JSON",
+                    "type" : "POST",
+                    "data" : {
+                        idS:servicio
+                    }
+                })
+                .done((data) =>{
+
+                    if(data.resultado){
+
+                        $("#divSelectAtributos").find("select").html(`
+                            <option label="&nbsp;">&nbsp;</option>
+
+                        `);
+                        $.each(data.todos_atributos, function(i,o){
+                                if(o.estatus == 1){
+                                   
+                                    
+                                    let bandera = 0;
+
+                                    $.each(arrayAtributos, function(m,n){
+                                        if(o.idAtrD == n.idAtrD){
+                                            $("#divSelectAtributos").find("select").append(`
+                                            <option value="`+ o.idAtrD+`" Selected >`+ o.nombreAtrD+`</option>
+                                        
+                                        `);
+                                        bandera = 1;
+                                        
+
+                                        }
+                                    })
+                                    if(bandera != 1){
+                                        $("#divSelectAtributos").find("select").append(`
+                                        <option value="`+ o.idAtrD+`">`+ o.nombreAtrD+`</option>
+                                             
+                                             `
+                                             );
+
+                                    }else{
+                                        bandera = 0;
+                                    }
+
+                                }
+                        })
+
+                        
+                    }
+                })
+                .fail();
+
+
+
+
+            }else{
+                toastr["sucess"](data.mensaje);
+            }
+
+
+        })
+        .fail();
+
+}
+function listaAtributos_adicionales(){
+	
+	$("#selectAtributosAdicionales").html("");
+	        $.ajax({
+            "url":base_url()+"app/AgregarServicios/atributos_adicionales",
+            "dataType":"JSON"
+        })
+        .done((data)=>{
+            if(data.resultado){
+
+                $("#divSelectAtributos").find("select").html(`
+                <option label="&nbsp;">&nbsp;</option>
+                `
+                );
+                $.each(data.Atributos_adicionales, function(i,o){
+
+                    if(o.estatus == 1){
+                        $("#divSelectAtributos").find("select").append(`
+                    <option value="`+ o.idAtrD+`">`+ o.nombreAtrD+`</option>
+                    
+                    `
+                    );
+
+                    }
+                });
+    
+            }else{
+    
+                $("#divSelectAtributos").find("select").append(`
+                <option value="Selecciona">--No existen atributos para mostrar--</option>
+                `
+                );
+            }
+        })
+        .fail();
+}
+function listaPrecios_bases(){
+	$("#selectPreciosBases").html("");
+	
+	
+		
+		
+		$.ajax({
+            "url":base_url()+"app/AgregarServicios/precios_bases",
+            "dataType":"JSON"
+        })
+        .done((data)=>{
+            if(data.resultado){
+				
+				console.log("Soy data resultado de listaPrecios_bases",data.resultado);
+				
+				
+
+                $("#divPreciosBases").find("select").html(`
+                <option label="&nbsp;">&nbsp;</option>
+                `
+                );
+                $.each(data.Precios_bases, function(i,o){
+
+                    if(o.estatus == 1){
+						console.log("Entro en data.Precios_bases",data.Precios_bases);
+                        $("#divPreciosBases").find("select").append(`
+                    <option value="`+ o.idAtrD+`">`+ o.nombreAtrD+`</option>
+                    
+                    `
+                    );
+
+                    }
+                });
+    
+            }else{
+    
+                $("#divPreciosBases").find("select").append(`
+                <option value="Selecciona">--No existen precios diagnosticas para mostrar--</option>
+                `
+                );
+            }
+        })
+        .fail();
+	
+
+
+}
+
 

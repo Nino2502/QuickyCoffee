@@ -109,6 +109,8 @@ private $idusuario;
 	
 		$rs = $this->Servicios_model->ver_precios_bases();
 		
+
+		
 		$data['resultado'] = $rs != null;
 		$data['mensaje'] = $data['resultado'] ? "Se encontraron  ".count($rs)." precios bases" : "No hay precios";
 		
@@ -116,6 +118,56 @@ private $idusuario;
 		
 		echo json_encode($data);
 		
+	
+	}
+	public function preciosBases_select(){
+		$idS = $this->input->post("idS");
+
+		$rs = $this->Servicios_model->get_Servicio($idS);
+
+		
+		$precios_bases = $rs[0]->preciosBases;
+		
+		$array_precios = array_map('intval',explode(",",$precios_bases));
+
+		$precios = $this->Servicios_model->precio_adicionales_mas($array_precios);
+		
+		$rs = $this->Servicios_model->servop();
+		
+		
+		$data['resultado'] = $rs != null;
+		$data['mensaje'] = $data['resultado'] ? "Se encontraron tantos precios".count($rs) : "No se encontraron los precios";
+		
+		$data["todos_precios"] = $rs;
+		$data['Precios_seleccionados'] = $precios;
+		
+		echo json_encode($data);
+
+	}
+	public function atributos_seleccionados(){
+		$idS = $this->input->post("idS");
+		
+		$rs = $this->Servicios_model->get_Servicio($idS);
+		
+		$atributos_mas = $rs[0]->Atributos_mas;
+		
+		$array_atributos = array_map('intval',explode(",",$atributos_mas));
+		
+		$atributos = $this->Servicios_model->atributos_adicionales_mas($array_atributos);
+		
+		$rs = $this->Servicios_model->servop2();
+		
+		$data['resultado'] = $rs != null;
+		$data['mensaje'] = $data['resultado'] ? "Se encontraron atributos".count($rs) : "No se encontraron atributos";
+		$data['todos_atributos'] = $rs;
+		$data['atributos_seleccionados'] = $atributos;
+		
+		echo json_encode($data);
+		
+		
+		
+
+	
 	
 	}
 

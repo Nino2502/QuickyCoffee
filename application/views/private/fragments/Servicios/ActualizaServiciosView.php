@@ -53,6 +53,9 @@
                                                 <input type="hidden" value="<?= $datosServicio[0]->anchoMaterial ?>" id="idanchoMaterial">
 												<input type="hidden" value="<?= $datosServicio[0]->idUnidad ?>" id="idUnidad">
                                                 <input type="hidden" value="<?= $datosServicio[0]->idPolImpre ?>" id="idPolitica">
+                                                <input type="hidden" value="<?= $datosServicio[0]->idS ?>" id="idServiciooo"/>
+                                                
+                                                
 
                                          
 										

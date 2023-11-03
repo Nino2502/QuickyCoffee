@@ -112,7 +112,53 @@
         return $this->db->affected_rows() >=1;
 
    }
+   
+		public function precio_adicionales_mas($arr){
+
+			
 	
+			$this->db->select("idAtrD,nombreAtrD");
+			$this->db->where("atributos_adicionales.estatus",1);
+			$this->db->where("atributos_adicionales.cat",1);
+			$this->db->where_in('idAtrD', $arr);
+			$rs = $this->db->get("atributos_adicionales");
+			return $rs->num_rows() >0 ? $rs->result() : null;
+	
+		}
+	
+	public function atributos_adicionales_mas($arr){
+
+			
+	
+			$this->db->select("idAtrD,nombreAtrD");
+			$this->db->where("atributos_adicionales.estatus",1);
+			$this->db->where("atributos_adicionales.cat",2);
+			$this->db->where_in('idAtrD', $arr);
+			$rs = $this->db->get("atributos_adicionales");
+			return $rs->num_rows() >0 ? $rs->result() : null;
+	
+		}
+	
+	
+	public function servop(){
+
+        $this->db->select("*");//,atencion_servicio.id_as as idat,atencion_servicio.nombre as nat
+        $this->db->where("atributos_adicionales.estatus",1);
+		$this->db->where("atributos_adicionales.cat",1);
+        $rs = $this->db->get("atributos_adicionales");
+        return $rs->num_rows() >0 ? $rs->result() : null;
+
+    }
+	
+	public function servop2(){
+
+        $this->db->select("*");//,atencion_servicio.id_as as idat,atencion_servicio.nombre as nat
+        $this->db->where("atributos_adicionales.estatus",1);
+		$this->db->where("atributos_adicionales.cat",2);
+        $rs = $this->db->get("atributos_adicionales");
+        return $rs->num_rows() >0 ? $rs->result() : null;
+
+    }
 
 
     

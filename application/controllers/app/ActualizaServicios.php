@@ -58,6 +58,10 @@ class ActualizaServicios extends CI_Controller{
 		
 		$data['datosServicio'] = $this->Servicios_model->get_Servicio($idS);
 		
+		
+		
+
+		
 	
 		$data['preciosDinamicosProductos'] = $this->Servicios_model->get_PreciosDinamicosProducto($idS);	
 		$data['preciosDinamicosImpresion'] = $this->Servicios_model->get_PreciosDinamicosImpresion($idS);	
