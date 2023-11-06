@@ -5,7 +5,7 @@ class Productos_model extends CI_Model
 {
 
     public function get_servicios_impresos(){
-      $this->db->select('s.idCS, s.precioS AS precio,
+      $this->db->select('s.idCS, s.precioS AS precio, s.idS, 
       s.precioImpresion , (s.precioS + s.precioImpresion) AS precioS , s.desS, s.noImpreso, 
       s.image_url, s.impresion, s.idAS , a.nombreAgrupaS as nombreS');
       $this->db->from('servicios as s');
@@ -17,10 +17,46 @@ class Productos_model extends CI_Model
 	  
 	  
 
-      $rs = $this->db->get();    
+      $rs = $this->db->get();
+
+		
+	      
       return $rs->num_rows() >= 1 ? $rs->result(): NULL;
       
     }
+	
+	
+	public function get_servicios_sin_agrupa(){
+		  $this->db->select('s.idCS, s.precioS AS precio, s.idS,
+		  s.precioImpresion, (s.precioS + s.precioImpresion) AS precioS, s.desS, s.noImpreso, s.impresion,
+		  s.image_url, s.impresion, s.idAS , s.nombreS');
+		  $this->db->from('servicios as s');
+		  $this->db->where('s.idAS',0);
+		  $this->db->where('s.impresion', 1);
+		  //$this->db->where('s.noImpreso',1);
+		  $this->db->where('s.estatus', 1);
+		  $this->db->group_by('s.idS');
+		
+		  $rs = $this->db->get();    
+		  return $rs->num_rows() >= 1 ? $rs->result() : NULL;
+		}
+		
+	
+	public function no_impresos_productos(){
+		  $this->db->select('s.idCS, s.precioS AS precio, s.idS,
+		  s.precioImpresion, (s.precioS + s.precioImpresion) AS precioS, s.desS, s.noImpreso, s.impresion,
+		  s.image_url, s.impresion, s.idAS , s.nombreS');
+		  $this->db->from('servicios as s');
+		  $this->db->where('s.idAS',0);
+		  //$this->db->where('s.impresion', 1);
+		  $this->db->where('s.noImpreso',1);
+		  $this->db->where('s.estatus', 1);
+		  $this->db->group_by('s.idS');
+		
+		  $rs = $this->db->get();    
+		  return $rs->num_rows() >= 1 ? $rs->result() : NULL;
+		}
+		
 
     public function get_servicios_impresos10r(){
       $this->db->select('s.idCS, s.precioS AS precio,
@@ -51,8 +87,7 @@ class Productos_model extends CI_Model
       //$this->db->limit(10); // Limitar a un máximo de 10 registros
       //$this->db->order_by('RAND()');// Ordenar los resultados de forma aleatoria
       $rs = $this->db->get();
-     
-      
+
       return $rs->num_rows() >= 1 ? $rs->result(): NULL;
         
       }
@@ -256,10 +291,10 @@ $this->db->select('s.idS, s.desS, s.idCS, s.precioS AS precio, s.precioImpresion
           $this->db->where('s.impresion', 1);
           $this->db->where('a.estatus', 1);
 		  $this->db->where('s.estatus', 1);
+		  $this->db->where('s.idAS !=', 0);
           $this->db->where('s.idCS', $idCS);
           $this->db->group_by('a.idAgrupacionS');
           $rs = $this->db->get();
-          
           return $rs->num_rows() >= 1 ? $rs->result() : NULL;
       }
 
@@ -272,12 +307,11 @@ $this->db->select('s.idS, s.desS, s.idCS, s.precioS AS precio, s.precioImpresion
         $this->db->where('s.noImpreso', 1);
 		$this->db->where('s.estatus', 1);
         $this->db->where('a.estatus', 1);
+		$this->db->where('s.idAS !=', 0);
         $this->db->where('s.idCS', $idCS);
         $this->db->group_by('a.idAgrupacionS');
         $rs = $this->db->get();
-        
         return $rs->num_rows() >= 1 ? $rs->result() : NULL;
-        
       }
 
 }

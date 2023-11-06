@@ -19,8 +19,17 @@ class Productos extends CI_Controller {
             json_header();
             $data = array();
             $this->load->model('abdiel/productos_model');
-            $data = $this->productos_model->get_servicios_impresos();
-            $response= array();
+            $impresos = $this->productos_model->get_servicios_impresos();
+			
+			$sin_agrupacion = $this->productos_model->get_servicios_sin_agrupa();
+			
+			$data = array_merge($impresos,$sin_agrupacion);
+			
+
+			
+            
+			
+			$response= array();
             if ($data!= null){
                 $response['data'] = $data;
             }else{
@@ -36,7 +45,12 @@ class Productos extends CI_Controller {
             json_header();
             $data = array();
             $this->load->model('abdiel/productos_model');
-            $data = $this->productos_model->get_servicios_noimpresos();
+            $no_impreso = $this->productos_model->get_servicios_noimpresos();
+			$sin_agrupacion_no = $this->productos_model->no_impresos_productos();
+			
+			$data = array_merge($no_impreso,$sin_agrupacion_no);
+			
+			
             $response= array();
             if ($data!= null){
                 $response['data'] = $data;
@@ -46,6 +60,32 @@ class Productos extends CI_Controller {
             }
             echo json_encode($response);
         }
+		
+		
+		public function ver_sin_agrupacion(){
+			json_header();
+			$data = array();
+			
+			$this->load->model('abdiel/productos_model');
+			$data = $this->productos_model->get_servicios_sin_agrupa();
+			$response = array();
+			
+			if($data!= null){
+				$response['mensaje'] = "Los productos son ".count($data);
+				$response['data'] = $data;
+			
+			}else{
+				
+				$response['data'] = "No hay datos por el momento".count($data);
+			
+			
+			}
+			echo json_encode($response);
+				
+		
+		
+		}
+		
 
 //El 10 es porque visualiza solo 10 productos, es para la vista principal // 
 
@@ -140,6 +180,8 @@ class Productos extends CI_Controller {
             json_header();
             $impreso = $this->input->post('impreso');
             $idCS = $this->input->post('idCS');
+			//$impreso = true;
+			//$idCS = 30;
 			
 			
 			

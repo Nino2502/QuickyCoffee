@@ -58,18 +58,61 @@ class Atributos extends CI_Controller {
 
     public function get_producto_atributos(){
         json_header();
-        $idAS = $this-> input -> post("idAS");
+        $idAS = $this-> input -> post("idAS"); 
+		$idS  = $this-> input -> post("idS");
+
         $this->load->model('abdiel/Atributos_model');
-        $data = $this->Atributos_model->productos_atributos( $idAS);
-        $response= array();
-        if ($data!= null){
-            $response= $data;
-        }else{
+
+		if($idAS == 0 || $idAS == null || $idAS == "" ){
+			
+			
+			
+			 $data = $this->Atributos_model->productos_atributos_sin_agrupar( $idS);
+				$response= array();
+				if ($data!= null){
+					$response= $data;
+				}else{
+				   // echo "No existe la cuenta o los datos son incorrectos";
+				   //$response['data'] = [];
+				   $response= null;
+				}
+				echo json_encode($response);
+
+		}else{
+
+			$data = $this->Atributos_model->productos_atributos( $idAS);
+        	$response= array();
+        
+		
+			if ($data!= null){
+            
+				$response= $data;
+        	
+			}else{
            // echo "No existe la cuenta o los datos son incorrectos";
            //$response['data'] = [];
-           $response= null;
-        }
-        echo json_encode($response);
+           		$response= null;
+        	}
+       
+	   
+	   		 echo json_encode($response);
+
+		}
+
+    }
+	
+	 
+	 public function get_producto_sin_agrupa(){
+        json_header();
+        
+		//$idAS = $this-> input -> post("idAS");
+		
+		$idS = $this->input->post("idS");
+		
+		//$idS = "SDI-Sub-Bot-115426";
+		
+        $this->load->model('abdiel/Atributos_model');
+       
        //echo json_encode($count);
        
     }
@@ -108,6 +151,65 @@ class Atributos extends CI_Controller {
 		 }
        
         $inventario = $this->Atributos_model->get_inventario_by_ids($idS);
+		
+		
+        
+        if ($data!= null){
+            $response["producto"]= $data;
+            $response["inventario"]=$inventario;
+        }else{
+
+           $response= null;
+        }
+        
+		
+		echo json_encode($response);
+		
+       //echo json_encode($count);
+       
+    }
+	
+	
+    public function get_producto_detalle_sin_agrupar(){
+        
+		
+		json_header();
+        
+		$idS = $this-> input -> post("idS");
+        //$idS = "SDI-Sel-Lap-11262";
+
+		
+		$impreso = $this-> input -> post("impreso");
+		
+		//$impreso = true;
+        
+		
+		
+		$this->load->model('abdiel/Atributos_model');
+        
+		$response= array();
+        
+		
+		if ($impreso ==false){
+            $response["mensaje"]= "IMPRESO ES FALSE";
+            $data       = $this->Atributos_model->get_servicios_by_sku($idS);
+        }else{
+			
+            $response["mensaje"]= "IMPRESO ES TRUE";
+            $data       = $this->Atributos_model->get_servicios_by_sku_impresos($idS);
+			
+         
+		 
+		 
+		 }
+		 
+		 
+       
+        $inventario = $this->Atributos_model->get_inventario_by_ids($idS);
+		
+
+		
+		
 		
 		
         
