@@ -182,6 +182,9 @@ class ActualizaServicios extends CI_Controller{
 		$preciosImpresion = json_decode($ajax_data['preciosImpresion']); 
 		$preciosProductos = json_decode($ajax_data['preciosProducto']); 
 		
+		
+
+		
 		/*
 		echo "<pre>";
 		var_dump($preciosImpresion);
@@ -228,6 +231,56 @@ class ActualizaServicios extends CI_Controller{
 
                     unset($ajax_data['accion']); 
                     unset($ajax_data['atributos']); 
+					
+					$preciosBases_impresion = $ajax_data['preciosBases'];
+					
+					
+					$preciosArray = explode(",", $preciosBases_impresion);
+					
+					
+
+					
+					
+					
+				
+					$Atributos_mas = $ajax_data['Atributos_mas'];
+					
+					$Atributos_mas_array = explode(",", $Atributos_mas);
+					
+					
+				
+	
+					$array_combinado = array_merge($preciosArray,$Atributos_mas_array);
+					
+					
+					$id_Servicio = $ajax_data['idS'];
+					
+					
+					$borrar_log = $this->Servicios_model->delete_servicio($id_Servicio);
+					
+					if( $borrar_log != false){
+
+						
+						if(count($array_combinado) >= 1){
+
+							foreach($array_combinado as $adicional){
+
+								$dataCosasAdicional = ["idS" => $ajax_data['idS'], "idAtributo" => $adicional];
+								
+								
+								$array[] = $dataCosasAdicional;
+
+							}
+
+							
+							$inserta_mas_atributos = $this->Servicios_model->inserta_atributos_mas($array);
+
+						}
+						$insertado_atributos_mas = $inserta_mas_atributos != false ? $insertado = true : $insertado = false;
+
+					}
+					
+					
 
                     $rs = $this->Servicios_model->update_Servicios($ajax_data, $id);
 		
@@ -262,6 +315,8 @@ class ActualizaServicios extends CI_Controller{
 								}
 
 							}
+							
+							
 
 
 
@@ -317,7 +372,7 @@ class ActualizaServicios extends CI_Controller{
                     
 
 
-                    $data["resultado"]= $rs != NULL || $contador != 0 || $respuestaPrecios ;
+                    $data["resultado"]= $rs != NULL || $contador != 0 || $respuestaPrecios || $insertado_atributos_mas != false ;
                     $data["mensaje"] = $data["resultado"] ? "Se actuzalizó correctamente" . ($imagen == true ? $mensajeImagen : "") : ($rs == NULL ? "No se actualizaron los datos" : "") . " " . ($contador == 0 ? "No se actualizaron los atributos": "")  . ($imagen == true ? $mensajeImagen : "") ;
                 
 		

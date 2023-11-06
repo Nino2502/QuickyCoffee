@@ -1125,6 +1125,8 @@ if(accion == "duplicar"){
 			   }
 
         }
+		
+
     
 
 
@@ -1214,6 +1216,10 @@ if(accion == "duplicar"){
 	fd.append("cantidadMayoreo", cantidadMayoreo);
     fd.append("precioMayoreo", precioMayoreo);
     */
+	
+	/*
+	
+	*/
 	fd.append("idUnidad", unidad);
     fd.append("accion", accion);
     fd.append("atributos", listaAtributos);
@@ -1640,6 +1646,7 @@ function mostrarPreciosBases(){
 		
 		console.log("entro en 2 a precios bases")
 		contenidoPreciosBases.style.display='none';
+		$("#selectPreciosBases").html("");
 	
 	
 	}
@@ -1660,7 +1667,8 @@ function cambioCheckAtributos(){
 	
 	}else{
 		contenidoAtributos.style.display='none';
-	
+		$("#selectAtributosAdicionales").html("");
+		
 	
 	
 	}

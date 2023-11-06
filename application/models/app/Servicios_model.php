@@ -36,6 +36,22 @@
 	
 	}
 	
+	
+	
+	public function inserta_atributos_mas($data){
+
+        $this->db->insert_batch("log_atributos_mas",$data);
+        return $this->db->affected_rows() >=1 ;
+
+    }
+	public function delete_servicio($idS){
+		$this->db->where("idS",$idS);
+		$this->db->delete('log_atributos_mas');
+		return $this->db->affected_rows() >=1 ;
+	
+	}
+
+	
 	public function ver_precios_bases(){
 		$this->db->select("*");
 		$this->db->where('estatus',1);
