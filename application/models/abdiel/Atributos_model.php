@@ -52,12 +52,13 @@ class Atributos_model extends CI_Model {
         $this->db->join('detalleAtributo AS d', 'sa.idDAtr = d.idDAtr');
         $this->db->join('atributos AS at', 'at.idAtr = sa.idAtr');
         $this->db->where('a.estatus', 1);
+		$this->db->where('s.estatus', 1);
         $this->db->where('s.idAS', $idAS);
         $this->db->group_by('s.sku');
 
         $query = $this->db->get();
         return $query->result();
-        
+
       }
           /* Obtiene datos del producto desun SKU*/
 
@@ -75,6 +76,7 @@ class Atributos_model extends CI_Model {
 
 
         public function get_servicios_by_sku_impresos($idS) {
+			
           $this->db->select('s.idS, s.sku, s.nombreS, s.desS, 
           s.precioS AS precio, s.precioImpresion, (s.precioS + s.precioImpresion) AS precioS,
           s.noImpreso, s.impresion,  s.areaImpresion, s.idPolImpre, s.image_url, s.cantidadMedioMayoreo, 

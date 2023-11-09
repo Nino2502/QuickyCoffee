@@ -24,16 +24,11 @@ class Productos extends CI_Controller {
 			$sin_agrupacion = $this->productos_model->get_servicios_sin_agrupa();
 			
 			$data = array_merge($impresos,$sin_agrupacion);
-			
 
-			
-            
-			
 			$response= array();
             if ($data!= null){
                 $response['data'] = $data;
             }else{
-               // echo "No existe la cuenta o los datos son incorrectos";
                $response['data'] = "No hay por el momento.";
             }
             echo json_encode($response);
@@ -48,15 +43,26 @@ class Productos extends CI_Controller {
             $no_impreso = $this->productos_model->get_servicios_noimpresos();
 			$sin_agrupacion_no = $this->productos_model->no_impresos_productos();
 			
-			$data = array_merge($no_impreso,$sin_agrupacion_no);
 			
+			$datos = array_merge($no_impreso,$sin_agrupacion_no);
 			
+			$data = [];
+			
+			foreach( $datos as $item){
+				
+				$idS = $item->idS;
+				
+				
+				if(!in_array($idS, $data)){
+					
+					$data[] = $item;
+				}
+			}
             $response= array();
             if ($data!= null){
                 $response['data'] = $data;
             }else{
-               // echo "No existe la cuenta o los datos son incorrectos";
-               $response['data'] = "No hay por el momento.";
+				$response['data'] = "No hay por el momento.";
             }
             echo json_encode($response);
         }
@@ -144,6 +150,8 @@ class Productos extends CI_Controller {
 
         public function buscar() {
             $q = $this->input->get('q');
+			//$q = "A4";
+			
             $this->load->model('abdiel/productos_model');
             $results = $this->productos_model->search($q);
             echo json_encode($results);

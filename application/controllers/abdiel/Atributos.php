@@ -60,15 +60,26 @@ class Atributos extends CI_Controller {
         json_header();
         $idAS = $this-> input -> post("idAS"); 
 		$idS  = $this-> input -> post("idS");
+		
+		//$idAS = 18;
+		
+		//$idS = "SDI-Sub-Bot-115426";
+		
+
+
 
         $this->load->model('abdiel/Atributos_model');
 
 		if($idAS == 0 || $idAS == null || $idAS == "" ){
+
 			
 			
-			
-			 $data = $this->Atributos_model->productos_atributos_sin_agrupar( $idS);
+			 $data = $this->Atributos_model->get_servicios_by_sku_impresos($idS);
+			 
+			 
 				$response= array();
+			
+			
 				if ($data!= null){
 					$response= $data;
 				}else{
@@ -79,8 +90,18 @@ class Atributos extends CI_Controller {
 				echo json_encode($response);
 
 		}else{
+			
 
 			$data = $this->Atributos_model->productos_atributos( $idAS);
+			
+			
+			
+
+			
+			echo json_encode($data);
+			
+			die();
+			
         	$response= array();
         
 		

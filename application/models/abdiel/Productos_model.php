@@ -14,13 +14,10 @@ class Productos_model extends CI_Model
       $this->db->where('s.estatus', 1);
       $this->db->where('a.estatus', 1);
       $this->db->group_by('a.idAgrupacionS');
-	  
-	  
+	  $this->db->limit(18);
 
       $rs = $this->db->get();
 
-		
-	      
       return $rs->num_rows() >= 1 ? $rs->result(): NULL;
       
     }
@@ -49,9 +46,11 @@ class Productos_model extends CI_Model
 		  $this->db->from('servicios as s');
 		  $this->db->where('s.idAS',0);
 		  //$this->db->where('s.impresion', 1);
+		  $this->db->where('s.impresion',0);
 		  $this->db->where('s.noImpreso',1);
 		  $this->db->where('s.estatus', 1);
 		  $this->db->group_by('s.idS');
+		  $this->db->limit(18);
 		
 		  $rs = $this->db->get();    
 		  return $rs->num_rows() >= 1 ? $rs->result() : NULL;
@@ -81,6 +80,7 @@ class Productos_model extends CI_Model
       $this->db->from('servicios as s');
       $this->db->join('agrupacionServicio as a', 'a.idAgrupacionS = s.idAS');
       $this->db->where('s.noImpreso', 1);
+	  $this->db->where('s.impresion',0);
 	  $this->db->where('s.estatus', 1);
       $this->db->where('a.estatus', 1);
       $this->db->group_by('a.idAgrupacionS');
@@ -124,7 +124,8 @@ class Productos_model extends CI_Model
           $this->db->or_like(array(
               'nombreS' => $q,
               'desS' => $q,
-              'nombreAgrupaS' => $q
+              'nombreAgrupaS' => $q,
+			  'nombreS' => $q
           ));
           $this->db->select('s.idS, s.nombreS as nombreServicio, s.precioS, a.idAgrupacionS AS idAS, s.desS, s.image_url, s.noImpreso, s.impresion,  a.nombreAgrupaS as nombreS ');
           $this->db->from('servicios as s');

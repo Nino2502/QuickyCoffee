@@ -11,6 +11,16 @@ class Favoritos_model extends CI_Model
         $result= $this->db->insert('favoritos', $data);
         return $result;
     }
+	
+	public function agregar_fav($idU, $idS){
+		$data = array(
+			'idU' => $idU,
+			'idS' => $idS,
+		);
+		$result = $this->db->insert('favoritos_nuevos',$data);
+		return $result;
+
+	}
 
     public function borrar($idAS, $idU){
         $this->db->where('idAS', $idAS);
@@ -18,6 +28,16 @@ class Favoritos_model extends CI_Model
         $this->db->delete('favoritos');
         return $this->db->affected_rows() > 0 ? true :false;
     }
+	
+	public function borrar_fav($idU, $idS){
+		$this->db->where('idS',$idS);
+		$this->db->where('idU',$idU);
+		$this->db->delete('favoritos_nuevos');
+		return $this->db->affected_rows() > 0 ? true : false;
+	
+	
+	
+	}
 
     public function ver( $idU){
         $this->db->select('f.idAS, a.nombreAgrupaS, s.precioS,
@@ -31,6 +51,18 @@ class Favoritos_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
       }
+	 
+	 public function ver_fav( $idU){
+        $this->db->select('f.idS, s.nombreS, s.precioS,
+        s.precioImpresion, (s.precioS + s.precioImpresion) AS precioImpreso
+        , s.noImpreso, s.impresion, s.image_url');
+        $this->db->from('favoritos_nuevos as f');
+        $this->db->join('servicios as s', 'f.idS = s.idS');
+        $this->db->where('f.idU', $idU);
+        $this->db->group_by('f.idS');
+        $query = $this->db->get();
+        return $query->result();
+      }
 
       public function check($idAS, $idU){
         $this->db->select('*');
@@ -40,6 +72,17 @@ class Favoritos_model extends CI_Model
         $query = $this->db->get();
         return $query->result() ? true : false;
       }
+	  
+	  public function check_fav($idS, $idU){
+        $this->db->select('*');
+        $this->db->from('favoritos_nuevos');
+        $this->db->where('idU', $idU);
+        $this->db->where('idS', $idS);
+        $query = $this->db->get();
+        return $query->result() ? true : false;
+      }
+	  
+	  
 
 
     public function getBanners() {
