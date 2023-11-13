@@ -61,16 +61,16 @@ class Atributos extends CI_Controller {
         $idAS = $this-> input -> post("idAS"); 
 		$idS  = $this-> input -> post("idS");
 		
-		//$idAS = 18;
+		//$idAS = 28;
 		
-		//$idS = "SDI-Sub-Bot-115426";
+		//$idS = "SDI-Sub-Taz-174051";
 		
 
 
 
         $this->load->model('abdiel/Atributos_model');
 
-		if($idAS == 0 || $idAS == null || $idAS == "" ){
+		if($idAS == 0 || $idAS == null || $idAS == "" || $idAS == "undefined" ){
 
 			
 			
@@ -93,15 +93,7 @@ class Atributos extends CI_Controller {
 			
 
 			$data = $this->Atributos_model->productos_atributos( $idAS);
-			
-			
-			
 
-			
-			echo json_encode($data);
-			
-			die();
-			
         	$response= array();
         
 		
@@ -123,20 +115,90 @@ class Atributos extends CI_Controller {
     }
 	
 	 
-	 public function get_producto_sin_agrupa(){
-        json_header();
-        
-		//$idAS = $this-> input -> post("idAS");
+
+	public function atributos_seleccionados(){
+
+
+		//ULTIMA MODIFICACION : 13/11/2023
+		// AUTOR : JESUS GONZALEZ LEAL *(Nino :3)*
 		
-		$idS = $this->input->post("idS");
 		
-		//$idS = "SDI-Sub-Bot-115426";
+		//Mira aqui recibimos el id del servicio por post que este se manda desde la aplicacion movil
+		//Que se manda de fd.append
+		$idS = $this -> input -> post("idS");
 		
-        $this->load->model('abdiel/Atributos_model');
-       
-       //echo json_encode($count);
-       
-    }
+		
+		//Aqui se carga el modelo
+		$this->load->model('abdiel/Atributos_model');
+		
+		//Aqui guardamos la respuesta de la variable idS
+		//que recibimos de la consulta del modelo
+		
+		$rs = $this->Atributos_model->get_Servicio($idS);
+		
+		//Aqui accedemos a la posicion del arreglo que se obtuvo
+		//y se guardo en el variable , se va a guardar se esta manera:
+		//1,2,3
+		$preciosbases_mas = $rs[0]->preciosBases;
+
+		$Atributos_mas = $rs[0]->Atributos_mas;
+
+		//El array_map va como a recorrer el tipo arreglo y con el intval convierte
+		// cada uno de los elementos en un entero
+		//Y con explode devuelve un array con los datos que se guardaron el la varible y le indicamos
+		//que con la , se tenia que separar.
+		$array_precios = array_map('intval',explode(",",$preciosbases_mas));
+		
+		$array_atributos = array_map('intval',explode(",",$Atributos_mas));
+		
+
+		//Vamos a obtener los atributos relacionados que obtuvimos en la variable $array_precios
+		$data = $this->Atributos_model->atributos_adicionales_mas($array_precios);
+		
+
+		
+		$response = array();
+		
+		
+		
+		if ($data!= null){
+			
+
+			//Guardamos adentro del arreglo response
+			//y dentro de la posicion ["precios_bases"] guardamos la repuesta de $data;
+            $response["precios_bases"]= $data;
+			
+
+        }else{
+			
+			//Hice esto porque tenia 2 variables y de una manera tenia que separarlas por que hay muchos
+			//productos que no tiene atributos y tambiem lo hice por que en uno estoy cargando los precios 
+			//adicionales de impresion y en otros guardo los atributos adicionales para venil que se le va 
+			// a sumar al precio final del productoo
+
+			$data = $this->Atributos_model->atributos_adicionales_mas_2($array_atributos);
+			
+			
+			//Guardamos adentro del arreglo response
+			//y dentro de la posicion ["precios_bases"] guardamos la repuesta de $data;
+			
+			//Lo guarde dentro del mismo arreglo y dentro de la misma posicion
+			//Por que en la aplicacion movil se desarrollo de esa misma manera
+			//Yo solo busce la manera de poder adecuarlos.
+			
+			
+
+
+           $response["precios_bases"]= $data;
+        }
+
+		 echo json_encode($response);
+
+		
+
+	
+	}
+
 
 
     public function get_producto_detalle(){

@@ -103,7 +103,40 @@ class Atributos_model extends CI_Model {
           $query = $this->db->get();
           return $query->result();
       }
+	  
+		public function get_Servicio($id){
+		
+			$query = 'SELECT servicios.*, categoriasServicios.nombreCS, unidades.nombreUni FROM servicios JOIN categoriasServicios ON categoriasServicios.idCS = servicios.idCS LEFT JOIN unidades ON unidades.idUni = servicios.idUnidad WHERE servicios.idS like "'.$id.'" AND (servicios.estatus = 1 OR servicios.estatus = 0)';
+			
+			$rs = $this->db->query($query);
+			return $rs->num_rows() >0 ? $rs->result() : null;
+		
+			}
+			
+	
+		public function atributos_adicionales_mas($arr){
 
+			
+	
+			$this->db->select("idAtrD,nombreAtrD,precio");
+			$this->db->where("atributos_adicionales.estatus",1);
+			$this->db->where("atributos_adicionales.cat",1);
+			$this->db->where_in('idAtrD', $arr);
+			$rs = $this->db->get("atributos_adicionales");
+			return $rs->num_rows() >0 ? $rs->result() : null;
+	
+		}	
+		
+		public function atributos_adicionales_mas_2($arr){
+
+			$this->db->select("idAtrD,nombreAtrD,precio");
+			$this->db->where("atributos_adicionales.estatus",1);
+			$this->db->where("atributos_adicionales.cat",2);
+			$this->db->where_in('idAtrD', $arr);
+			$rs = $this->db->get("atributos_adicionales");
+			return $rs->num_rows() >0 ? $rs->result() : null;
+	
+		}	
 
     
 

@@ -163,11 +163,7 @@ private $idusuario;
 		$data['atributos_seleccionados'] = $atributos;
 		
 		echo json_encode($data);
-		
-		
-		
 
-	
 	
 	}
 
