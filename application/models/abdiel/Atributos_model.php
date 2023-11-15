@@ -136,7 +136,26 @@ class Atributos_model extends CI_Model {
 			$rs = $this->db->get("atributos_adicionales");
 			return $rs->num_rows() >0 ? $rs->result() : null;
 	
-		}	
+		}
+		
+		public function get_preciosCantidadMayoreo($idS){
+			$this->db->select('idS,cantidad,precio');
+			$this->db->where("idS",$idS);
+			$this->db->where("categoria",2);
+			$rs = $this->db->get("preciosServicios");
+			
+			return $rs->num_rows() > 0 ? $rs->result() : null;
+
+		}
+		public function get_PreciosCantidadMedioMayoreo($idS){
+			$this->db->select('idS,cantidad,precio');
+			$this->db->where("idS",$idS);
+			$this->db->where("categoria",1);
+			$rs = $this->db->get("preciosServicios");
+			
+			return $rs->num_rows() > 0 ? $rs->result() : null;
+
+		}
 
     
 

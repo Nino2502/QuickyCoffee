@@ -63,7 +63,7 @@ class Atributos extends CI_Controller {
 		
 		//$idAS = 28;
 		
-		//$idS = "SDI-Sub-Taz-174051";
+		
 		
 
 
@@ -75,13 +75,19 @@ class Atributos extends CI_Controller {
 			
 			
 			 $data = $this->Atributos_model->get_servicios_by_sku_impresos($idS);
+
+
 			 
+		
+
 			 
 				$response= array();
 			
 			
 				if ($data!= null){
-					$response= $data;
+					$response["productos"] = $data;
+
+					
 				}else{
 				   // echo "No existe la cuenta o los datos son incorrectos";
 				   //$response['data'] = [];
@@ -207,6 +213,8 @@ class Atributos extends CI_Controller {
 		json_header();
         
 		$idS = $this-> input -> post("idS");
+		
+		//$idS = "SDI-Sub-Tor-192452";
         //$idS = "SDI-Sel-Lap-11262";
 		
 		$impreso = $this-> input -> post("impreso");
@@ -234,10 +242,17 @@ class Atributos extends CI_Controller {
 		 }
        
         $inventario = $this->Atributos_model->get_inventario_by_ids($idS);
+						 
 		
+			 $cantidadMayoreo = $this->Atributos_model->get_preciosCantidadMayoreo($idS);
+			 
+			 
+			 $cantidadMedioMayoreo = $this->Atributos_model->get_PreciosCantidadMedioMayoreo($idS);
 		
         
         if ($data!= null){
+			$response["CantidadMayoreo"] = $cantidadMayoreo;
+			$response["CantidadMedioMayoreo"] = $cantidadMedioMayoreo;
             $response["producto"]= $data;
             $response["inventario"]=$inventario;
         }else{

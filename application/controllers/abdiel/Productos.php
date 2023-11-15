@@ -24,6 +24,8 @@ class Productos extends CI_Controller {
 			$sin_agrupacion = $this->productos_model->get_servicios_sin_agrupa();
 			
 			$data = array_merge($impresos,$sin_agrupacion);
+			
+
 
 			$response= array();
             if ($data!= null){
@@ -46,6 +48,7 @@ class Productos extends CI_Controller {
 			
 			$datos = array_merge($no_impreso,$sin_agrupacion_no);
 			
+
 			$data = [];
 			
 			foreach( $datos as $item){
@@ -58,6 +61,8 @@ class Productos extends CI_Controller {
 					$data[] = $item;
 				}
 			}
+
+			
             $response= array();
             if ($data!= null){
                 $response['data'] = $data;
