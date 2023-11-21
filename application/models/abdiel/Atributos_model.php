@@ -156,6 +156,26 @@ class Atributos_model extends CI_Model {
 			return $rs->num_rows() > 0 ? $rs->result() : null;
 
 		}
+		public function consulta_precios_impresos($idS){
+			
+			$this->db->select("*");
+			$this->db->where("idS", $idS);
+			$this->db->order_by("cantidad", "asc");
+			$rs = $this->db->get("preciosServicios");
+			return $rs->num_rows() >= 1 ? $rs->result() : null;
+			
+		}
+		
+		public function consulta_precios_Noimpresos($idS){
+			$this->db->select("*");
+			$this->db->where("idS", $idS);
+			$this->db->where("categoria", "2");
+			$this->db->order_by("cantidad", "asc");
+			$rs = $this->db->get("preciosServicios");
+			return $rs->num_rows() >= 1 ? $rs->result() : null;
+			
+		}
+	
 
     
 

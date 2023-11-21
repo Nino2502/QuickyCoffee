@@ -61,8 +61,8 @@ class Atributos extends CI_Controller {
         $idAS = $this-> input -> post("idAS"); 
 		$idS  = $this-> input -> post("idS");
 		
-		//$idAS = 28;
-		
+
+
 		
 		
 
@@ -105,7 +105,7 @@ class Atributos extends CI_Controller {
 		
 			if ($data!= null){
             
-				$response= $data;
+				$response["productos"]= $data;
         	
 			}else{
            // echo "No existe la cuenta o los datos son incorrectos";
@@ -133,6 +133,12 @@ class Atributos extends CI_Controller {
 		//Que se manda de fd.append
 		$idS = $this -> input -> post("idS");
 		
+		//$idS = "SDI-Sub-Taz-163840";
+		
+	
+		
+		//$idS = "SDI-Sub-Tor-192452";
+		
 		
 		//Aqui se carga el modelo
 		$this->load->model('abdiel/Atributos_model');
@@ -141,6 +147,10 @@ class Atributos extends CI_Controller {
 		//que recibimos de la consulta del modelo
 		
 		$rs = $this->Atributos_model->get_Servicio($idS);
+		
+		//echo json_encode($rs);
+		//die();
+		
 		
 		//Aqui accedemos a la posicion del arreglo que se obtuvo
 		//y se guardo en el variable , se va a guardar se esta manera:
@@ -162,7 +172,7 @@ class Atributos extends CI_Controller {
 		$data = $this->Atributos_model->atributos_adicionales_mas($array_precios);
 		
 
-		
+	
 		$response = array();
 		
 		
@@ -208,20 +218,11 @@ class Atributos extends CI_Controller {
 
 
     public function get_producto_detalle(){
-        
-		
-		json_header();
+ 		json_header();
         
 		$idS = $this-> input -> post("idS");
-		
-		//$idS = "SDI-Sub-Tor-192452";
-        //$idS = "SDI-Sel-Lap-11262";
-		
+
 		$impreso = $this-> input -> post("impreso");
-		
-		//$impreso = true;
-        
-		
 		
 		$this->load->model('abdiel/Atributos_model');
         
@@ -229,30 +230,25 @@ class Atributos extends CI_Controller {
         
 		
 		if ($impreso ==false){
+
             $response["mensaje"]= "IMPRESO ES FALSE";
             $data       = $this->Atributos_model->get_servicios_by_sku($idS);
-        }else{
-			
+			$getPrecios = $this->Atributos_model->consulta_precios_Noimpresos($idS);
+
+		}else{
+	
             $response["mensaje"]= "IMPRESO ES TRUE";
             $data       = $this->Atributos_model->get_servicios_by_sku_impresos($idS);
-			
-         
-		 
-		 
+			$getPrecios = $this->Atributos_model->consulta_precios_impresos($idS);
+
 		 }
        
         $inventario = $this->Atributos_model->get_inventario_by_ids($idS);
-						 
-		
-			 $cantidadMayoreo = $this->Atributos_model->get_preciosCantidadMayoreo($idS);
-			 
-			 
-			 $cantidadMedioMayoreo = $this->Atributos_model->get_PreciosCantidadMedioMayoreo($idS);
-		
-        
+
         if ($data!= null){
-			$response["CantidadMayoreo"] = $cantidadMayoreo;
-			$response["CantidadMedioMayoreo"] = $cantidadMedioMayoreo;
+			
+			$response["precios"] = $getPrecios;
+
             $response["producto"]= $data;
             $response["inventario"]=$inventario;
         }else{
@@ -325,6 +321,75 @@ class Atributos extends CI_Controller {
        //echo json_encode($count);
        
     }
+		public function getPrecios_Dinamicos() {
+			
+			//AUTOR : JESUS GONZALEZ LEAL
+			//FECHA : 21/11/2023
+			
+		$idS = $this-> input ->post("idS");
+		
+		
+		$contador = $this-> input -> post("count");
+		
+		$this->load->model('abdiel/Atributos_model');
+
+		
+		$getPrecios = $this->Atributos_model->consulta_precios_impresos($idS);
+		
+		
+		//Tocar bajo su propio RIESGO!!!
+		//NO SE COMO SALIO PERO YA NO LE MUEVAN POR FAVOR!!!!
+
+		
+		  for ($i = 0; $i < count($getPrecios); $i++) {
+				$elementoActual = $getPrecios[$i];
+		
+				if ($contador >= $elementoActual->cantidad) {
+
+						if($contador <= $getPrecios[$i + 1]->cantidad){
+
+							$data = $elementoActual;
+							
+							break;
+
+						
+					}
+
+				}else{
+					
+					//sI NO TIENE MAS PRECIOS VA AGARRAR EL PRIMER PRECIO QUE LE HAYAN DADO
+					$data = $getPrecios[0];
+
+				}
+			}
+			
+			if($data != null){
+				$response["precios"] = $data;
+			
+			
+			
+			}else{
+				
+				$response = null;
+
+			}
+			
+			echo json_encode($response);
+
+		
+	}
+
+
+		
+				
+		
+		
+	
+	
+	
+	
+	
+
 
 
 }

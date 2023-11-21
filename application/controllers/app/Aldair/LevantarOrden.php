@@ -265,6 +265,7 @@ class LevantarOrden extends CI_Controller{
     public function consultarProducto(){
 
         $idProducto = $this->input->post("idS");
+		
 
         $rs = $this->LevantarOrden_model->consultarProducto($idProducto);
 
@@ -600,13 +601,20 @@ class LevantarOrden extends CI_Controller{
 		$id = $this->input->post("id");
 		$categoria= $this->input->post("categoria");
 		
+
+		
+		
 		
 		if($categoria == "1"){
 			
+
 			$getPrecios = $this->LevantarOrden_model->consulta_precios_impresos($id);
+			
+
 			
 		}else if($categoria == "2"){
 			
+
 			$getPrecios = $this->LevantarOrden_model->consulta_precios_Noimpresos($id);
 			
 		}
