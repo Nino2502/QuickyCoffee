@@ -6,6 +6,8 @@ $(document).ready(()=>{
 	agrupacionServicios();
 	listaAtributos_adicionales();
 	listaPrecios_bases();
+	mostrar_promocionales();
+	lista_atributos_promocionales();
 	//mostrarOcultarSelect();
     //cambioCheckImpresion();
     //cambioCheckPoliticas();
@@ -777,6 +779,8 @@ function insertaServicios(){
 	let selectPrecios = $("#selectPreciosBases").val();
 	
 	let selectAtributos = $("#selectAtributosAdicionales").val();
+	
+	let selectPromociones = $("#selectPromociones").val();
 	//let cantidadMedioMayoreo = $("#cantidadMedioMayoreo").val();
     //let precioMedioMayoreo = $("#precioMedioMayoreo").val();
     //let cantidadMayoreo = $("#cantidadMayoreo").val();
@@ -1282,6 +1286,8 @@ function insertaServicios(){
 	
 	fd.append("idCS", categoriaServicios);
 	
+	console.log("Soy idCS",categoriaServicios);
+	
 	fd.append("preciosBases",selectPrecios);
 	
 	console.log("Spy precios bases",selectPrecios);
@@ -1290,8 +1296,11 @@ function insertaServicios(){
 	
 	console.log("Soy los atributos",selectAtributos);
 	
+	fd.append("PR",selectPromociones);
+	console.log("Soy las promociones  ",selectPromociones);
 	
-	console.log("Soy idCS",categoriaServicios);
+	
+	
 	
     fd.append("impresion", impresion);
 	
@@ -1725,6 +1734,28 @@ function cambioCheckAtributos(){
 
 
 }
+function mostrar_promocionales(){
+	console.log("Soy el chexbox de promociones");
+	
+	
+	let contenidoPromociones = document.getElementById("divSelectPromocionales");
+	
+	let checkPromociones = document.getElementById("promocionales_promos");
+	
+	
+	if(checkPromociones.checked){
+	
+		contenidoPromociones.style.display='block';
+	
+	}else{
+	
+	
+		contenidoPromociones.style.display='none';
+	}
+
+
+
+}
 
 function listaAtributos_adicionales(){
 	
@@ -1806,6 +1837,52 @@ function listaPrecios_bases(){
 
 
 }
+function lista_atributos_promocionales(){
+
+		$.ajax({
+			"url":base_url() + "app/AgregarServicios/precios_promocionales",
+			"dataType" : "JSON"
+		})
+		.done((data)=>{
+			if(data.resultado){
+				$("#divSelectPromocionales").find("select").append(
+				`<option value="Selecciona">--Selecciona--</option>`
+				
+				);
+				
+				$.each(data.Promocionales, function(i,o){
+				
+					if(o.estatus == 1){
+						$("#divSelectPromocionales").find("select").append(`
+								<option value="` + o.idAtrD +`"> ` + o.nombreAtrD + ` </option>
+						
+						
+						`);
+						
+					
+					}
+				
+				
+				});
+				
+				
+			
+			
+			}else{
+				$("#divSelectPromocionales").find("select").append(`
+					<option value="Selecciona">~~~No existe promocionales~~~</option>
+				`);
+			
+			
+			
+			}
+		
+		
+		
+		})
+		.fail();
+
+	}
 
 
 

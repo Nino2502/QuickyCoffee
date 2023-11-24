@@ -3,6 +3,7 @@ $(document).ready(() => {
 	atributos_adicionales();
 
 
+
     let idTU= $("#idTU").val();
 
 
@@ -59,11 +60,9 @@ function listatipoatributos() {
                      <td>` +
 								o.desAtrD +
 								`</td>
-                     <td>` +
-								o.precio +
+                     <td>` + (o.precio == 0.00 ? 'No Aplica' : o.precio) +
 								`</td>
-						<td>` +
-								(o.cat == 1 ? 'Impresiones' : 'Precio Vinil') +
+						<td>` + (o.cat == 1 ? 'Impresiones' : (o.cat == 2 ? 'Precio Vinil' : (o.cat == 3 ? 'Promocionales' : 'Otra categoria'))) +
 								`</td>
                      <td align="center"><a href="#" onclick="cambiaEstatus(` +
 								o.idAtrD +
@@ -206,6 +205,9 @@ function InsertarColaborador() {
 						
 
 		}
+		
+		/*
+		
 		if (precio == 0) {
 			console.log("Soi precio",precio)
 			$("#errorprecioServicios").show();
@@ -219,7 +221,7 @@ function InsertarColaborador() {
 				"#btnEnviar, #nombreAtributo,#descripcionAtributo,#precioServicios,#tipoAtributos").removeAttr("disabled");
 		}
 
-		
+		*/
 		if (atributo == "Selecciona" || "" == atributo) {
 			$("#errorselectAtributos").show();
 			$("#errorselectAtributos").html("Seleccione categoria");
@@ -269,7 +271,8 @@ function InsertarColaborador() {
 					$("#nombreColaborador").val("");
 					$("#descripcionTipoContratacion").val("");
 					$("#agregarColaborador").modal("hide");
-					listatipocontratacion();
+					listatipoatributos();
+					window.location.reload();
 				$(
 				"#btnEnviar, #nombreAtributo,#descripcionAtributo,#precioServicios,#tipoAtributos").removeAttr("disabled");
 				} else {
@@ -405,6 +408,7 @@ function btnModalBorrar() {
 				toastr["success"](data.mensaje);
 				$("#tr-" + id).remove();
 				$("#borrarModal").modal("hide");
+				listatipoatributos();
 			} else {
 				toastr["warning"](data.mensaje);
 				$("#borrarModal").modal("hide");
@@ -430,7 +434,7 @@ function cambiaEstatus(id, estatusD) {
 		.then(({ data }) => {
 			if (data.resultado) {
 				toastr["success"](data.mensaje);
-				listatipocontratacion();
+				listatipoatributos();
 			} else {
 				toastr["warning"](data.mensaje);
 			}
@@ -455,6 +459,7 @@ function atributos_adicionales(){
 		<option value="Selecciona" selected>--Selecciona--</option>
 		<option value="1">Impresiones</option>
 		<option value="2">Precio Vinil</option>
+		<option value="3">Promociones</option>
 
 
 
@@ -466,5 +471,26 @@ function atributos_adicionales(){
 
 
 }
+function promocionales_mostrar(){
+	console.log("Soy el chexbox de promociones");
+	
+	
+	let contenidoPromociones = document.getElementById("divPrecioPromocionales");
+	
+	let checkPromociones = document.getElementById("promocionales_promos");
+	
+	
+	if(checkPromociones.checked){
+	
+		contenidoPromociones.style.display='none';
+	
+	}else{
+	
+	
+		contenidoPromociones.style.display='block';
+	}
 
+
+
+}
                                                        

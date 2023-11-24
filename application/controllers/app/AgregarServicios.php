@@ -105,6 +105,18 @@ private $idusuario;
 		echo json_encode($data);
 
 	}
+	
+	public function precios_promocionales(){
+		$rs = $this->Servicios_model->ver_promocionales();
+		
+		$data['resultado'] = $rs != null;
+		$data['mensaje'] = $data['resultado'] ? "Se encontro   ".count($rs)."   Promocionales" : "No se encontraron promocionales";
+		$data["Promocionales"] = $rs;
+		
+		echo json_encode($data);
+	
+	
+	}
 	public function precios_bases(){
 	
 		$rs = $this->Servicios_model->ver_precios_bases();

@@ -321,67 +321,327 @@ class Atributos extends CI_Controller {
        //echo json_encode($count);
        
     }
-		public function getPrecios_Dinamicos() {
+	
+	
+	public function getPrecios_Dinamicos() {
+		
+		
 			
-			//AUTOR : JESUS GONZALEZ LEAL
+			//AUTOR : JESUS GONZALEZ LEAL ((Nino :3))
 			//FECHA : 21/11/2023
+	
 			
-		$idS = $this-> input ->post("idS");
+			
+		//$idS = $this-> input ->post("idS");
 		
+
+		$idS = "SDI-Sel-vin-14332";
+
+		//$contador = $this-> input -> post("count");
+		$contador = 49;
 		
-		$contador = $this-> input -> post("count");
+		//$impreso = $this-> input -> post("impreso");
+		$impreso = TRUE;
 		
+
 		$this->load->model('abdiel/Atributos_model');
 
-		
-		$getPrecios = $this->Atributos_model->consulta_precios_impresos($idS);
-		
-		
-		//Tocar bajo su propio RIESGO!!!
-		//NO SE COMO SALIO PERO YA NO LE MUEVAN POR FAVOR!!!!
+		if ($impreso ==false){
+           
+		   
+            $producto       = $this->Atributos_model->get_servicios_by_sku($idS);
+			
+	
+			$getPrecios = $this->Atributos_model->consulta_precios_Noimpresos($idS);
+			
+	
+			
 
-		
-		  for ($i = 0; $i < count($getPrecios); $i++) {
-				$elementoActual = $getPrecios[$i];
-		
-				if ($contador >= $elementoActual->cantidad) {
+			$categorias2 = array_filter($getPrecios, function($producto_no_impreso){
+				return $producto_no_impreso->categoria === "2";
 
-						if($contador <= $getPrecios[$i + 1]->cantidad){
+			});
+
+
+			$ultima_posicion_2 = $categorias2[array_key_last($categorias2)];
+			
+
+				
+			
+				for($i = 0; $i < count($categorias2); $i++){
+
+					$elementoActual = $categorias2[$i];
+
+					if(($contador >= $elementoActual->cantidad || ($contador == $elementoActual->cantidad))){
+						
+						
+					
+						if($contador < $categorias2[$i + 1]->cantidad){
+							
 
 							$data = $elementoActual;
 							
-							break;
+
+							$subtotal = floatval($data->precio);
+							
+							$total = floatval($data->precio) * $contador;
+
+							
+
+							
 
 						
-					}
+							break;
+						
+						
+						
+						}
+						
+						if($contador >= $ultima_posicion_2->cantidad){
+							
+									
 
-				}else{
+								$data = $ultima_posicion_2;
+								
+								
+								$total = floatval($data->precio) * $contador;
+								
+								$subtotal = floatval($data->precio);
+							
+								break;
+						
+						
+						}
+						
 					
-					//sI NO TIENE MAS PRECIOS VA AGARRAR EL PRIMER PRECIO QUE LE HAYAN DADO
-					$data = $getPrecios[0];
+					
+					}else{
+						
+						
+							$data = $producto[0];
+							
+						
+							$total = floatval($producto[0]->precioS) * $contador;
+							$subtotal = floatval($producto[0]->precioS);
 
+					
+					
+					}
+				
+				
+				
+				
 				}
-			}
-			
-			if($data != null){
-				$response["precios"] = $data;
-			
-			
-			
-			}else{
 				
-				$response = null;
+					
+					if($data != null){
+					
+						$response["precios"] = $data;
+						$response["total"] = $total;
+						$response["subtotal"] = $subtotal;
 
-			}
-			
-			echo json_encode($response);
-
+	
+					
+					}else{
+						
+						
+						$response = null;
 		
+					}
+					
+					echo json_encode($response);
+			 
+				
+			
+			
+			}else{			
+
+					$producto       = $this->Atributos_model->get_servicios_by_sku_impresos($idS);
+					
+				
+					$getPrecios = $this->Atributos_model->consulta_precios_impresos($idS);
+					
+
+					
+
+					
+					
+		
+					
+						$categorias2 = array_filter($getPrecios, function($producto_impreso){
+							return $producto_impreso->categoria === "2";
+			
+						});
+
+						$categorias1 = array_filter($getPrecios, function($producto_impresos_2){
+							
+							return $producto_impresos_2->categoria === "1";
+						
+						});
+						
+	
+			
+						
+						$categorias1 = array_values($categorias1);
+						
+						$categorias2 = array_values($categorias2);
+						
+						
+				
+	
+
+						$ultima_posicion_1 = $categorias2[array_key_last($categorias2)];
+						
+						$ultima_posicion_impresos = $categorias1[array_key_last($categorias1)];
+						
+		
+					
+
+			
+						for ($i = 0; $i < count($categorias2); $i++) {
+							
+							$elementoActual = $categorias2[$i];
+				
+						if (($contador >= $elementoActual->cantidad || ($contador == $elementoActual->cantidad))){
+							
+
+							
+					
+					
+							
+								if($contador <= $categorias2[$i + 1]->cantidad){
+									
+
+							
+		
+									
+			
+	
+									$data = $elementoActual;
+				
+									
+									$subtotal = floatval($data->precio) + floatval($producto[0]->precioImpresion);
+									
+									$total = (floatval($data->precio) + floatval($producto[0]->precioImpresion) * $contador);
+					
+									
+									
+									break;
+								
+								
+								
+								}
+								if($contador >= $ultima_posicion_1->cantidad){
+
+										for($i = 0; $i < count($categorias1); $i++){
+											
+											$elementoActual2 = $categorias1[$i];
+											
+											if($contador >= $elementoActual2->cantidad || ($contador == $elementoActual2->cantidad)){
+												
+												
+
+												$data = $elementoActual2;
+					
+			
+												$subtotal = floatval($ultima_posicion_1->precio) + floatval($elementoActual2->precio);
+												
+												$total = (floatval($ultima_posicion_1->precio) + floatval($elementoActual2->precio) * $contador);
+
+												
+												break;
+											
+											
+											}
+											if($contador >= $ultima_posicion_impresos->cantidad ){
+												
+										
+												
+												$data = $ultima_posicion_impresos;
+												
+												$total = (floatval($data->precio) + floatval($ultima_posicion_1->precio) * $contador);
+												
+												$subtotal = floatval($data->precio) + floatval($ultima_posicion_1->precio);
+												
+												break;
+											
+											
+											
+											}
+										
+										
+										
+										
+										}
+							
+								
+								}
+							
+							
+							
+						
+						}else{
+							
+							
+
+							
+								
+							$data = $producto[0];
+							$total = floatval($producto[0]->precioS * $contador);
+							$subtotal = floatval($producto[0]->precioS);
+		
+						}
+					}
+					
+					if($data != null){
+						$response["precios"] = $data;
+						$response["total"] = $total;
+						$response["subtotal"] = $subtotal;
+					
+					
+					
+					}else{
+						
+						$response = null;
+		
+					}
+					
+					echo json_encode($response);
+
+
+		 }
+		 
+		 
+		 	
 	}
-
-
+	
+	public function get_promocionales(){
 		
-				
+		$this->load->model('abdiel/Atributos_model');
+		$data = $this->Atributos_model->promocionales_adicional();
+		
+		
+
+
+		$response = array();
+		
+		
+		if($data != null){
+			
+			$response["promocionales"] = $data;
+		
+		}else{
+			
+			$response = null;
+		}
+		
+		echo json_encode($response);
+			
+	
+	
+	}
+		 
+		
 		
 		
 	

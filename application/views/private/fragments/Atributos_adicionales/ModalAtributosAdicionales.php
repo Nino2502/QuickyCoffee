@@ -28,8 +28,32 @@
                         <input type="text" class="form-control" id="descripcionAtributo" placeholder="Descripción del atributo">
                         <small class="text-danger" id="errordescripcionAtributo" style="display: none;"></small>
                     </div>
+                    
+                    
+   													
 
-                    <div class="form-group col-12">
+                                                                
+
+                                              
+                                                                           
+                    
+                    
+                    
+                    
+                    
+                   <div class="form-group col-12">
+                               <div class="custom-control custom-checkbox mt-4">
+                              <input type="checkbox" onchange="promocionales_mostrar()" class="custom-control-input" id="promocionales_promos">
+                             <label class="custom-control-label" for="promocionales_promos">Producto promocional</label>
+        
+                             </div>      			
+                   
+                   </div>
+                    
+                    
+                    
+
+                    <div class="form-group col-12" id="divPrecioPromocionales">
                             <label for="message-text" class="col-form-label">Precio:</label>
                             <input type="number" value="0" class="form-control" id="precioServicios" placeholder="Precio">
                             <small class="text-danger" id="errorprecioServicios" style="display: none;"></small>

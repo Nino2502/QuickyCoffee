@@ -480,6 +480,30 @@
                                                                 </div>
 
                                                         </div>
+                                                        
+                                                         <div class="col-6">
+                                                        		<div class="custom-control custom-checkbox mb-4">
+                                                                	<input type="checkbox" onchange="mostrar_promocionales()" class="custom-control-input" id="promocionales_promos">
+                                                                    <label class="custom-control-label" for="promocionales_promos">Productos promocionales</label>
+        
+                                                                </div>
+                                                                
+                                                                <div class="col-sm-12" id="divSelectPromocionales" style="display:none;">
+                                                                		<label>Selecciona promoccionales</label>
+                                                                        
+                                                                        <select class="form-control select2-single select2-hidden-accessible" id="selectPromociones">
+
+                                                                        
+                                                                        </select>
+                                                                        
+                                                                        <small class="text-danger" id="errorAtributoAdicional" style="display:none;"></small>
+                                                                
+                                                                </div>
+
+                                                        </div>
+                                                        
+                                                        
+                                                        
                                                     </div>
        
                                                     <br>
