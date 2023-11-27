@@ -53,6 +53,7 @@
                                                 <input type="hidden" value="<?= $datosServicio[0]->anchoMaterial ?>" id="idanchoMaterial">
 												<input type="hidden" value="<?= $datosServicio[0]->idUnidad ?>" id="idUnidad">
                                                 <input type="hidden" value="<?= $datosServicio[0]->idPolImpre ?>" id="idPolitica">
+                                                <input type="hidden" value="<?= $datosServicio[0]->PM ?>" id="idPromocionales"  />
                                                 <input type="hidden" value="<?= $datosServicio[0]->idS ?>" id="idServiciooo"/>
                                                 
                                                 
@@ -562,6 +563,8 @@
 
                                                             </div>
                                                         </div>
+                                                        
+                                                        
 
                                                         <div class="col-6">
                                                         		<div class="custom-control custom-checkbox mb-4">
@@ -574,6 +577,29 @@
                                                                 		<label>Selecciona atributos adicionales</label>
                                                                         
                                                                         <select class="form-control select2-multiple" multiple="multiple" id="selectAtributosAdicionales">
+
+                                                                        
+                                                                        </select>
+                                                                        
+                                                                        <small class="text-danger" id="errorAtributoAdicional" style="display:none;"></small>
+                                                                
+                                                                </div>
+
+                                                        </div>
+                                                        
+                                                        
+                                                        
+  														<div class="col-6">
+                                                        		<div class="custom-control custom-checkbox mb-4">
+                                                                	<input type="checkbox" onchange="mostrar_promocionales()" class="custom-control-input" <?=$datosServicio[0]->PM != null ? 'checked' : '' ?> id="promocionales_promos">
+                                                                    <label class="custom-control-label" for="promocionales_promos">Productos promocionales</label>
+        
+                                                                </div>
+                                                                
+                                                                <div class="col-sm-12" id="divSelectPromocionales" style="display:none;">
+                                                                		<label>Selecciona promoccionales</label>
+                                                                        
+                                                                        <select class="form-control select2-single select2-hidden-accessible" id="selectPromociones">
 
                                                                         
                                                                         </select>

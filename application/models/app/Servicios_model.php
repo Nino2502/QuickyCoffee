@@ -3,12 +3,13 @@
 
     public function ver_Servicios(){
 
-        $this->db->select("servicios.*, categoriasServicios.nombreCS, unidades.nombreUni, politicas.nombrePol ");
+        $this->db->select("servicios.*, categoriasServicios.nombreCS, unidades.nombreUni, politicas.nombrePol, atributos_adicionales.nombreAtrD");
         $this->db->where("servicios.estatus",1);
         $this->db->or_where("servicios.estatus",0);
         $this->db->join("categoriasServicios", "categoriasServicios.idCS = servicios.idCS ");
         $this->db->join("unidades", "unidades.idUni = servicios.idUnidad", 'left');
         $this->db->join("politicas", "politicas.idPol = servicios.idPolImpre", 'left');
+		$this->db->join("atributos_adicionales","atributos_adicionales.idAtrD = servicios.PM", 'left');
         $rs = $this->db->get("servicios");
         return $rs->num_rows() >0 ? $rs->result() : null;
 

@@ -90,7 +90,7 @@
            $rs = $this->Servicios_model->ver_Servicios();
            $data['resultado'] = $rs != null;
            $data['mensaje'] = $data['resultado'] ? "Se econtraron ". count($rs)." tipos de pago" : "no se econtraron servicios";
-           $data["Servicios"] = $rs;
+			$data["Servicios"] = $rs;
            echo JSON_ENCODE($data);
 
     }

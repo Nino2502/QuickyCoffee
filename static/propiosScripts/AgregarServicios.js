@@ -13,7 +13,7 @@ $(document).ready(()=>{
     //cambioCheckPoliticas();
     //muestraAtributosSC();
 	
-	//alert("Ya llegamos xD");
+	alert("Ya llegamos xD");
 	
 	
 	
@@ -1296,7 +1296,7 @@ function insertaServicios(){
 	
 	console.log("Soy los atributos",selectAtributos);
 	
-	fd.append("PR",selectPromociones);
+	fd.append("PM",selectPromociones);
 	console.log("Soy las promociones  ",selectPromociones);
 	
 	

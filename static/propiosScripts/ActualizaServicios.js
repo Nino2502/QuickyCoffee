@@ -15,6 +15,9 @@ $(document).ready(()=>{
 	listaPrecios_bases();
 	lista_atributos_mas();
 	listaAtributos_adicionales();
+	mostrar_promocionales();
+	
+	lista_promocionales();
 	
 	
 	//agrupacionServicios();
@@ -763,6 +766,8 @@ function insertaServicios(){
 	
 	let selectAtributos = $("#selectAtributosAdicionales").val();
 	
+	let selectPromociones = $("#selectPromociones").val();
+	
 	/*
 	let cantidadMedioMayoreo = $("#cantidadMedioMayoreo").val();
     let precioMedioMayoreo = $("#precioMedioMayoreo").val();
@@ -1234,6 +1239,10 @@ if(accion == "duplicar"){
 	fd.append("Atributos_mas",selectAtributos);
 	
 	console.log("Soy los atributos",selectAtributos);
+	
+	fd.append("PM",selectPromociones);
+	
+	console.log("Soy las promociones  ",selectPromociones);
 	/*
 	fd.append("cantidadMedioMayoreo",cantidadMedioMayoreo);
 	fd.append("precioMedioMayoreo",precioMedioMayoreo);
@@ -1397,15 +1406,54 @@ muestraAnchoMaterial(unidadAnterior);
 
 }
 
+function lista_promocionales(){
 
+	let promo = $("#idPromocionales").val();
+	
+	console.log("Soy el id de promo   ",promo);
+	
+	$.ajax({
+		"url" : base_url() + "app/Atributos_adicionales/verAtributos_promos",
+		"dataType":"JSON"
+	
+	})
+	.done((data) => {
+		$("#selectPromociones").html("");
+		
+		if(data.resultado){
+			$("#divSelectPromocionales").find("select").append(
+				`<option value="Selecciona">--Selecciona--</option>`
+			);
+			$.each(data.Promocionales, function(i,o){
+				
+				if(o.estatus == 1){
+					$("#divSelectPromocionales").find("select").append(
+						`<option value="` + o.idAtrD + `" ` + (promo == o.idAtrD ? "selected" : "") + `> ` + o.nombreAtrD + `</option>`
+					);
+				
+				}
+			
+			
+			});
+		
+		
+		}else{
+				$("#divSelectPromocionales").find("select").append(
+					`<option value="Selecciona">~~No existe promocionales~~</option>`
+				);
+			
+		}
+	
+	
+	})
+	
+	.fail();
+}
 
 
 function listaPoliticas(){
-    
-
 
 let politicaAnterior = $("#idPolitica").val();
-
 
 console.log(politicaAnterior);
 
@@ -1415,17 +1463,9 @@ console.log(politicaAnterior);
     })
     .done((data)=>{
 
-       
-
         $("#selectPoliticas").html("");
 
-     
-        
-
         if(data.resultado){
-
-
-            
 
             $("#divPoliticas").find("select").append(`
             <option value="Selecciona">--Selecciona--</option>
@@ -1672,6 +1712,30 @@ function cambioCheckAtributos(){
 	
 	
 	}
+
+
+}
+
+function mostrar_promocionales(){
+	console.log("Soy el chexbox de promociones");
+	
+	
+	let contenidoPromociones = document.getElementById("divSelectPromocionales");
+	
+	let checkPromociones = document.getElementById("promocionales_promos");
+	
+	
+	if(checkPromociones.checked){
+	
+		contenidoPromociones.style.display='block';
+	
+	}else{
+	
+	
+		contenidoPromociones.style.display='none';
+		$("#selectPromociones").val(0);
+	}
+
 
 
 }

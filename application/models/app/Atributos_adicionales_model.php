@@ -12,6 +12,15 @@ class Atributos_adicionales_model extends CI_Model{
         return $cmd->num_rows() >0 ? $cmd->result() : null;
 
     }
+	
+	public function ver_promos(){
+		$this->db->select("*");
+		$this->db->where("cat",3);
+		$this->db->where("estatus",1);
+		$rs = $this->db->get("atributos_adicionales");
+		return $rs->num_rows() > 0 ? $rs->result() : null;
+		
+	}
 
     public function inserta_nuevo_colaborador($NuevaData){
         $this->db->insert("atributos_adicionales", $NuevaData);

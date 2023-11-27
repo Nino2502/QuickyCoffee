@@ -46,6 +46,7 @@ $(document).ready(()=>{
                             <th>Categoría</th>
                             <th>Inv. Min</th>
                             <th>Imagen</th>
+							<th>Promocionales</th>
                             
                             <th style="text-align: center">Duplicar</th>
                             <th style="text-align: center">Editar</th>
@@ -80,6 +81,7 @@ $(document).ready(()=>{
                             <td class="text-wrap" style="width: 12rem;">`+o.nombreCS+`</td>
                             <td>`+(o.inventarioMin >= 1 ?  o.inventarioMin : "N/A")+`</td>
                             <td><img src="`+base_url()+`static/imgServicios/`+o.image_url+`"  height="50" /></td>
+							<td>`     +    (o.PM !== null ? o.nombreAtrD : "No Aplica")    + `</td>
 
 						    <td align="center"><a href="#" onclick="editar('`+o.idS+`','Duplicar')"><i class="fas fa-clone fa-2x"></i></a> </td>
                             

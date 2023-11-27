@@ -69,6 +69,18 @@ class Atributos_adicionales extends CI_Controller{
 
         echo JSON_ENCODE($data);
     }
+	
+	public function verAtributos_promos(){
+		$rs = $this->Atributos_adicionales_model->ver_promos();
+		
+		$data['resultado'] = $rs != null;
+		$data['mensaje'] = $data['resultado'] ? "Se encontraron  ".count($rs)."Promocionales" : "No se encontraron promocionales";
+		$data['Promocionales'] = $rs;
+		
+		echo json_encode($data);
+	
+	
+	}
     public function insertarColaborador(){
         $json = file_get_contents('php://input');
         $data = (array)json_decode($json);
