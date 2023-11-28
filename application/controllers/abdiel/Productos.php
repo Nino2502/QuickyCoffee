@@ -43,24 +43,19 @@ class Productos extends CI_Controller {
             $data = array();
             $this->load->model('abdiel/productos_model');
             $no_impreso = $this->productos_model->get_servicios_noimpresos();
+			
+			
+		
+			
+			
 			$sin_agrupacion_no = $this->productos_model->no_impresos_productos();
 			
+	
 			
-			$datos = array_merge($no_impreso,$sin_agrupacion_no);
+			$data = array_merge($no_impreso,$sin_agrupacion_no);
 			
-
-			$data = [];
 			
-			foreach( $datos as $item){
-				
-				$idS = $item->idS;
-				
-				
-				if(!in_array($idS, $data)){
-					
-					$data[] = $item;
-				}
-			}
+	
 
 			
             $response= array();

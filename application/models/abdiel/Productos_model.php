@@ -50,7 +50,6 @@ class Productos_model extends CI_Model
 		  $this->db->where('s.noImpreso',1);
 		  $this->db->where('s.estatus', 1);
 		  $this->db->group_by('s.idS');
-		  $this->db->limit(18);
 		
 		  $rs = $this->db->get();    
 		  return $rs->num_rows() >= 1 ? $rs->result() : NULL;
