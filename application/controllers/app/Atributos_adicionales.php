@@ -48,6 +48,11 @@ class Atributos_adicionales extends CI_Controller{
                 $data['modals'][]  = $this->load->view('private/fragments/Atributos_adicionales/ModalAtributosAdicionales', $data, TRUE);
                 $data['_APP_FRAGMENT'] = $this->load->view('private/fragments/Atributos_adicionales/AtributosAdicionales_view', $data, TRUE);
                 $this->load->view("default",$data,FALSE);
+				
+				$data['promocionales'] = $this->Atributos_adicionales_model->ver_promos();
+				
+
+
 
 
 
@@ -92,9 +97,6 @@ class Atributos_adicionales extends CI_Controller{
                 
                 unset($data['accion']);
 
-
-
-                
                 $NuevaData = array(
                     "nombreAtrD"     => $data['nombreAtrD'],
                     "desAtrD"        => $data['desAtrD']  ,
@@ -108,6 +110,7 @@ class Atributos_adicionales extends CI_Controller{
 
                 unset($data['accion']); //sacamos la accion del array
                 $rs = $this->Atributos_adicionales_model->inserta_nuevo_colaborador($NuevaData);
+				
   
 
 

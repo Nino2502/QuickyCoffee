@@ -84,7 +84,10 @@ private $idusuario;
         $data['_APP_FRAGMENT'] = $this->load->view('private/fragments/Servicios/AgregarServiciosView', $data, TRUE);
 
         $this->load->view("default",$data,FALSE);
-
+		
+		
+		
+		
  		}else{
 				redirect(base_url()."web");
 		}

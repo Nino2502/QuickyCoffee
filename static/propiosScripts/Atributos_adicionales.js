@@ -1,7 +1,7 @@
 $(document).ready(() => {
 	listatipoatributos();
 	atributos_adicionales();
-
+	promocionales_mostrar();
 
 
     let idTU= $("#idTU").val();
@@ -355,7 +355,42 @@ function agregarColaborador() {
  * abrimos el modal para editar un nuevo tipo de contratacion
  */
 function editar(id,nombreA,descA,precio,cat) {
+	
+	
 	quitaErroresCamposVacios();
+		console.log("Soy el nombre A  ",nombreA);
+		
+		console.log("Soy descripcion de  ", descA);
+		
+		console.log("Soy el precio de mi atributo   ", precio  );
+		
+		console.log("Soy la categoria    ", cat);
+	
+	
+		let categoria = cat;
+		
+		
+	let contenidoPromociones = document.getElementById("divPrecioPromocionales");
+		console.log("Soy el contenidoPromociones  ",contenidoPromociones);
+	
+	let checkPromociones = document.getElementById("promocionales_promos");
+		console.log("Soy el checkPromociones   ",checkPromociones);
+
+		
+	
+		
+	if(categoria == 3){
+		console.log("Entre en el if de block de ocultar");
+		
+		checkPromociones.checked = true;
+		contenidoPromociones.style.display='none';
+
+	
+	}else{
+			console.log("Entro en 2  ");
+
+	}
+	
 	$("#agregarColaborador").modal("show");
 	$("#nombreAtributo").html("Editando Atributo: " + "(" + nombreA + ")");
 	$("#nombreAtributo").val(nombreA).attr("disabled", false);
@@ -471,6 +506,7 @@ function atributos_adicionales(){
 
 
 }
+
 function promocionales_mostrar(){
 	console.log("Soy el chexbox de promociones");
 	
@@ -483,6 +519,7 @@ function promocionales_mostrar(){
 	if(checkPromociones.checked){
 	
 		contenidoPromociones.style.display='none';
+		$("#precioServicios").val(0);
 	
 	}else{
 	
