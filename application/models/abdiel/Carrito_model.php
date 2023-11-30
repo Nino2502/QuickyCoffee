@@ -4,20 +4,21 @@ defined('BASEPATH') or exit('no direct script acces allowed');
 class Carrito_model extends CI_Model
 {
 
-    public function items_carrito( $idC){
-      $this->db->select('c.id, c.cantidad, s.nombreS, c.impreso, c.idSuc, c.precio AS PrecioCarrito, 
-      c.subtotal AS subtotalCarrito,s.precioS, s.idS,
-      s.image_url, suc.nombreSuc, s.cantidadMedioMayoreo, 
-      s.precioMedioMayoreo, s.cantidadMayoreo, s.precioMayoreo, c.comentario');
-      $this->db->from('carrito_detalle AS c'); 
-      $this->db->where("carrito_id", $idC);
-      $this->db->join('servicios AS s', 's.idS = c.idServicio');
-      $this->db->join('sucursales AS suc ', 'suc.idSuc = c.idSuc');
-      $rs = $this->db->get();
-      return $rs->num_rows() >= 1 ? $rs->result(): null;
-    }
+public function items_carrito($idC) {
+    $this->db->select('c.id, c.prom, c.cantidad, s.nombreS, c.impreso, c.idSuc, c.precio AS PrecioCarrito, 
+        c.subtotal AS subtotalCarrito, s.precioS, s.idS,
+        s.image_url, suc.nombreSuc, s.cantidadMedioMayoreo, 
+        s.precioMedioMayoreo, s.cantidadMayoreo, s.precioMayoreo, c.comentario, atr.nombreAtrD, atr.desAtrD');
+    $this->db->from('carrito_detalle AS c');
+    $this->db->where("carrito_id", $idC);
+    $this->db->join('servicios AS s', 's.idS = c.idServicio');
+    $this->db->join('sucursales AS suc', 'suc.idSuc = c.idSuc');
+    $this->db->join('atributos_adicionales AS atr', 'atr.idAtrD = c.prom','left');  // Utiliza 'left' si 'promo' puede ser NULL
+    $rs = $this->db->get();
+    return $rs->num_rows() >= 1 ? $rs->result() : null;
+}
     
-     public function agregar( $idC, $idS, $count, $idSuc, $precio, $impreso, $comentario){
+     public function agregar( $idC, $idS, $count, $idSuc, $precio, $impreso, $comentario, $promocionales){
         $data = array(
             'carrito_id' => $idC,
             'idServicio' => $idS,
@@ -26,7 +27,8 @@ class Carrito_model extends CI_Model
             'subtotal'   => $count * $precio,
             'idSuc'      => $idSuc,
             'impreso'    => $impreso,
-            'comentario'    => $comentario
+            'comentario'    => $comentario,
+			'prom'			=> $promocionales
         );
         $result= $this->db->insert('carrito_detalle', $data);
         return $result;        

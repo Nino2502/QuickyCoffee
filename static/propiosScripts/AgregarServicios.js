@@ -1746,11 +1746,14 @@ function mostrar_promocionales(){
 	if(checkPromociones.checked){
 	
 		contenidoPromociones.style.display='block';
+		
 	
 	}else{
 	
 	
 		contenidoPromociones.style.display='none';
+		
+		$("#promocionales_promos").val(0);
 	}
 
 

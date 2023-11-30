@@ -19,7 +19,7 @@ class Atributos extends CI_Controller {
         }
         echo json_encode($response);
     }
-
+	
     public function get_detalle(){
         json_header();
         $idAtr = $this-> input -> post('idAtr');
@@ -221,6 +221,8 @@ class Atributos extends CI_Controller {
  		json_header();
         
 		$idS = $this-> input -> post("idS");
+		
+		//$idS = "SDI-Sel-Pro-152425";
 
 		$impreso = $this-> input -> post("impreso");
 		
@@ -244,6 +246,16 @@ class Atributos extends CI_Controller {
 		 }
        
         $inventario = $this->Atributos_model->get_inventario_by_ids($idS);
+		
+		$categoria = $this->Atributos_model->promo_productos($idS);
+		
+		$categoria_nuevo = $categoria[0]->idCS;
+		
+	
+		
+		
+		
+		
 
         if ($data!= null){
 			
@@ -251,6 +263,9 @@ class Atributos extends CI_Controller {
 
             $response["producto"]= $data;
             $response["inventario"]=$inventario;
+			
+			$response["categoria"] = $categoria_nuevo;
+			
         }else{
 
            $response= null;
@@ -1010,7 +1025,18 @@ class Atributos extends CI_Controller {
 	public function get_promocionales(){
 		
 		$this->load->model('abdiel/Atributos_model');
+		
+		
+		$idS = $this-> input -> post("idS");
+		//$idS = "SDI-Sel-Pro-152425";
+		
+
+			
+		
+		
 		$data = $this->Atributos_model->promocionales_adicional();
+		
+	
 		
 		
 

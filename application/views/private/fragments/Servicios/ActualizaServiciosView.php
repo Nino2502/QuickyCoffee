@@ -591,7 +591,7 @@
                                                         
   														<div class="col-6">
                                                         		<div class="custom-control custom-checkbox mb-4">
-                                                                	<input type="checkbox" onchange="mostrar_promocionales()" class="custom-control-input" <?=$datosServicio[0]->PM != null ? 'checked' : '' ?> id="promocionales_promos">
+                                                                	<input type="checkbox" onchange="mostrar_promocionales()" class="custom-control-input" <?=$datosServicio[0]->PM !== "0" ? 'checked' : '' ?> id="promocionales_promos">
                                                                     <label class="custom-control-label" for="promocionales_promos">Productos promocionales</label>
         
                                                                 </div>

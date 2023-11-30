@@ -9,6 +9,8 @@ class Carrito extends CI_Controller {
      public function contenido_carrito(){
             json_header();
             $idC = $this-> input -> post('idC');
+			
+			//$idC = 38;
            // $idU = $this-> input -> post('idU');
             $this->load->model('abdiel/Carrito_model');
             $data = $this->Carrito_model->items_carrito( $idC);
@@ -36,8 +38,10 @@ class Carrito extends CI_Controller {
         $precio = $this-> input -> post('precio');
         $impreso = $this-> input -> post('impreso');
         $comentario = $this-> input -> post('comentario');
+		$promocionales = $this-> input -> post('promocionales');
+		
         $this->load->model('abdiel/Carrito_model');
-        $data = $this->Carrito_model->agregar( $idC, $idS, $count, $idSuc, $precio, $impreso, $comentario);
+        $data = $this->Carrito_model->agregar( $idC, $idS, $count, $idSuc, $precio, $impreso, $comentario, $promocionales);
         echo json_encode($data);
     }
     

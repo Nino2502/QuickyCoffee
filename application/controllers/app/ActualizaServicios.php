@@ -58,6 +58,7 @@ class ActualizaServicios extends CI_Controller{
 		
 		$data['datosServicio'] = $this->Servicios_model->get_Servicio($idS);
 		
+	
 		
 		
 
@@ -141,6 +142,10 @@ class ActualizaServicios extends CI_Controller{
         $data['_APP_FRAGMENT'] = $this->load->view('private/fragments/Servicios/ActualizaServiciosView', $data, TRUE);
 
         $this->load->view("default",$data,FALSE);
+		
+
+		
+		
 			
 			
 			

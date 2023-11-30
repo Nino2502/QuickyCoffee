@@ -125,7 +125,7 @@ class Atributos_model extends CI_Model {
 			$rs = $this->db->get("atributos_adicionales");
 			return $rs->num_rows() >0 ? $rs->result() : null;
 	
-		}	
+		}
 		
 		public function atributos_adicionales_mas_2($arr){
 
@@ -156,6 +156,19 @@ class Atributos_model extends CI_Model {
 			return $rs->num_rows() > 0 ? $rs->result() : null;
 		
 		}
+		public function promo_productos($idS){
+			  $this->db->select('*');
+			  $this->db->from('servicios AS s');
+			  $this->db->join('categoriasServicios AS ct', 's.idCS = ct.idCS');
+			  $this->db->where('s.idS', $idS);
+			  $this->db->where('s.estatus', 1);
+			  $this->db->where('ct.estatus',1);
+			  $query = $this->db->get();
+			
+			return $query->result();
+
+		}
+		
 		public function get_PreciosCantidadMedioMayoreo($idS){
 			$this->db->select('idS,cantidad,precio');
 			$this->db->where("idS",$idS);
