@@ -32,14 +32,47 @@ class Carrito extends CI_Controller {
         json_header();
         //idC - idCarrito, idS - Servicio, cout -cantidad, idSuc - sucursal
         $idC = $this-> input -> post('idC');
+		
+		//$idC = 40;
         $idS = $this-> input -> post('idS');
+		
+		//$idS = "SDI-Sel-ser-1511";
         $count = $this-> input -> post('count');
+		
+		//$count = 1;
+		
         $idSuc = $this-> input -> post('idSuc');
+		
+		//$idSuc = 9;
         $precio = $this-> input -> post('precio');
+		
+		//$precio = 110;
         $impreso = $this-> input -> post('impreso');
+		
+		//$impreso = false;
+		
+		
+			if($impreso = true){
+				
+				$impreso = 1;
+			
+			}else{
+				
+
+				$impreso = 0;
+			
+			
+			
+			}
+		
+		//$impreso = false;
+		
         $comentario = $this-> input -> post('comentario');
+		
+		//$comentario = "";
 		$promocionales = $this-> input -> post('promocionales');
 		
+		//$promocionales = null;
         $this->load->model('abdiel/Carrito_model');
         $data = $this->Carrito_model->agregar( $idC, $idS, $count, $idSuc, $precio, $impreso, $comentario, $promocionales);
         echo json_encode($data);

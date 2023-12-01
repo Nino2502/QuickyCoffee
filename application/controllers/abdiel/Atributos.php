@@ -223,8 +223,11 @@ class Atributos extends CI_Controller {
 		$idS = $this-> input -> post("idS");
 		
 		//$idS = "SDI-Sel-Pro-152425";
+		
 
 		$impreso = $this-> input -> post("impreso");
+		
+		//$impreso = true;
 		
 		$this->load->model('abdiel/Atributos_model');
         
@@ -250,6 +253,16 @@ class Atributos extends CI_Controller {
 		$categoria = $this->Atributos_model->promo_productos($idS);
 		
 		$categoria_nuevo = $categoria[0]->idCS;
+		
+		if($categoria_nuevo == 41){
+			
+			$categoria_nuevo = $categoria[0]->idCS;
+		
+		}else{
+		
+			$categoria_nuevo = null;
+		
+		}
 		
 	
 		
@@ -345,10 +358,10 @@ class Atributos extends CI_Controller {
 		
 		$idS = $this-> input ->post("idS");
 
-		//$idS = "SDI-Sel-ser-1511";
+		//$idS = "SDI-Sub-Avi-19121";
 
 		$contador = $this-> input -> post("count");
-		//$contador = 39;
+		//$contador = 45;
 		
 		$impreso = $this-> input -> post("impreso");
 		//$impreso = true;
@@ -357,6 +370,8 @@ class Atributos extends CI_Controller {
 		$this->load->model('abdiel/Atributos_model');
 
 		if ($impreso ==false){
+			
+	
 		
 							
 					$producto       = $this->Atributos_model->get_servicios_by_sku_impresos($idS);
@@ -592,7 +607,9 @@ class Atributos extends CI_Controller {
 			
 			}else{
 				
-	
+			
+			
+				
 
 				
 				$producto       = $this->Atributos_model->get_servicios_by_sku_impresos($idS);
@@ -650,9 +667,15 @@ class Atributos extends CI_Controller {
 						
 			
 					if(count($categorias2) < 1 || $getPrecios == null || count($categoria1) < 1){
+						
+			
+				
+						
 
 						
 						if($getPrecios === null || $getPrecios == 0 || $getPrecios == ""){
+							
+			
 	
 							$data = $producto[0];
 							
@@ -663,6 +686,8 @@ class Atributos extends CI_Controller {
 						
 						}
 						else if(count($categoria1) < 1){
+							
+			
 
 							$data = $producto[0];
 							
@@ -727,6 +752,45 @@ class Atributos extends CI_Controller {
 							
 							
 							
+							}else{
+								
+													$data = $producto[0];
+													
+								
+										
+							
+								
+													$total_2 = floatval($producto[0]->precio);
+							
+										
+													$subtotal = floatval($producto[0]->precio);
+													
+													
+										
+													$elementoActual = $categorias2[0];
+													
+							
+													
+											
+										
+													if(($contador >= $elementoActual->cantidad || ($contador == $elementoActual->cantidad))){
+									
+	
+														$data = $producto[0];
+													
+														$total_2 = floatval($elementoActual->precio);
+
+														
+														$subtotal = floatval($elementoActual->precio);
+													
+											
+													}
+								
+							
+							
+							
+							
+							
 							}
 								
 	
@@ -738,6 +802,12 @@ class Atributos extends CI_Controller {
 						}
 					
 						else if(count($categorias2) < 1){
+							
+								
+ 						
+							
+			
+								
 
 										$data = $producto[0];
 										
@@ -751,20 +821,30 @@ class Atributos extends CI_Controller {
 										
 										$subtotal = floatval($producto[0]->precio);
 										
+	
+												
+												
+							
+										
 		
 											
 										
 											if(count($categoria1) > 1){
- 
+												
+									
+											
+															
 													for($i = 0; $i < count($categoria1); $i++){
 						
 															$elementoActual = $categoria1[$i];
 															
 															if(($contador >= $elementoActual->cantidad || ($contador == $elementoActual->cantidad))){
-																	if($contador < $categoria1[ $i + 1]->cantidad){
 												
 																		
+											
+																	if($contador <= $categoria1[ $i + 1]->cantidad){
 																		
+									
 																		$data = $elementoActual;
 																		
 																		$subtotal = floatval($data->precio);
@@ -775,6 +855,7 @@ class Atributos extends CI_Controller {
 								
 																	}
 																	if($contador >= $ultima_posicion_1->cantidad){
+																		
 
 																		$data = $ultima_posicion_1;
 
@@ -783,10 +864,24 @@ class Atributos extends CI_Controller {
 																		$total_2 = floatval($data->precio);
 																		
 																		break;
+																	}else if($contador <= $categoria1[$i]->cantidad){
+																		
+
+																		
+																			$data = $elementoActual;
+																			
+																			$subtotal = floatval($data->precio);
+																			$total_2 = floatval($data->precio);	
+																			
+																			break;																	
+																	
+																	
+																	
+																	
+																	
 																	}
 								
 															}else{
-	
 																	$data = $producto[0];
 																		
 																	$subtotal = floatval($data->precioImpresion);
@@ -797,6 +892,42 @@ class Atributos extends CI_Controller {
 								
 													}
 	
+											}else{
+													$data = $producto[0];
+													
+										
+							
+								
+													$total_2 = floatval($producto[0]->precioImpresion);
+							
+										
+													$subtotal = floatval($producto[0]->precioImpresion);
+													
+													
+										
+													$elementoActual = $categoria1[0];
+													
+													
+											
+										
+													if(($contador >= $elementoActual->cantidad || ($contador == $elementoActual->cantidad))){
+									
+	
+														$data = $producto[0];
+													
+														$total_2 = floatval($elementoActual->precio);
+
+														
+														$subtotal = floatval($elementoActual->precio);
+													
+											
+													}
+														
+											
+											
+											
+											
+											
 											}
 
 									$total_precio = $total_1 + $total_2;
@@ -828,6 +959,8 @@ class Atributos extends CI_Controller {
 						
 
 			}else{
+				
+	
 
 					$categoria_1 = [];
 					$categoria_2 = [];

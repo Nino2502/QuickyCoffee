@@ -30,7 +30,11 @@ public function items_carrito($idC) {
             'comentario'    => $comentario,
 			'prom'			=> $promocionales
         );
+		
+
+		
         $result= $this->db->insert('carrito_detalle', $data);
+		
         return $result;        
     }
     
