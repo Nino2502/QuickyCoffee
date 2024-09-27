@@ -134,7 +134,7 @@
                         </div>
                     
                         <div class="form-group col-12" id="desglosePuntos">
-                            <img src="https://sdiqro.store/static/img/rewards/rewards.png" alt="Imagen de recompensas" width="150" height="50">
+                            <img src="https://localhost/sdi_web/static/img/rewards/rewards.png" alt="Imagen de recompensas" width="150" height="50">
                             <label for="message-text" class="col-form-label font-weight-bold text-dark"  id="clienteSinprograma">Calculando...</label>
                             
                         </div>

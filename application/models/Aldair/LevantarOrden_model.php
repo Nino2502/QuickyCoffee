@@ -26,18 +26,15 @@ class LevantarOrden_model extends CI_Model{
         return $resultados;
       }
 
-      public function ver_Servicios($idSuc){
-        $this->db->select("servicios.*, categoriasServicios.nombreCS, unidades.nombreUni, politicas.nombrePol, inventario.*,sucursales.nombreSuc" );
-        $this->db->where("servicios.impresion", 1);
+      public function ver_Servicios(){
+        $this->db->select("servicios.*, categoriasServicios.nombreCS, unidades.nombreUni, politicas.nombrePol" );
+        //$this->db->where("servicios.impresion", 1);
+        
 		$this->db->where("servicios.estatus",1);
-        $this->db->where("sucursales.idSuc",$idSuc);
-        $this->db->where("inventario.inventario >=", 1);
         $this->db->or_where("servicios.estatus",0);
         $this->db->join("categoriasServicios", "categoriasServicios.idCS = servicios.idCS ");
         $this->db->join("unidades", "unidades.idUni = servicios.idUnidad", 'left');
         $this->db->join("politicas", "politicas.idPol = servicios.idPolImpre", 'left');
-        $this->db->join("inventario", "inventario.idS = servicios.idS", 'left');
-        $this->db->join("sucursales", "sucursales.idSuc = inventario.idSuc", 'left');
         $rs = $this->db->get("servicios");
         return $rs->num_rows() >0 ? $rs->result() : null;
 
@@ -67,13 +64,13 @@ class LevantarOrden_model extends CI_Model{
 
     public function ver_Servicio($id,$idSuc){
 
-      $this->db->select("servicios.*, categoriasServicios.nombreCS,inventario.*, unidades.nombreUni");
+      $this->db->select("servicios.*, categoriasServicios.nombreCS, unidades.nombreUni");
       
 	  $this->db->where("servicios.idS", $id);
-      $this->db->where("inventario.idSuc",$idSuc);
+      //$this->db->where("inventario.idSuc",$idSuc);
 	  $this->db->join("unidades", "unidades.idUni = servicios.idUnidad", 'left');
       $this->db->join("categoriasServicios", "categoriasServicios.idCS = servicios.idCS ");
-      $this->db->join("inventario", "inventario.idS = servicios.idS", 'left');
+      //$this->db->join("inventario", "inventario.idS = servicios.idS", 'left');
       $rs = $this->db->get("servicios");
       return $rs->num_rows() >0 ? $rs->result() : null;
     }
@@ -106,6 +103,19 @@ class LevantarOrden_model extends CI_Model{
         $query = $this->db->get();
         return $query->num_rows() >= 1 ? $query->row() : null;
     }
+
+    public function IngredientesServicios($idServicio){
+      $this->db->select("Ingredientes");
+      $this->db->from("servicios");
+      $this->db->where("idS",$idServicio);
+      $query = $this->db->get();
+
+      return $query->num_rows() >= 1 ? $query->row_array() : null;
+
+
+    }
+
+
 
     public function VerificaUsuarioExist($correo,$telefono){
         $this->db->select("*");
@@ -246,6 +256,42 @@ class LevantarOrden_model extends CI_Model{
 		return $rs->num_rows() >= 1 ? $rs->result() : null;
 		
 	}
+
+
+  public function obtener_inventario($ingrediente){
+
+    $id_ser = $ingrediente;
+
+
+    $id_int = (int)$id_ser;
+
+
+
+    $this->db->select("cantidad");
+    $this->db->where("id_inventario",$id_int);
+    $rs = $this->db->get("inventario_pizzas");
+
+    return $rs->num_rows() >= 1 ? $rs->result() : null;
+  }
+
+  
+
+  public function actualizar_inventario($array_data) {
+    $cantidad = $array_data['cantidad'];
+    $id_inventario = $array_data['id_inventario']; 
+
+    $cmd = $this->db->query(
+        "UPDATE inventario_pizzas
+         SET cantidad = ?
+         WHERE id_inventario = ?", 
+        array($cantidad, $id_inventario)
+    );
+
+    return $cmd;
+}
+	
+
+
 	
 	
 	

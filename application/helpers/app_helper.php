@@ -16,7 +16,7 @@ if (!function_exists('app_name')) {
      */
     function app_name()
     {
-        return 'Servicios Digitales en Impresión';
+        return 'the italian coffee company';
     }
 }
 
@@ -688,7 +688,7 @@ if (!function_exists('get_role_menu')) {
 					
 					$menu_html .='
 						<li'.($active_modulo_id == 1 ? ' class="active"': '').'>
-						<a href="http://sdiqro.store/web"><i class="
+						<a href="http://localhost/sdi_web/web"><i class="
 						fas fa-home "></i>
 						Inicio                 
 						</a>
@@ -710,7 +710,7 @@ if (!function_exists('get_role_menu')) {
 					
 					$menu_html .='
 						<li'.($active_modulo_id == 4 ? ' class="active"': '').'>
-						<a href="http://sdiqro.store/daniw/Perfil_usuario/">
+						<a href="http://localhost/sdi_web/daniw/Perfil_usuario/">
 						<i class="fa fa-user-circle"></i>
 						Perfil</a>
 						</li>
@@ -820,7 +820,7 @@ if (!function_exists('get_role_menu')) {
 					
 					$menu_html .='
 						<li'.($active_modulo_id == 2 ? ' class="active"': '').'>
-						<a href="http://sdiqro.store/logout"><i class="
+						<a href="http://localhost/sdi_web/logout"><i class="
 						fas fa-power-off "></i>
 						Cerrar sesión                 
 						</a>
@@ -835,18 +835,18 @@ if (!function_exists('get_role_menu')) {
 			
 			$menu_html .='
 				<li'.($active_modulo_id == 1 ? ' class="active"': '').'>
-				<a href="http://sdiqro.store/web"><i class="
+				<a href="http://localhost/sdi_web/web"><i class="
 				fas fa-home "></i>
 				Inicio                 
 				</a>
 				</li>
 				<li'.($active_modulo_id == 4 ? ' class="active"': '').'>
-						<a href="http://sdiqro.store/daniw/Perfil_usuario/">
+						<a href="http://localhost/sdi_web/daniw/Perfil_usuario/">
 						<i class="fa fa-user-circle"></i>
 						Perfil</a>
 						</li>
 				<li'.($active_modulo_id == 2 ? ' class="active"': '').'>
-				<a href="http://sdiqro.store/logout"><i class="
+				<a href="http://localhost/sdi_web/logout"><i class="
 				fas fa-power-off "></i>
 				Cerrar sesión                 
 				</a>
@@ -1040,7 +1040,7 @@ if (!function_exists('send_mail')) {
         $config['charset'] = 'utf-8';
         $config['wordwrap'] = true;
         $config['smtp_host'] = 'shared196.accountservergroup.com';
-        $config['smtp_user'] = 'contacto_web@sdiqro.store';
+        $config['smtp_user'] = 'contacto_web@localhost/sdi_web';
         $config['smtp_pass'] = 'SOi?&Nmzv2![';
         $config['smtp_port'] = 465;
         $config['smtp_crypto'] = 'tls';
@@ -1049,7 +1049,7 @@ if (!function_exists('send_mail')) {
         $config['crlf'] = "\r\n";
         $CI->ci_email->initialize($config);
 
-        $from_email = 'contacto_web@sdiqro.store';
+        $from_email = 'contacto_web@localhost/sdi_web';
 
         $CI->ci_email->from($to_email, $user_send);
         $CI->ci_email->to($from_email);
@@ -1079,7 +1079,7 @@ if (!function_exists('send_mail2')) {
         $config['charset'] = 'utf-8';
         $config['wordwrap'] = true;
         $config['smtp_host'] = 'shared196.accountservergroup.com';
-        $config['smtp_user'] = 'no_responder@sdiqro.store';
+        $config['smtp_user'] = 'no_responder@localhost/sdi_web';
         $config['smtp_pass'] = 'uq@L=J5SmpRb';
         $config['smtp_port'] = 465;
         $config['smtp_crypto'] = 'tls';
@@ -1088,7 +1088,7 @@ if (!function_exists('send_mail2')) {
         $config['crlf'] = "\r\n";
         $CI->ci_email->initialize($config);
 
-        $from_email = 'no_responder@sdiqro.store';
+        $from_email = 'no_responder@localhost/sdi_web';
 
         $CI->ci_email->from($from_email, $user_send);
         $CI->ci_email->to($to_email);

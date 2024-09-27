@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     
-    <title>SDI | <?=$_APP['title']?></title>
+    <title> the italian coffee company <?=$_APP['title']?></title>
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="<?= base_url()."static/plantilla/frontImg/"?>favicon.ico" type="image/x-icon">
@@ -65,7 +65,7 @@
 				<div class="row small-gutters">
 					<div class="col-xl-3 col-lg-3 d-lg-flex align-items-center">
 						 <div id="logo">
-                        	<a onClick="location.href='<?= base_url()?>';"><img src="<?= base_url()?>static/publico/img/sdi_logo.png" alt="" height="60"></a>
+                        	<h1> the italian coffee company </h1>
                     	</div>
 					</div>
 					<nav class="col-xl-6 col-lg-7">
@@ -79,7 +79,7 @@
 						<!-- Mobile menu button -->
 						<div class="main-menu">
 							<div id="header_menu">
-								<a onClick="location.href='<?= base_url()?>';"><img src="<?= base_url()?>static/publico/img/sdi_logo.png" alt="" width="100" height="35"></a>
+								<h2>italian coffee</h2>
 								<a href="#" class="open_close" id="close_in"><i class="ti-close"></i></a>
 							</div>
 							<ul>
@@ -109,6 +109,7 @@
 					</nav>
 					<div class="col-xl-3 col-lg-2 d-lg-flex align-items-center justify-content-end text-end">
 						<ul class="top_tools">
+						<h1>Hola soy el bar de arriba</h1>
 
 						 <?php if($this->session->userdata('idusuario') !=0  && $this->session->userdata('token') != null):
 							?>
@@ -152,7 +153,7 @@
 							
 								<li>
 									<div class="dropdown dropdown-access">
-										<a href="#" class="access_link"><span>Cuenta</span></a>
+										<a href="#" class="access_link"><span>Cuentaaaaaa</span></a>
 										<div class="dropdown-menu">
 
 											<ul>
@@ -254,7 +255,7 @@
 							<li><i class="ti-home"></i>Matriz: Juan de la barrera #18 <br>  esq. Pino Suárez<br> Col. Niños Heroes 76010, <br>Querétaro, <br> Querétaro, México</li>
 							<li><a href="https://api.whatsapp.com/send?phone=4427209528&text=Hola%20,te%20asesoramos%20por
 %20whatsapp%20." target="_blank"><i><img style="height: 20px" src="<?= base_url()?>/static/plantilla/frontImg/whats.png" ></i>+52 442 720 9528</a></li>
-							<!--<li><i class="ti-email"></i><a href="#0">contacto@sdiqro.store</a></li>-->
+							<!--<li><i class="ti-email"></i><a href="#0">contacto@localhost/sdi_web</a></li>-->
 						</ul>
 					</div>
 				</div>
@@ -267,7 +268,7 @@
 							<li><i class="ti-home"></i>Río: Avenida Universidad #133<br> Col.  Centro, 76000 <br> Querétaro, <br> Querétaro, México</li>
 							<li><a href="https://api.whatsapp.com/send?phone=4421217296&text=Hola%20,te%20asesoramos%20por
 %20whatsapp%20." target="_blank"><i><img style="height: 20px" src="<?= base_url()?>/static/plantilla/frontImg/whats.png" ></i>+52 442 121 7296 </a></li>
-							<!--<li><i class="ti-email"></i><a href="#0">contacto@sdiqro.store</a></li>-->
+							<!--<li><i class="ti-email"></i><a href="#0">contacto@localhost/sdi_web</a></li>-->
 						</ul>
 					</div>
 				</div>
@@ -280,7 +281,7 @@
 							<li><i class="ti-home"></i>San Juan del Río: Pino Suárez #92<br> Col. Ccntro, <br>San Juan del Río,<br> Querétaro, México</li>
 							<li><a href="https://api.whatsapp.com/send?phone=4421337921&text=Hola%20,te%20asesoramos%20por
 %20whatsapp%20." target="_blank"><i><img style="height: 20px" src="<?= base_url()?>/static/plantilla/frontImg/whats.png" ></i></i>+52 442 133 7921</a></li>
-							<!--<li><i class="ti-email"></i><a href="#0">contacto@sdiqro.store</a></li>-->
+							<!--<li><i class="ti-email"></i><a href="#0">contacto@localhost/sdi_web</a></li>-->
 						</ul>
 					</div>
 				</div>

@@ -24,7 +24,7 @@ use Monolog\Formatter\MongoDBFormatter;
  * Usage example:
  *
  *   $log = new \Monolog\Logger('application');
- *   $client = new \MongoDB\Client('mongodb://localhost:27017');
+ *   $client = new \MongoDB\Client('mongodb://localhost/sdi_web:27017');
  *   $mongodb = new \Monolog\Handler\MongoDBHandler($client, 'logs', 'prod');
  *   $log->pushHandler($mongodb);
  *

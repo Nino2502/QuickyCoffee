@@ -40,27 +40,13 @@ class GraficasInicio extends CI_Controller{
 			
 			
 			$rs = $this->Graficas_Inicio_model->ver_Graficas_Inicio_major($idSuc, $idAnio, $idMes);
-			
-			if($rs != null){
-				
-				
-								
-				$nombres = array();
-				
-				
-				foreach($rs as $pr ){
-					
-					//$cadena .= "{ name: '".$pr->nombreS."', y: ".(int)$pr->sumaCantidad.", },";
-					//array_push($nombres, );
-					//array_push($cantidades, (int)$pr->sumaCantidad);
-					
-					$dataDetalleAtributo = ['name'=>$pr->nombreS, 'y'=>(int)$pr->sumaCantidad];
-					array_push($final, (object)$dataDetalleAtributo);
-					
-				}
-				
-				
-			}
+
+	
+
+
+	
+
+
 			
 			
 			//echo "<pre>";
@@ -72,7 +58,7 @@ class GraficasInicio extends CI_Controller{
 			$data['resultado'] = $rs != null;
             $data['mensaje'] = $data['resultado'] ? "Resultado encontrado" : "no se encontro información con los parametros proporcionados";
             //$data["nombres"] = $nombres;
-			$data["final"] = $final;
+			$data["final"] = $rs;
 			
             echo JSON_ENCODE($data);
 			

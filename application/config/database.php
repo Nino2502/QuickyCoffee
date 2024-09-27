@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'sdiqro.store',
-	'username' => 'sdiqrost_sdi',
-	'password' => 'Hg@eWf.ZVr?y',
-	'database' => 'sdiqrost_sdi',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => '',
+	'database' => 'bd_quickyfast',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

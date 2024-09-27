@@ -29,7 +29,7 @@ use Riverline\MultiPartParser\StreamedPart;
 // Prepare a test stream
 $data = <<<EOL
 User-Agent: curl/7.21.2 (x86_64-apple-darwin)
-Host: localhost:8080
+Host: localhost/sdi_web:8080
 Accept: */*
 Content-Type: multipart/form-data; boundary=----------------------------83ff53821b7c
 

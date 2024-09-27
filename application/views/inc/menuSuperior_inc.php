@@ -25,8 +25,7 @@
         </div>
 
         <a class="navbar-logo" href="<?= base_url() ?>web">
-            <span class="logo d-none d-xs-block" style="background: url(<?= base_url('static/plantilla/img/logo-black.svg') ?>) no-repeat;"> </span>
-            <span class="logo-mobile d-block d-xs-none"></span>
+           <h1>italian coffee</h1>
         </a>
 
         <div class="navbar-right">
@@ -100,21 +99,20 @@
                     <i class="fa-solid fa-store"></i>
                 </a>
 
+                
+                <!--
                 <button class="header-icon btn btn-empty d-none d-sm-inline-block" type="button" id="fullScreenButton">
                     <i class="simple-icon-size-fullscreen"></i>
                     <i class="simple-icon-size-actual"></i>
                 </button>
-
+                -->
             </div>
 
             <div class="user d-inline-block">
                 <button class="btn btn-empty p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
-                    <span class="name"><?= $_SESSION['nombreU']?></span>
-                    <span>
-                        <img alt="Profile Picture" src='<?= base_url().'static/uploads/profiles/'.$_SESSION['image_url'] ?>' /> 
-                        
-                    </span>
+                    <span class="name"><?= $_SESSION['correo']?></span>
+
                 </button>
 
                 <div class="dropdown-menu dropdown-menu-right mt-3">

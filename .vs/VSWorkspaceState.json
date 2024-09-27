@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\application",
+    "\\application\\views",
+    "\\application\\views\\app",
+    "\\application\\views\\app\\private",
+    "\\application\\views\\app\\private\\fragments",
+    "\\application\\views\\app\\private\\fragments\\modules",
+    "\\application\\views\\app\\private\\fragments\\modules\\Cliente",
+    "\\application\\views\\private",
+    "\\application\\views\\private\\fragments",
+    "\\application\\views\\publico",
+    "\\application\\views\\publico\\fragments"
+  ],
+  "PreviewInSolutionExplorer": false
+}

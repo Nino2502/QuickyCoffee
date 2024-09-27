@@ -315,4 +315,3 @@ $this->db->select('s.idS, s.desS, s.idCS, s.precioS AS precio, s.precioImpresion
       }
 
 }
-

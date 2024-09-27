@@ -91,6 +91,7 @@ class Inventario extends CI_Controller{
 	}	
 			
 			
+	
 			
 
     }

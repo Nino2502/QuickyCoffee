@@ -204,6 +204,6 @@ var_dump(json_decode($opc3));
 				echo '18) autorizar cancelación<br>';
 				echo '19) cancelar2<br>';
 				echo '20) cancelarPFX2<br>';
-				echo '<br>p.e. http://localhost/../PHP/test.php?opc=5';
+				echo '<br>p.e. http://localhost/sdi_web/../PHP/test.php?opc=5';
 	}
 ?>

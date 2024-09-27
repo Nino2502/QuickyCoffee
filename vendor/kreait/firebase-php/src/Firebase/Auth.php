@@ -756,7 +756,7 @@ class Auth
     public function signInWithIdpAccessToken($provider, string $accessToken, $redirectUrl = null): SignInResult
     {
         $provider = $provider instanceof Provider ? (string) $provider : $provider;
-        $redirectUrl = $redirectUrl ?? 'http://localhost';
+        $redirectUrl = $redirectUrl ?? 'http://localhost/sdi_web';
 
         if ($redirectUrl instanceof UriInterface) {
             $redirectUrl = (string) $redirectUrl;
@@ -786,7 +786,7 @@ class Auth
             $idToken = (string) $idToken;
         }
 
-        $redirectUrl = $redirectUrl ?? 'http://localhost';
+        $redirectUrl = $redirectUrl ?? 'http://localhost/sdi_web';
 
         if ($redirectUrl instanceof UriInterface) {
             $redirectUrl = (string) $redirectUrl;

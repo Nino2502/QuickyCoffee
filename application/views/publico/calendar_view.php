@@ -23,22 +23,22 @@
 
    
 	
-	<link rel="stylesheet" href="http://sdiqro.store/static/plantilla/font/iconsmind-s/css/iconsminds.css">
-    <link rel="stylesheet" href="http://sdiqro.store/static/plantilla/font/simple-line-icons/css/simple-line-icons.css">
+	<link rel="stylesheet" href="http://localhost/sdi_web/static/plantilla/font/iconsmind-s/css/iconsminds.css">
+    <link rel="stylesheet" href="http://localhost/sdi_web/static/plantilla/font/simple-line-icons/css/simple-line-icons.css">
     
-    <link rel="stylesheet" href="http://sdiqro.store/static/plantilla/css/vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="http://sdiqro.store/static/plantilla/css/vendor/bootstrap.rtl.only.min.css">
-    <link rel="stylesheet" href="http://sdiqro.store/static/plantilla/css/vendor/perfect-scrollbar.css">
-    <link rel="stylesheet" href="http://sdiqro.store/static/plantilla/css/vendor/component-custom-switch.min.css">
-    <link rel="stylesheet" type="text/css" href="http://sdiqro.store/static/plantilla/css/dore.light.blue.min.css"><link rel="stylesheet" href="http://sdiqro.store/static/plantilla/css/main.css">
-	<link rel="stylesheet" href="http://sdiqro.store/static/fontawesome-6.2.1-web/css/all.css">
-    <link rel="stylesheet" href="http://sdiqro.store/static/toastr/toastr.min.css">
+    <link rel="stylesheet" href="http://localhost/sdi_web/static/plantilla/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost/sdi_web/static/plantilla/css/vendor/bootstrap.rtl.only.min.css">
+    <link rel="stylesheet" href="http://localhost/sdi_web/static/plantilla/css/vendor/perfect-scrollbar.css">
+    <link rel="stylesheet" href="http://localhost/sdi_web/static/plantilla/css/vendor/component-custom-switch.min.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost/sdi_web/static/plantilla/css/dore.light.blue.min.css"><link rel="stylesheet" href="http://localhost/sdi_web/static/plantilla/css/main.css">
+	<link rel="stylesheet" href="http://localhost/sdi_web/static/fontawesome-6.2.1-web/css/all.css">
+    <link rel="stylesheet" href="http://localhost/sdi_web/static/toastr/toastr.min.css">
 
-    <link rel="stylesheet" href="http://sdiqro.store/static/cssTables/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="http://sdiqro.store/static/cssTables/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css">
- <link rel="stylesheet" href="http://sdiqro.store/static/plantilla/css/vendor/select2.min.css">
-                <link rel="stylesheet" href="http://sdiqro.store/static/plantilla/css/vendor/select2-bootstrap.min.css">
-                <link rel="stylesheet" href="http://sdiqro.store/static/plantilla/css/vendor/bootstrap-datepicker3.min.css">
+    <link rel="stylesheet" href="http://localhost/sdi_web/static/cssTables/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="http://localhost/sdi_web/static/cssTables/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css">
+ <link rel="stylesheet" href="http://localhost/sdi_web/static/plantilla/css/vendor/select2.min.css">
+                <link rel="stylesheet" href="http://localhost/sdi_web/static/plantilla/css/vendor/select2-bootstrap.min.css">
+                <link rel="stylesheet" href="http://localhost/sdi_web/static/plantilla/css/vendor/bootstrap-datepicker3.min.css">
     	
 	
 	
@@ -271,7 +271,7 @@
 						<ul>
 							<li><i class="ti-home"></i>Matriz: Juan de la barrera #18 <br>  esq. pino suarez<br> Col. Niños Heroes 76010, <br>Querétaro, <br> Querétaro, México</li>
 							<li><i class="ti-headphone-alt"></i>+52 442 242 4356</li>
-							<li><i class="ti-email"></i><a href="#0">contacto@sdiqro.store</a></li>
+							<li><i class="ti-email"></i><a href="#0">contacto@localhost/sdi_web</a></li>
 						</ul>
 					</div>
 				</div>
@@ -283,7 +283,7 @@
 						<ul>
 							<li><i class="ti-home"></i>Río: Avenida Universidad #137_10,<br> Col.  Centro, 76000 <br> Querétaro, <br> Querétaro, México</li>
 							<li><i class="ti-headphone-alt"></i>+52  442 224 2242</li>
-							<li><i class="ti-email"></i><a href="#0">contacto@sdiqro.store</a></li>
+							<li><i class="ti-email"></i><a href="#0">contacto@localhost/sdi_web</a></li>
 						</ul>
 					</div>
 				</div>
@@ -295,7 +295,7 @@
 						<ul>
 							<li><i class="ti-home"></i>San Juan del Río: Pino Suarez #92<br> Col. Ccntro, <br>San Juan del Río,<br> Querétaro, México</li>
 							<li><i class="ti-headphone-alt"></i>+52 442 242 4356</li>
-							<li><i class="ti-email"></i><a href="#0">contacto@sdiqro.store</a></li>
+							<li><i class="ti-email"></i><a href="#0">contacto@localhost/sdi_web</a></li>
 						</ul>
 					</div>
 				</div>
@@ -344,15 +344,15 @@
 	
 	
 	
-	            <script type="text/javascript" src="http://sdiqro.store/static/plantilla/js/dore-plugins/select.from.library.js" style="opacity: 1;"></script>
-                <script type="text/javascript" src="http://sdiqro.store/static/plantilla/js/vendor/select2.full.js" style="opacity: 1;"></script>
-                <script type="text/javascript" src="http://sdiqro.store/static/propiosScripts/GastoVariado.js" style="opacity: 1;"></script>
-                <script type="text/javascript" src="http://sdiqro.store/static/propiosScripts/tabla/datatables.net/js/jquery.dataTables.min.js" style="opacity: 1;"></script>
-                <script type="text/javascript" src="http://sdiqro.store/static/propiosScripts/tabla/datatables.net-bs4/js/dataTables.bootstrap4.min.js" style="opacity: 1;"></script>
-                <script type="text/javascript" src="http://sdiqro.store/static/propiosScripts/tabla/datatables.net-responsive/js/dataTables.responsive.min.js" style="opacity: 1;"></script>
-                <script type="text/javascript" src="http://sdiqro.store/static/propiosScripts/tabla/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js" style="opacity: 1;"></script>
-                <script type="text/javascript" src="http://sdiqro.store/static/propiosScripts/tabla/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js" style="opacity: 1;"></script>
-                <script type="text/javascript" src="http://sdiqro.store/static/plantilla/js/vendor/bootstrap-datepicker.js" style="opacity: 1;"></script>
+	            <script type="text/javascript" src="http://localhost/sdi_web/static/plantilla/js/dore-plugins/select.from.library.js" style="opacity: 1;"></script>
+                <script type="text/javascript" src="http://localhost/sdi_web/static/plantilla/js/vendor/select2.full.js" style="opacity: 1;"></script>
+                <script type="text/javascript" src="http://localhost/sdi_web/static/propiosScripts/GastoVariado.js" style="opacity: 1;"></script>
+                <script type="text/javascript" src="http://localhost/sdi_web/static/propiosScripts/tabla/datatables.net/js/jquery.dataTables.min.js" style="opacity: 1;"></script>
+                <script type="text/javascript" src="http://localhost/sdi_web/static/propiosScripts/tabla/datatables.net-bs4/js/dataTables.bootstrap4.min.js" style="opacity: 1;"></script>
+                <script type="text/javascript" src="http://localhost/sdi_web/static/propiosScripts/tabla/datatables.net-responsive/js/dataTables.responsive.min.js" style="opacity: 1;"></script>
+                <script type="text/javascript" src="http://localhost/sdi_web/static/propiosScripts/tabla/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js" style="opacity: 1;"></script>
+                <script type="text/javascript" src="http://localhost/sdi_web/static/propiosScripts/tabla/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js" style="opacity: 1;"></script>
+                <script type="text/javascript" src="http://localhost/sdi_web/static/plantilla/js/vendor/bootstrap-datepicker.js" style="opacity: 1;"></script>
     
     <!-- fin listado de scripts-->
 	<script type="text/javascript"> function base_url() { return "<?=base_url()?>" } </script>

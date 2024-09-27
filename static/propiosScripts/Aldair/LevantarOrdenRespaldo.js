@@ -2582,7 +2582,7 @@ const obtenerPuntos = async(cliente)=>{
                     // console.log("puntosStart", puntosStart)
                      $("#cantidadCliente").html(
                         `
-                        <img src="https://sdiqro.store/static/img/rewards/rewards.png" alt="Imagen de recompensas" width="150" height="50">
+                        <img src="https://localhost/sdi_web/static/img/rewards/rewards.png" alt="Imagen de recompensas" width="150" height="50">
                             <label for="message-text" class="col-form-label">Cantidad:</label>
                             <input value="${puntosStart}" min="0" max="` + puntosStart + `" type="number" id="cantidadCoinsprograma">
                             <small class="text-danger" id="errortelefonoCliente" style="display: none;"></small>

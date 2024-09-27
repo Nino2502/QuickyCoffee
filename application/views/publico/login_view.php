@@ -23,13 +23,15 @@
 
 <body class="background show-spinner" >
 	
-    <div class="fixed-background" style="background: url(<?= base_url('static/plantilla/img/balloon.jpg') ?>) no-repeat;"></div>
+    <div class="fixed-background" style="background: url(<?= base_url('static/plantilla/img/italy-fondo.png') ?>) no-repeat; background-size: cover; background-position: center; width: 100vw; height: 100vh;"></div>
+
     <main>
         <div class="container">
             <div class="row h-100">
                 <div class="col-12 col-md-10 mx-auto my-auto">
                     <div class="card auth-card">
-                        <div class="position-relative image-side" style="background: url(<?= base_url('static/plantilla/img/login-balloon.jpg') ?>) no-repeat;" >
+                    <div class="position-relative image-side" style="background: url(<?= base_url('static/plantilla/img/italy-login.jpg') ?>) no-repeat; background-size: cover; width: 50%; height: 70vh;">
+
 
                             <!--<p class=" text-black h2" >SDI Administración</p>
 
@@ -51,10 +53,26 @@
                             <?php endif; ?>
 							
 							
+                           
+
+                            <!--
                             <a href="<?= base_url() . "store/"?>">
                                 <span class="logo-single" style="background: url(<?= base_url('static/plantilla/img/logo-black.svg') ?>) no-repeat;"></span>
                             </a>
-                            <h6 class="mb-4">Inicio de sesión</h6>
+                            -->
+                            
+
+
+
+
+                                <center>
+
+                                <h1 class="mb-3"><strong>the italian coffee company</strong></h1>  
+                            
+                               
+                                <h6 class="mb-4">Inicio de sesión</h6>
+
+                                </center>
 
 							
                             <form id="formInicioSesion">
@@ -73,14 +91,30 @@
                                         La contraseña es requerida!
                                     </div>
                                 </label>
+
+                                <!--
                                 <div class="d-flex justify-content-between align-items-center">
+                                    
+                                       
                                     <a href="<?= base_url()?>resetPass">¿Olvidaste tu contraseña? </a>
-                                    <button class="btn btn-primary btn-lg btn-shadow" type="submit" id="iniciarSesion">Iniciar sesión</button>
+                                    
+                                    
+                                    <button class="btn btn-danger btn-lg btn-shadow" type="submit" id="iniciarSesion">Iniciar sesión</button>
                                 </div>
-								
+								-->
+
+                                <center>
+                                <button class="btn btn-success btn-lg" type="submit" id="iniciarSesion">Iniciar Sesión</button>
+
+                                </center>
+
+                                <!--
 								<div class="d-flex justify-content-between align-items-center">
                                     <a href="<?= base_url()?>registro">Registrate aquí</a>
                                 </div>
+
+
+                                -->
                             </form>
 							
 							

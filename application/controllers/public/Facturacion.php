@@ -173,7 +173,7 @@ class Facturacion extends CI_Controller{
 					
 					
 					
-					$rutaImagen = "http://sdiqro.store/static/publico/img/sdi_logo.png";
+					$rutaImagen = "http://localhost/sdi_web/static/publico/img/sdi_logo.png";
 					$contenido = file_get_contents($rutaImagen);
 					$imagenBase64 = base64_encode($contenido);
 				

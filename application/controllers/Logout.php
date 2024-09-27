@@ -12,9 +12,15 @@ class Logout extends CI_Controller{
 	
 	
 	public function cerrarSesionIrTienda(){
+
+
+	
 		
+		$this->session->sess_destroy();
+
+		redirect('login');
 		
-		fuchi_wakala2();
+		//fuchi_wakala2();
 		
 	}
 	

@@ -39,7 +39,7 @@ class Jesus extends CI_Controller{
         $data['modals'][]  = $this->load->view('private/fragments/Jesus/modalJesus', $data, TRUE);
         $data['_APP_FRAGMENT'] = $this->load->view('private/fragments/Jesus/Jesus_view', $data, TRUE);
 
-        $this->load->view("default",$data,FALSE);
+        ///$this->load->view("default",$data,FALSE);
 
     }
 

@@ -31,7 +31,7 @@ class CouchDBHandler extends AbstractProcessingHandler
     public function __construct(array $options = [], $level = Logger::DEBUG, bool $bubble = true)
     {
         $this->options = array_merge([
-            'host'     => 'localhost',
+            'host'     => 'localhost/sdi_web',
             'port'     => 5984,
             'dbname'   => 'logger',
             'username' => null,

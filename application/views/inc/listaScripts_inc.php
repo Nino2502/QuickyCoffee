@@ -11,7 +11,9 @@
     <script src="<?= base_url() ?>static/plantilla/js/dore.script.js"></script>
     <script src="<?= base_url() ?>static/plantilla/js/scripts.js"></script>
     <script src="<?= base_url() ?>static/toastr/toastr.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="<?= base_url() ?>static/plantilla/js/axios.min.js"></script>
+
 
     <!-- pdf -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> -->

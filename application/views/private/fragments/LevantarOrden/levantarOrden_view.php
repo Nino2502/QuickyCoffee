@@ -46,11 +46,13 @@
 
 
 
-
+												
+												<!--	
 													<button type="button" class="btn btn-primary mr-3 mb-4" onclick="AgregarCambio()">
 														Movimiento caja
 													</button>
 
+													-->
 
 
 
@@ -80,6 +82,9 @@
 									
 									<!--  ****** select de productos no impresos ******-->
 
+
+									<!--
+
 									<div class="row pl-3  col-12 mb-4">
 										<div class="col-sm-4" id="divListaServiciosNoImpresos">
 											<label>Productos <strong style="font-size: 125%">No Impresos</strong></label>
@@ -108,14 +113,17 @@
 											<button class="btn btn-outline-secondary" value="1" id="btnVentaRapida">+ Venta rapida</button>
 										</div>
 
-									</div> <!--termina select de productos no impresos-->
+									</div> termina select de productos no impresos-->
+
+
+
 									
 									
 									<!-- ******* select de productos impresos ******-->
 
 									<div class="row pl-3  col-12 mt-3">
 										<div class="col-sm-4" id="divListaServicios">
-											<label>Productos <strong style="font-size: 125%">Impresos</strong></label>
+											<label><strong style="font-size: 125%">Productos</strong></label>
 
 
 											<select class="form-control select2-single" id="selectListaServicios">
@@ -171,14 +179,12 @@
 								<table class="table table-bordered" ida="serviciosSeleccionados">
 									<thead>
 										<tr style="text-align: center">
-											<th scope="col">#</th>
-											<th scope="col">Inv</th>
+											
+											
 											<th scope="col">#id</th>
 											<th scope="col">Producto</th>
 											<th scope="col">Descripción</th>
 											<th scope="col">Unidad</th>
-											<th scope="col">Ancho</th>
-											<th scope="col">Largo/Alto</th>
 											<th scope="col">Stock</th>
 											<th scope="col">Precio</th>
 											

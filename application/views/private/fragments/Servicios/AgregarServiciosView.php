@@ -105,48 +105,7 @@
 
 
 									<!-- select de agrupaciones -->
-									<div class="form-group mt-3">
-										<div class="row">
-
-											<div class="col-sm-2">
-												<div class="custom-control custom-checkbox mb-4">
-													<input type="checkbox" onchange="cambioAgrupaServicio()" class="custom-control-input" id="servicioAgrupadoCheck">
-													<label class="custom-control-label" for="servicioAgrupadoCheck">Agrupar Servicio </label>
-												</div>
-
-											</div>
-
-
-
-
-											<div class="col-sm-6" id="divServicioAgrupado" style="display: none;">
-
-
-
-												<div class="row">
-
-													<div class="col-10" id="divSelectAgrupaciones">
-														<label> * Agrupaciones</label>
-														<select class="form-control select2-single" id="SelectAgrupaciones">
-															
-														 </select>
-
-													
-
-
-														<small class="text-danger" id="errorSelectAgrupaciones" style="display: none;"></small>
-													</div>
-
-													<div class="col-2 pt-2">
-														<button onClick="agregaAgrupacionServicio()" type="button" class="btn btn-primary">+</button>
-													</div>
-
-												</div>
-
-											</div>
-										</div>
-									</div>
-
+								
 									<!-- termina select de agrupaciones -->
 
 
@@ -166,22 +125,21 @@
 												<small class="text-danger" id="errorImpresoNoImpreso" style="display: none;"></small>
 
 
-												<h4>Selecciona si pertenece a impresos, no impresos o ambos</h4>
 												<div>
 
 
 
 
-													<div class="col-sm-4">
+													<div class="col-sm-4" style="display: none;">
 														<div class="custom-control custom-checkbox mb-4">
-															<input type="checkbox" class="custom-control-input" id="servicioNoImpresoCheck">
+															<input type="checkbox" class="custom-control-input" id="servicioNoImpresoCheck" value=1>
 															<label class="custom-control-label" for="servicioNoImpresoCheck">No impreso </label>
 														</div>
 													</div>
 
-													<div class="col-sm-4">
+													<div class="col-sm-4" style="display:none;">
 														<div class="custom-control custom-checkbox mb-4">
-															<input type="checkbox" onClick="cambioCheckImpresion()" class="custom-control-input" id="servicioImpresoCheck">
+															<input type="checkbox" onClick="cambioCheckImpresion()" class="custom-control-input" value=0 id="servicioImpresoCheck">
 															<label class="custom-control-label" for="servicioImpresoCheck">Impreso </label>
 														</div>
 													</div>
@@ -269,7 +227,9 @@
 
 											<!-- termian anterior impreso no impreso -->
 
+											
 
+											<!--
 											<div class="col-sm-6">
 												<div class="custom-control custom-checkbox mb-4">
 													<input onchange="cambioCheckPoliticas()" type="checkbox" class="custom-control-input" id="politicas">
@@ -288,6 +248,9 @@
 
 
 										</div>
+
+
+-->
 
 
 
@@ -337,14 +300,16 @@
 										<div class="row">
 											
 											
-											
+										
+										
+										<!--
 										<div class="form-group col-sm-6 mt-4">
 											<label for="message-text" class="col-form-label"> Area impresión:</label>
 											<input value="" type="text" class="form-control" id="areaImpresion" placeholder="Escribe el area de impresión">
 											<small class="text-danger" id="errorareaImpresión" style="display: none;"></small>
 										</div>
 											
-											
+-->
 
 											<div class="col-sm-6 mt-4" id="divUnidades">
 												<label> * Unidad</label>
@@ -366,6 +331,20 @@
 												<input value="0" type="number" class="form-control" id="inventarioMinimo">
 												<small class="text-danger" id="errorinventarioMinimo" style="display: none;"></small>
 											</div>
+
+											
+											
+											<div class="col-sm-12 mt-4" id="divSelectIngredientes">
+                                            	<label>Ingredientes: </label>
+                                                                        
+                                                	<select class="form-control select2-multiple" multiple="multiple" id="selectIngredientes">
+
+                                                                        
+                                                    </select>
+                                                                        
+                                					 <small class="text-danger" id="errorAtributoAdicional" style="display:none;"></small>
+                                                                
+                                            </div>
                                             
                                             	
                                                 
@@ -384,7 +363,7 @@
 
 											<!--
 
-										<!--
+										
 										<div class="row">
 
 											<div class="col-sm-6">
@@ -441,6 +420,9 @@
 														</div>
 													</div><!-- fin div form group -->
                                                     
+
+													<!--
+													
                                                     <div class="row">
                                                         <div class="col-6">
                                                             <div class="custom-control custom-checkbox mb-4">
@@ -505,6 +487,9 @@
                                                         
                                                         
                                                     </div>
+
+
+														-->
        
                                                     <br>
                   

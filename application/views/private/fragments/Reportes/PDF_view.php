@@ -54,7 +54,7 @@ header('Content-Type: application/pdf');
     <table id="customers">
 
         <tr>
-            <td style="text-align: center;" rowspan="3"><img style="width: 100; height: 70; text-align: center;" src="http://sdiqro.store/static/publico/img/sdi_logo.png"></td>
+            <td style="text-align: center;" rowspan="3"><img style="width: 100; height: 70; text-align: center;" src="http://localhost/sdi_web/static/publico/img/sdi_logo.png"></td>
         </tr>
 
         <!--termina logo empresa-->

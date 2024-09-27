@@ -48,7 +48,7 @@
     <table id="customers">
 
         <tr>
-            <td style="text-align: center;" rowspan="3"><img style="width: 100; height: 70; text-align: center;" src="http://sdiqro.store/static/publico/img/sdi_logo.png"></td>
+            <td style="text-align: center;" rowspan="3"><img style="width: 100; height: 70; text-align: center;" src="http://localhost/sdi_web/static/publico/img/sdi_logo.png"></td>
         </tr>
 
         <!--termina logo empresa-->
@@ -57,8 +57,8 @@
             <th colspan="3" style="text-align: center"></th>
         </tr>
         <tr>
-            <td colspan="4" style="text-align: center">Servicios Digitales en Impresión</td>
-            <td colspan="3" style="text-align: center">SDI</td>
+            <td colspan="4" style="text-align: center">PizzOptimize</td>
+            <td colspan="3" style="text-align: center">PO</td>
             <!-- <?= ($nombreSucursal->nombreSuc) ?> -->
         </tr>
 
@@ -95,7 +95,7 @@
         <?php foreach ($Servicios as $item) { ?>
             <tr>
         <td style="text-align: center;"><b>Servicio:</b> <?= $item['idServicio'] ?></td>
-        <td align="center"><img alt="Profile Picture" src="<?= "http://sdiqro.store/static/imgServicios/" . $item['image_url'] ?>" style="height: 20px;"/></td>
+        <td align="center"><img alt="Profile Picture" src="<?= "http://localhost/sdi_web/static/imgServicios/" . $item['image_url'] ?>" style="height: 20px;"/></td>
         <td><?= $item['desS'] ? $item['desS'] : "Sin detalle" ?></td>
         <td align="center"><?= $item['Cantidad'] ?></td>
         <td align="center">$<?= $item['PrecioUnitario'] ?></td>

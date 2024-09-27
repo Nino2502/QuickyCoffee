@@ -51,9 +51,15 @@ class Store extends CI_Controller{
 		$data['styles'][] = 'plantilla/frontcss/custom';
 	    $data['scripts'][] = 'plantilla/frontjs/carousel-home';	
 	    $data['scripts'][] = 'publico/js/carousel_with_thumbs';	
+
+	
 		
 		
 		$data['_APP_FRAGMENT'] = $this->load->view('publico/fragments/inicio/inicio_view.php', $data, TRUE);
+
+		echo json_encode($data);
+
+		die();
 
 		
 		

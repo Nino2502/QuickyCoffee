@@ -22,7 +22,7 @@ class Uri implements UriInterface, \JsonSerializable
      * we apply this default host when no host is given yet to form a
      * valid URI.
      */
-    private const HTTP_DEFAULT_HOST = 'localhost';
+    private const HTTP_DEFAULT_HOST = 'localhost/sdi_web';
 
     private const DEFAULT_PORTS = [
         'http'  => 80,

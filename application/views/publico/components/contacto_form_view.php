@@ -18,9 +18,9 @@
 
     <meta name="author" content="Impactos Digitales" />
 
-    <meta name="email" content="contacto_web@sdiqro.store" />
+    <meta name="email" content="contacto_web@localhost/sdi_web" />
 
-    <meta name="website" content="https://sdiqro.store" />
+    <meta name="website" content="https://localhost/sdi_web" />
 
     <meta name="Version" content="v0.2.1" />
 
@@ -94,7 +94,7 @@
 
                     <!--<td style="padding: 24px 24px 0; text-align: center">
 
-                        <img src="http://sdiqro.store/static/publico/img/sdi_logo.png" style="max-height: 400px !important;">
+                        <img src="http://localhost/sdi_web/static/publico/img/sdi_logo.png" style="max-height: 400px !important;">
 
                     </td>-->
 

@@ -36,6 +36,15 @@
 		
 	
 	}
+
+    public function ver_ingredientes(){
+		$this->db->select("*");
+		$this->db->where('estatus',1);
+		$rs = $this->db->get("inventario_pizzas");
+		return $rs->num_rows() > 0 ? $rs->result() : null;
+		
+	
+	}
 	
 	public function ver_promocionales(){
 		$this->db->select("*");

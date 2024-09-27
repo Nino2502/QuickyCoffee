@@ -85,6 +85,7 @@ class LevantarOrden extends CI_Controller{
 
         $data['modals'][]  = $this->load->view('private/fragments/LevantarOrden/modalLevantarOrden', $data, TRUE);
         $data['_APP_FRAGMENT'] = $this->load->view('private/fragments/LevantarOrden/levantarOrden_view', $data, TRUE);
+        
         $this->load->view("default",$data,FALSE);
 		
 							
@@ -107,7 +108,11 @@ class LevantarOrden extends CI_Controller{
     }
 
     public function listaServicios(){
+        
+        
         $data["Servicios"] = $this->LevantarOrden_model->listadoServicios();
+
+
         $data["resultado"]     = $data["Servicios"] != null ? true : false;
         $data["mensaje"]    = $data["resultado"] ? "Servicios encontrados" : "No hay servicios disponibles";
         echo json_encode($data);
@@ -225,7 +230,12 @@ class LevantarOrden extends CI_Controller{
     public function verServicios(){
 
 
-        $rs = $this->LevantarOrden_model->ver_Servicios($this->idSuc);
+        $rs = $this->LevantarOrden_model->ver_Servicios();
+
+
+
+
+
         $data['resultado'] = $rs != null;
         $data['mensaje'] = $data['resultado'] ? "Se econtraron ". count($rs)." servicios o productos" : "no se econtraron servicios";
         $data["Servicios"] = $rs;
@@ -335,9 +345,9 @@ class LevantarOrden extends CI_Controller{
 
                 $data["contra"] = $telefono;
                 
-                $user_send = 'SDI';
+                $user_send = 'PZO';
 				$to_email  = $correo; // correo electrónico del destinatario (cliente)
-				$asunto = 'SDI';
+				$asunto = 'PZO';
 	
 				$html = ($this->load->view('private/fragments/LevantarOrden/account_view', $data, TRUE));
 				//$attach = '/ruta/al/archivo.pdf';
@@ -419,9 +429,229 @@ class LevantarOrden extends CI_Controller{
                 $carritoFinal = array();
                 $carritoFinal[] = $new_array;
 
+                $cantidadTotal = 0;
 
-              
 
+
+
+
+
+                foreach($carritoFinal as $posiciones){
+                    foreach($posiciones as $posicion){
+
+                        $cantidadTotal += $posicion["Cantidad"];
+
+                        $idSer = $posicion["idServicio"];
+
+                        $cantidadProductos = $posicion["Cantidad"];
+
+                        $TipoElemento = $this->LevantarOrden_model->IngredientesServicios($idSer);
+
+
+
+                        foreach ($TipoElemento as $ingrediente) {
+                            $elementos = explode(',', $ingrediente);
+                            foreach($elementos as $nuevo_ingre){
+                                $id_ingre = $nuevo_ingre;
+
+                                switch($id_ingre) {
+                                    case 17:
+                                        // Ingrediente Leche!!
+                                        // Consultamos el inventario actual de este ingrediente
+                                        $leche_actual_inve = $this->LevantarOrden_model->obtener_inventario($id_ingre);
+                                        // Convertimos la cantidad actual del ingrediente a double
+                                        $leche_actual = (double)$leche_actual_inve[0]->cantidad;
+                                        // Vamos a identificar cuánta leche vamos a descontar y lo vamos a multiplicar por los productos
+                                        $leche_des = 250.00 * $cantidadProductos;
+                                        // Metemos el id_inventario y cantidad en un array
+                                        $array_data = [
+                                            "cantidad" => $leche_des,
+                                            "id_inventario" => $id_ingre
+                                        ];
+                                        // Después se lo mandamos al modelo que va a hacer toda la magia, neta te lo juro
+                                        $leche_descontada = $this->LevantarOrden_model->actualizar_inventario($array_data);
+                                        break;
+                                    case 18:
+                                        // Ingrediente Cafe en Polvo
+                                        // Consultamos el inventario actual de este ingrediente
+                                        $cafe_actual_inve = $this->LevantarOrden_model->obtener_inventario($id_ingre);
+                                        // Convertimos la cantidad actual del ingrediente a double
+                                        $cafe_actual = (double)$cafe_actual_inve[0]->cantidad;
+                                        // Vamos a identificar cuánta café en polvo vamos a descontar y lo vamos a multiplicar por los productos
+                                        $cafe_des = 50.00 * $cantidadProductos; // Ajusta la cantidad según necesidad
+                                        // Metemos el id_inventario y cantidad en un array
+                                        $array_data = [
+                                            "cantidad" => $cafe_des,
+                                            "id_inventario" => $id_ingre
+                                        ];
+                                        // Después se lo mandamos al modelo que va a hacer toda la magia, neta te lo juro
+                                        $cafe_descontado = $this->LevantarOrden_model->actualizar_inventario($array_data);
+                                        break;
+                                    case 19:
+                                        // Ingrediente Galleta Oreo
+                                        // Consultamos el inventario actual de este ingrediente
+                                        $galleta_actual_inve = $this->LevantarOrden_model->obtener_inventario($id_ingre);
+                                        // Convertimos la cantidad actual del ingrediente a double
+                                        $galleta_actual = (double)$galleta_actual_inve[0]->cantidad;
+                                        // Vamos a identificar cuántas galletas Oreo vamos a descontar y lo vamos a multiplicar por los productos
+                                        $galleta_des = 10.00 * $cantidadProductos; // Ajusta la cantidad según necesidad
+                                        // Metemos el id_inventario y cantidad en un array
+                                        $array_data = [
+                                            "cantidad" => $galleta_des,
+                                            "id_inventario" => $id_ingre
+                                        ];
+                                        // Después se lo mandamos al modelo que va a hacer toda la magia, neta te lo juro
+                                        $galleta_descontada = $this->LevantarOrden_model->actualizar_inventario($array_data);
+                                        break;
+                                    case 20:
+                                        // Ingrediente Concentrado de capuchino
+                                        // Consultamos el inventario actual de este ingrediente
+                                        $capuchino_actual_inve = $this->LevantarOrden_model->obtener_inventario($id_ingre);
+                                        // Convertimos la cantidad actual del ingrediente a double
+                                        $capuchino_actual = (double)$capuchino_actual_inve[0]->cantidad;
+                                        // Vamos a identificar cuánta concentración de capuchino vamos a descontar y lo vamos a multiplicar por los productos
+                                        $capuchino_des = 100.00 * $cantidadProductos; // Ajusta la cantidad según necesidad
+                                        // Metemos el id_inventario y cantidad en un array
+                                        $array_data = [
+                                            "cantidad" => $capuchino_des,
+                                            "id_inventario" => $id_ingre
+                                        ];
+                                        // Después se lo mandamos al modelo que va a hacer toda la magia, neta te lo juro
+                                        $capuchino_descontado = $this->LevantarOrden_model->actualizar_inventario($array_data);
+                                        break;
+                                    case 21:
+                                        // Ingrediente Concentrado Moka
+                                        // Consultamos el inventario actual de este ingrediente
+                                        $moka_actual_inve = $this->LevantarOrden_model->obtener_inventario($id_ingre);
+                                        // Convertimos la cantidad actual del ingrediente a double
+                                        $moka_actual = (double)$moka_actual_inve[0]->cantidad;
+                                        // Vamos a identificar cuánta concentración de moka vamos a descontar y lo vamos a multiplicar por los productos
+                                        $moka_des = 75.00 * $cantidadProductos; // Ajusta la cantidad según necesidad
+                                        // Metemos el id_inventario y cantidad en un array
+                                        $array_data = [
+                                            "cantidad" => $moka_des,
+                                            "id_inventario" => $id_ingre
+                                        ];
+                                        // Después se lo mandamos al modelo que va a hacer toda la magia, neta te lo juro
+                                        $moka_descontado = $this->LevantarOrden_model->actualizar_inventario($array_data);
+                                        break;
+                                    case 22:
+                                        // Ingrediente Chocolate Italiano
+                                        // Consultamos el inventario actual de este ingrediente
+                                        $choco_italiano_actual_inve = $this->LevantarOrden_model->obtener_inventario($id_ingre);
+                                        // Convertimos la cantidad actual del ingrediente a double
+                                        $choco_italiano_actual = (double)$choco_italiano_actual_inve[0]->cantidad;
+                                        // Vamos a identificar cuánta cantidad de chocolate italiano vamos a descontar y lo vamos a multiplicar por los productos
+                                        $choco_italiano_des = 80.00 * $cantidadProductos; // Ajusta la cantidad según necesidad
+                                        // Metemos el id_inventario y cantidad en un array
+                                        $array_data = [
+                                            "cantidad" => $choco_italiano_des,
+                                            "id_inventario" => $id_ingre
+                                        ];
+                                        // Después se lo mandamos al modelo que va a hacer toda la magia, neta te lo juro
+                                        $choco_italiano_descontado = $this->LevantarOrden_model->actualizar_inventario($array_data);
+                                        break;
+                                    case 23:
+                                        // Ingrediente Chocolate Blanco
+                                        // Consultamos el inventario actual de este ingrediente
+                                        $choco_blanco_actual_inve = $this->LevantarOrden_model->obtener_inventario($id_ingre);
+                                        // Convertimos la cantidad actual del ingrediente a double
+                                        $choco_blanco_actual = (double)$choco_blanco_actual_inve[0]->cantidad;
+                                        // Vamos a identificar cuánta cantidad de chocolate blanco vamos a descontar y lo vamos a multiplicar por los productos
+                                        $choco_blanco_des = 90.00 * $cantidadProductos; // Ajusta la cantidad según necesidad
+                                        // Metemos el id_inventario y cantidad en un array
+                                        $array_data = [
+                                            "cantidad" => $choco_blanco_des,
+                                            "id_inventario" => $id_ingre
+                                        ];
+                                        // Después se lo mandamos al modelo que va a hacer toda la magia, neta te lo juro
+                                        $choco_blanco_descontado = $this->LevantarOrden_model->actualizar_inventario($array_data);
+                                        break;
+                                    case 24:
+                                        // Ingrediente Agua
+                                        // Consultamos el inventario actual de este ingrediente
+                                        $agua_actual_inve = $this->LevantarOrden_model->obtener_inventario($id_ingre);
+                                        // Convertimos la cantidad actual del ingrediente a double
+                                        $agua_actual = (double)$agua_actual_inve[0]->cantidad;
+                                        // Vamos a identificar cuánta agua vamos a descontar y lo vamos a multiplicar por los productos
+                                        $agua_des = 500.00 * $cantidadProductos; // Ajusta la cantidad según necesidad
+                                        // Metemos el id_inventario y cantidad en un array
+                                        $array_data = [
+                                            "cantidad" => $agua_des,
+                                            "id_inventario" => $id_ingre
+                                        ];
+                                        // Después se lo mandamos al modelo que va a hacer toda la magia, neta te lo juro
+                                        $agua_descontada = $this->LevantarOrden_model->actualizar_inventario($array_data);
+                                        break;
+                                    case 25:
+                                        // Ingrediente Cacao
+                                        // Consultamos el inventario actual de este ingrediente
+                                        $cacao_actual_inve = $this->LevantarOrden_model->obtener_inventario($id_ingre);
+                                        // Convertimos la cantidad actual del ingrediente a double
+                                        $cacao_actual = (double)$cacao_actual_inve[0]->cantidad;
+                                        // Vamos a identificar cuánta cantidad de cacao vamos a descontar y lo vamos a multiplicar por los productos
+                                        $cacao_des = 30.00 * $cantidadProductos; // Ajusta la cantidad según necesidad
+                                        // Metemos el id_inventario y cantidad en un array
+                                        $array_data = [
+                                            "cantidad" => $cacao_des,
+                                            "id_inventario" => $id_ingre
+                                        ];
+                                        // Después se lo mandamos al modelo que va a hacer toda la magia, neta te lo juro
+                                        $cacao_descontado = $this->LevantarOrden_model->actualizar_inventario($array_data);
+                                        break;
+                                    case 26:
+                                        // Ingrediente Crema Americana
+                                        // Consultamos el inventario actual de este ingrediente
+                                        $crema_actual_inve = $this->LevantarOrden_model->obtener_inventario($id_ingre);
+                                        // Convertimos la cantidad actual del ingrediente a double
+                                        $crema_actual = (double)$crema_actual_inve[0]->cantidad;
+                                        // Vamos a identificar cuánta cantidad de crema americana vamos a descontar y lo vamos a multiplicar por los productos
+                                        $crema_des = 200.00 * $cantidadProductos; // Ajusta la cantidad según necesidad
+                                        // Metemos el id_inventario y cantidad en un array
+                                        $array_data = [
+                                            "cantidad" => $crema_des,
+                                            "id_inventario" => $id_ingre
+                                        ];
+                                        // Después se lo mandamos al modelo que va a hacer toda la magia, neta te lo juro
+                                        $crema_descontada = $this->LevantarOrden_model->actualizar_inventario($array_data);
+                                        break;
+                                    default:
+                                        // No hacer nada para casos no especificados
+                                        break;
+                                }
+                                
+                                
+                
+                            }
+                        }
+                        
+             
+                      /*
+
+                        foreach ($ingredientes_array as $ingrediente) {
+                          echo $ingrediente . "<br>";
+                        }
+
+                        */
+
+
+
+
+
+
+
+                        
+
+                    
+
+
+
+
+                    }
+
+                }
+
+               
                 
             
                 //Generamos la venta y obtenemos el id de la venta

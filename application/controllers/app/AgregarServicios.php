@@ -97,13 +97,13 @@ private $idusuario;
         
     }
 	
-	public function atributos_adicionales(){
-		$rs = $this->Servicios_model->ver_atributos_adicionales();
+	public function ingredientes_pizza(){
+		$rs = $this->Servicios_model->ver_ingredientes();
 		
 		$data['resultado'] = $rs != null;
-		$data['mensaje'] = $data['resultado'] ? "Se encontraron  ".count($rs)."  atributos" : "No se encontraron ningun atributo";
+		$data['mensaje'] = $data['resultado'] ? "Se encontraron  ".count($rs)."  ingredientes" : "No se encontraron ningun atributo";
 		
-		$data["Atributos_adicionales"] = $rs;
+		$data["ingredientes_pizzas"] = $rs;
 		
 		echo json_encode($data);
 
@@ -203,10 +203,7 @@ private $idusuario;
 		
 		
 		$arrayAtributos = json_decode($dato1);
-		
-		
-		$preciosImpresion = json_decode($ajax_data['preciosImpresion']); 
-		$preciosProductos = json_decode($ajax_data['preciosProducto']); 
+
 		
 		
 	
@@ -262,40 +259,9 @@ private $idusuario;
 					
 				} else {
 					$ajax_data = $this->input->post();
-					
-					$preciosBases_impresion = $ajax_data['preciosBases'];
-					
-					
-					$preciosArray = explode(",", $preciosBases_impresion);
-					
-					
 
-					
-					
-					
-				
-					$Atributos_mas = $ajax_data['Atributos_mas'];
-					
-					$Atributos_mas_array = explode(",", $Atributos_mas);
-					
-					
-				
-	
-					$array_combinado = array_merge($preciosArray,$Atributos_mas_array);
-					
-		
-					
-					
-					
-					
 
-	
-							
-					unset($ajax_data['preciosImpresion']);
-					unset($ajax_data['preciosProducto']);
-					
-					
-					
+
 
                     $accion = $ajax_data['accion']; 
 
@@ -308,128 +274,17 @@ private $idusuario;
 					
 					
 					
-					if(count($array_combinado) >= 1){
-							
-							
-							foreach($array_combinado as $adicional){
-
-								
-								
-								$dataCosasAdicional = ["idS" => $ajax_data['idS'], "idAtributo" => $adicional];
-								
-								
-								$array[] = $dataCosasAdicional;
-		
-							
-							
-							}
-							
-							
-							
-							
-							
-							
-							
-							$inserta_mas_atributos = $this->Servicios_model->inserta_atributos_mas($array);
-							
-
-							
-
-							
-						
-						
-						
-						
-						}
-						$insertado_atributos_mas = $inserta_mas_atributos != false ? $insertado = true : $insertado = false;
-						
-
-                    if($rs != false){
-
-                        $this->Servicios_model->borra_servicioAtributos($ajax_data['idS']);
-
-                        if(count($arrayAtributos) >=1){
-
-                            foreach($arrayAtributos as $atributo){
-
-                                $dataDetalleAtributo = ["idS"=>$ajax_data['idS'],"idAtr"=>$atributo[0], "idDatr"=>$atributo[1]];
-                                $atributo = $this->Servicios_model->inserta_servicioAtributos($dataDetalleAtributo);
-
-                                $atributo ?  $contador ++ : "";
-                            }
-
-                        }
-						
-						
-						$this->Servicios_model->borra_PreciosDinamicos($ajax_data['idS']);
-						
-						
-						
-						
-						
-						$mensajeUno= "";
-						$mensajeDos= "";
-						
-						
-						/*Inicia carga precios dinamicos*/
-						
-							foreach ( $preciosImpresion as $valor ) {
-
-								$valor->idS = $ajax_data['idS'];
-
-							}
-
-
-
-							if ( count( $preciosImpresion ) >= 1 ) {
-
-								$rsImpre = $this->Servicios_model->insertaPreciosServicios( $preciosImpresion );
-
-								if ( $rsImpre ) {
-									$mensajeUno = " precios de impresion dinamicos agregados correctamente";
-								} else {
-									$mensajeUno = " error, no agregaron los precios dinamicos de impresion, intenta actualizando el producto";
-								}
-
-							}
-
-
-
-							foreach ( $preciosProductos as $valor ) {
-
-								$valor->idS = $ajax_data['idS'];
-
-							}
-
-
-							if ( count( $preciosProductos ) >= 1 ) {
-
-								$rsPro = $this->Servicios_model->insertaPreciosServicios( $preciosProductos );
-
-								if ( $rsPro ) {
-										$mensajeDos = " precios dinamicos de producto agregados correctamente";
-								} else {
-									$mensajeDos = " eroor, no agregaron los precios dinamicos de producto, intenta actualizando el producto";
-								}
-
-
-
-							}
 		
 						
-						
-						
-						/*Termina carga de precios dinamicos*/
-                    }/*Termina if*/
-					
-					
+
 					
 					
 
 
                     if($accion== "Agregar" || $accion== "duplicar"){
-                        $data["resultado"]= $rs != false || $contador != 0 || $inserta_mas_atributos != false ;
-                        $data["mensaje"] = $data["resultado"] ? "Se inserto  correctamente " . $mensajeUno ." , " . $mensajeDos  : ($rs == NULL ? "No se insertaron los datos " . $mensajeUno ." , " . $mensajeDos : "") . " " . ($contador == 0 ? "No se insertaron atributos" . $mensajeUno ." , " . $mensajeDos: "") ;
+                        $data["resultado"]= $rs != false;
+						$data["mensaje"] = $data["resultado"] ? "Se insertó correctamente" : ($rs == NULL ? "No se insertaron los datos" : "Hubo un error al insertar los datos");
+
                     }else if($accion == "editar"){
                         $data["resultado"]= $rs != false;
                         $data["mensaje"] = $data["resultado"] ? "Se actualizo  correctamente"  : "No se actualizo prueba nuevamente";

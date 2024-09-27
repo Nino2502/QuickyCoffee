@@ -47,9 +47,15 @@
 
         $data['_APP_TITLE']              = "Servicios";        
         $data['_APP_VIEW_NAME']          = "Servicios";
+
         $data['_APP_MENU']               = get_role_menu($this->rol_id, 5, 3);// menu lateral
         //$data['_APP_NAV']                = $this->load->view('app/private/fragments/nav/main_nav', $data, TRUE);   // menu superior imagen usuario     
+        
+        
+
         $data['_APP_VIEW_MENU']          = $this->load->view('private/fragments/nav/main_menu', $data, TRUE);
+        
+    
         $data['_APP_BREADCRUMBS']        = array("Servicios");
 
 
@@ -88,6 +94,9 @@
     public function verServicios(){
 
            $rs = $this->Servicios_model->ver_Servicios();
+
+    
+           
            $data['resultado'] = $rs != null;
            $data['mensaje'] = $data['resultado'] ? "Se econtraron ". count($rs)." tipos de pago" : "no se econtraron servicios";
 			$data["Servicios"] = $rs;

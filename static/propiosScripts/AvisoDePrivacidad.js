@@ -144,7 +144,7 @@ editorTexto.setContents(
         "attributes": {
             "color": "#000000"
         },
-        "insert": "Oficina de privacidad: SDI SERVICIOS DIGITALES DE IMPRESIÓN."
+        "insert": "Oficina de privacidad: PO PizzOptmize."
     },
     {
         "attributes": {
@@ -168,7 +168,7 @@ editorTexto.setContents(
         "attributes": {
             "color": "#000000"
         },
-        "insert": "Correo electrónico: contacto@sdiqro.store"
+        "insert": "Correo electrónico: contacto@localhost/sdi_web"
     },
     {
         "attributes": {

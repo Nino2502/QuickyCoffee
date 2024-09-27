@@ -123,7 +123,7 @@ describe('Manipulator', () => {
 
       expect(Manipulator.getDataAttribute(div, 'test')).toEqual({ delay: { show: 100, hide: 10 } })
 
-      const objectData = { 'Super Hero': ['Iron Man', 'Super Man'], testNum: 90, url: 'http://localhost:8080/test?foo=bar' }
+      const objectData = { 'Super Hero': ['Iron Man', 'Super Man'], testNum: 90, url: 'http://localhost/sdi_web:8080/test?foo=bar' }
       const dataStr = JSON.stringify(objectData)
       div.setAttribute('data-bs-test', encodeURIComponent(dataStr))
       expect(Manipulator.getDataAttribute(div, 'test')).toEqual(objectData)

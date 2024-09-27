@@ -1,6 +1,6 @@
 RewriteEngine on
 RewriteCond $1 !^(index\.php|static|images|robots\.txt)
-RewriteRule ^(.*)$ /index.php/$1 [L]
+RewriteRule ^(.*)$ /sdi_web/index.php/$1 [L]
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

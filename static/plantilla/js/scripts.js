@@ -17,7 +17,7 @@ function loadStyle(href, callback) {
   var link = document.createElement("link");
   link.rel = "stylesheet";
   link.type = "text/css";
-  link.href = "http://sdiqro.store/static/plantilla/css/dore.light.blue.min.css";
+  link.href = "http://localhost/sdi_web/static/plantilla/css/dore.light.blue.min.css";
   if (callback) {
     link.onload = function () {
       callback();

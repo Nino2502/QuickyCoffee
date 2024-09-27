@@ -80,6 +80,7 @@
             <div class="row">
                 <div class="col-12">
                     <h1><?= $_APP_VIEW_NAME ?></h1>
+                   
                     <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
                         <?php if (is_array($_APP_BREADCRUMBS)) : ?>
                             <ol class="breadcrumb pt-0">

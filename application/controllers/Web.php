@@ -81,6 +81,11 @@ class Web extends CI_Controller{
 				$data['sucursales'] = $this->Sucursales_model->ver_Sucursales();
 				$data['idSuc'] = $this->idSuc;
 				
+				$data['ingredientes'] = $this->Sucursales_model->ver_ingredientes();
+
+				
+
+
 				
 				$data['scriptsExternos'][] = 'https://code.highcharts.com/highcharts.js';  
 				$data['scriptsExternos'][] = 'https://code.highcharts.com/modules/data.js';  
