@@ -19,6 +19,8 @@ class Inventario_pizza extends CI_Controller{
        
     }
     public function index(){
+
+        /*
         $this->permiso_id = get_permiso_modulo_seccion(
             $this->estatus,
             $this->rol_id,
@@ -27,10 +29,18 @@ class Inventario_pizza extends CI_Controller{
             $seccion_id = 69
         );
 
+        */
+
+        $this->permiso_id = true;
+
+        
+
         if(!is_null($this->permiso_id)){
+
+            
                 $data['_APP_TITLE']              = "Inventario Coffee";        
                 $data['_APP_VIEW_NAME']          = "Inventario Coffee";
-                $data['_APP_MENU']               = get_role_menu($this->rol_id, 5, 69);
+                $data['_APP_MENU']               = get_role_menu($this->rol_id,0,0);
                 //$data['_APP_NAV']                = $this->load->view('app/private/fragments/nav/main_nav', $data, TRUE);   // menu superior imagen usuario     
                 $data['_APP_VIEW_MENU']          = $this->load->view('private/fragments/nav/main_menu', $data, TRUE);
                 $data['_APP_BREADCRUMBS']        = array("inventario coffee");
@@ -46,7 +56,9 @@ class Inventario_pizza extends CI_Controller{
 				
 				//$data['promocionales'] = $this->Inventario_pizza_model->ver_promos();
         }else{
-            redirect(base_url()."web");
+
+      
+            redirect(base_url()."app/Inventario_pizza");
         }
     }
     public function verListaInventario(){
