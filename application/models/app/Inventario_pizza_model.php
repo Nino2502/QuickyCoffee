@@ -6,7 +6,7 @@ class Inventario_pizza_model extends CI_Model{
     public function ver_lista_inventario(){
 
       
-        $cmd = $this->db->query('SELECT * FROM inventario_pizzas WHERE estatus != 3');
+        $cmd = $this->db->query('SELECT * FROM Inventario_pizzas WHERE estatus != 3');
     
       
         return $cmd->num_rows() >0 ? $cmd->result() : null;
@@ -23,14 +23,14 @@ class Inventario_pizza_model extends CI_Model{
 	}
 
     public function inserta_nuevo_ingrediente($NuevaData){
-        $this->db->insert("inventario_pizzas", $NuevaData);
+        $this->db->insert("Inventario_pizzas", $NuevaData);
         return $this->db->affected_rows() > 0 ? true : false;
         
     }
 
     public function update_ingrediente($data, $id_inventario){
         $this->db->where("id_inventario", $id_inventario);
-        $this->db->update("inventario_pizzas", $data);
+        $this->db->update("Inventario_pizzas", $data);
         return $this->db->affected_rows() > 0 ? true : false;
     }
     public function validarCorreo($correo){
@@ -57,7 +57,7 @@ class Inventario_pizza_model extends CI_Model{
         $id_inventario             = $changeData['id_inventario']; 
     
         $cmd = $this->db->query(
-        "UPDATE inventario_pizzas
+        "UPDATE Inventario_pizzas
              SET estatus = 0
 
              WHERE estatus       = $estatus AND
@@ -72,7 +72,7 @@ class Inventario_pizza_model extends CI_Model{
     
     
         $cmd = $this->db->query(
-        "UPDATE inventario_pizzas
+        "UPDATE Inventario_pizzas
              SET estatus = 1
 
              WHERE estatus       = $estatus AND
@@ -85,7 +85,7 @@ class Inventario_pizza_model extends CI_Model{
 
         $this->db->set("estatus", "3");
         $this->db->where("id_inventario",$id);
-        $this->db->update("inventario_pizzas");
+        $this->db->update("Inventario_pizzas");
         return $this->db->affected_rows() >0;
 
     }
@@ -117,7 +117,7 @@ class Inventario_pizza_model extends CI_Model{
 
     public function sumar_precio(){
         $this->db->select_sum('precio');
-        $rs = $this->db->get("inventario_pizzas");
+        $rs = $this->db->get("Inventario_pizzas");
 
         return $rs->num_rows() > 0 ? $rs->row() : null;
 

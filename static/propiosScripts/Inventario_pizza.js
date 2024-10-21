@@ -95,7 +95,7 @@ function creaGraficaBarras() {
 
 function listatipoatributos() {
 	//consumimos servicio para mostrar los tipos de contratacion
-	axios(base_url() + "app/Inventario_pizza/verListaInventario")
+	axios(base_url() + "app/Inventario_coffee/verListaInventario")
 		.then(({ data: Response }) => {
 			console.log(Response);
 
@@ -320,7 +320,7 @@ function InsertarColaborador() {
 
 
 			axios
-				.post(base_url() + "app/Inventario_pizza/insertarColaborador", formbody)
+				.post(base_url() + "app/Inventario_coffee/insertarColaborador", formbody)
 				.then(({ data }) => {
 					if (data.resultado) {
 						toastr["success"](data.mensaje);
@@ -448,7 +448,7 @@ function btnModalBorrar() {
 	console.log("Soy el id del atributo", id);
 
 	$.ajax({
-		url: base_url() + "app/Inventario_pizza/bajaLogica",
+		url: base_url() + "app/Inventario_coffee/bajaLogica",
 		dataType: "JSON",
 		type: "POST",
 		data: {
@@ -480,7 +480,7 @@ function cambiaEstatus(id_inventario, estatus) {
 	let accion = "CambiarEstatus";
 
 	axios
-		.post(base_url() + "app/Inventario_pizza/insertarColaborador", {
+		.post(base_url() + "app/Inventario_coffee/insertarColaborador", {
 			id_inventario: id_inv,
 			accion: accion,
 			estatus: est,
@@ -508,7 +508,7 @@ function quitaErroresCamposVacios() {
 
 function precio_total() {
 
-	axios(base_url() + "app/Inventario_pizza/total_inventario")
+	axios(base_url() + "app/Inventario_coffee/total_inventario")
 		.then(({ data }) => {
 
 			console.log("Soy data en precio total", data);

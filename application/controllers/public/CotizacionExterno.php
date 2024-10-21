@@ -12,7 +12,7 @@ class cotizacionExterno extends CI_Controller{
         parent::__construct();
 
     
-        $this->load->model('Aldair/Cotizaciones_model');
+        $this->load->model('quicky/Cotizaciones_model');
         $this->rol_id       = $this->session->userdata('idTipoUsuario');
 		$this->idP          = $this->session->userdata('idPerfilUsuario');
         $this->idUsuario    = $this->session->userdata('idusuario');
@@ -29,8 +29,8 @@ class cotizacionExterno extends CI_Controller{
         $data['_APP_VIEW_MENU']          = $this->load->view('private/fragments/nav/main_menu', $data, TRUE);
         $data['_APP_BREADCRUMBS']        = array("Cotizaciones");
         
-        $data['scripts'][] = 'propiosScripts/Aldair/HistorialCotizacion';
-        $data['scripts'][] = 'propiosScripts/Aldair/cotizacion';
+        $data['scripts'][] = 'propiosScripts/quicky/HistorialCotizacion';
+        $data['scripts'][] = 'propiosScripts/quicky/cotizacion';
         $data['scripts'][] = 'propiosScripts/tabla/datatables.net/js/jquery.dataTables.min';
 		$data['scripts'][] = 'propiosScripts/tabla/datatables.net-bs4/js/dataTables.bootstrap4.min';
 		$data['scripts'][] = 'propiosScripts/tabla/datatables.net-responsive/js/dataTables.responsive.min';
@@ -130,7 +130,7 @@ class cotizacionExterno extends CI_Controller{
                 }
             }
         }
-        //@AldairCruz
+        //@quickyCruz
 
         
         // echo json_encode($PServicios);

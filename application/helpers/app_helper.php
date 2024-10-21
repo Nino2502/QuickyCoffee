@@ -688,7 +688,7 @@ if (!function_exists('get_role_menu')) {
 					
 					$menu_html .='
 						<li'.($active_modulo_id == 1 ? ' class="active"': '').'>
-						<a href="http://localhost/sdi_web/web"><i class="
+						<a href="http://localhost/quicky_coffee/web"><i class="
 						fas fa-home "></i>
 						Inicio                 
 						</a>
@@ -710,7 +710,7 @@ if (!function_exists('get_role_menu')) {
 					
 					$menu_html .='
 						<li'.($active_modulo_id == 4 ? ' class="active"': '').'>
-						<a href="http://localhost/sdi_web/daniw/Perfil_usuario/">
+						<a href="http://localhost/quicky_coffee/daniw/Perfil_usuario/">
 						<i class="fa fa-user-circle"></i>
 						Perfil</a>
 						</li>
@@ -820,7 +820,7 @@ if (!function_exists('get_role_menu')) {
 					
 					$menu_html .='
 						<li'.($active_modulo_id == 2 ? ' class="active"': '').'>
-						<a href="http://localhost/sdi_web/logout"><i class="
+						<a href="http://localhost/quicky_coffee/logout"><i class="
 						fas fa-power-off "></i>
 						Cerrar sesión                 
 						</a>
@@ -835,18 +835,18 @@ if (!function_exists('get_role_menu')) {
 			
 			$menu_html .='
 				<li'.($active_modulo_id == 1 ? ' class="active"': '').'>
-				<a href="http://localhost/sdi_web/web"><i class="
+				<a href="http://localhost/quicky_coffee/web"><i class="
 				fas fa-home "></i>
 				Inicio                 
 				</a>
 				</li>
 				<li'.($active_modulo_id == 4 ? ' class="active"': '').'>
-						<a href="http://localhost/sdi_web/daniw/Perfil_usuario/">
+						<a href="http://localhost/quicky_coffee/daniw/Perfil_usuario/">
 						<i class="fa fa-user-circle"></i>
 						Perfil</a>
 						</li>
 				<li'.($active_modulo_id == 2 ? ' class="active"': '').'>
-				<a href="http://localhost/sdi_web/logout"><i class="
+				<a href="http://localhost/quicky_coffee/logout"><i class="
 				fas fa-power-off "></i>
 				Cerrar sesión                 
 				</a>
@@ -1040,7 +1040,7 @@ if (!function_exists('send_mail')) {
         $config['charset'] = 'utf-8';
         $config['wordwrap'] = true;
         $config['smtp_host'] = 'shared196.accountservergroup.com';
-        $config['smtp_user'] = 'contacto_web@localhost/sdi_web';
+        $config['smtp_user'] = 'contacto_web@localhost/quicky_coffee';
         $config['smtp_pass'] = 'SOi?&Nmzv2![';
         $config['smtp_port'] = 465;
         $config['smtp_crypto'] = 'tls';
@@ -1049,7 +1049,7 @@ if (!function_exists('send_mail')) {
         $config['crlf'] = "\r\n";
         $CI->ci_email->initialize($config);
 
-        $from_email = 'contacto_web@localhost/sdi_web';
+        $from_email = 'contacto_web@localhost/quicky_coffee';
 
         $CI->ci_email->from($to_email, $user_send);
         $CI->ci_email->to($from_email);
@@ -1079,7 +1079,7 @@ if (!function_exists('send_mail2')) {
         $config['charset'] = 'utf-8';
         $config['wordwrap'] = true;
         $config['smtp_host'] = 'shared196.accountservergroup.com';
-        $config['smtp_user'] = 'no_responder@localhost/sdi_web';
+        $config['smtp_user'] = 'no_responder@localhost/quicky_coffee';
         $config['smtp_pass'] = 'uq@L=J5SmpRb';
         $config['smtp_port'] = 465;
         $config['smtp_crypto'] = 'tls';
@@ -1088,7 +1088,7 @@ if (!function_exists('send_mail2')) {
         $config['crlf'] = "\r\n";
         $CI->ci_email->initialize($config);
 
-        $from_email = 'no_responder@localhost/sdi_web';
+        $from_email = 'no_responder@localhost/quicky_coffee';
 
         $CI->ci_email->from($from_email, $user_send);
         $CI->ci_email->to($to_email);

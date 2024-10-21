@@ -255,7 +255,7 @@
 							<li><i class="ti-home"></i>Matriz: Juan de la barrera #18 <br>  esq. Pino Suárez<br> Col. Niños Heroes 76010, <br>Querétaro, <br> Querétaro, México</li>
 							<li><a href="https://api.whatsapp.com/send?phone=4427209528&text=Hola%20,te%20asesoramos%20por
 %20whatsapp%20." target="_blank"><i><img style="height: 20px" src="<?= base_url()?>/static/plantilla/frontImg/whats.png" ></i>+52 442 720 9528</a></li>
-							<!--<li><i class="ti-email"></i><a href="#0">contacto@localhost/sdi_web</a></li>-->
+							<!--<li><i class="ti-email"></i><a href="#0">contacto@localhost/quicky_coffee</a></li>-->
 						</ul>
 					</div>
 				</div>
@@ -268,7 +268,7 @@
 							<li><i class="ti-home"></i>Río: Avenida Universidad #133<br> Col.  Centro, 76000 <br> Querétaro, <br> Querétaro, México</li>
 							<li><a href="https://api.whatsapp.com/send?phone=4421217296&text=Hola%20,te%20asesoramos%20por
 %20whatsapp%20." target="_blank"><i><img style="height: 20px" src="<?= base_url()?>/static/plantilla/frontImg/whats.png" ></i>+52 442 121 7296 </a></li>
-							<!--<li><i class="ti-email"></i><a href="#0">contacto@localhost/sdi_web</a></li>-->
+							<!--<li><i class="ti-email"></i><a href="#0">contacto@localhost/quicky_coffee</a></li>-->
 						</ul>
 					</div>
 				</div>
@@ -281,7 +281,7 @@
 							<li><i class="ti-home"></i>San Juan del Río: Pino Suárez #92<br> Col. Ccntro, <br>San Juan del Río,<br> Querétaro, México</li>
 							<li><a href="https://api.whatsapp.com/send?phone=4421337921&text=Hola%20,te%20asesoramos%20por
 %20whatsapp%20." target="_blank"><i><img style="height: 20px" src="<?= base_url()?>/static/plantilla/frontImg/whats.png" ></i></i>+52 442 133 7921</a></li>
-							<!--<li><i class="ti-email"></i><a href="#0">contacto@localhost/sdi_web</a></li>-->
+							<!--<li><i class="ti-email"></i><a href="#0">contacto@localhost/quicky_coffee</a></li>-->
 						</ul>
 					</div>
 				</div>

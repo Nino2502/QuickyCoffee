@@ -16,7 +16,7 @@ final class SignInWithIdpCredentials implements SignIn
     private $provider;
 
     /** @var string */
-    private $requestUri = 'http://localhost/sdi_web';
+    private $requestUri = 'http://localhost/quicky_coffee';
 
     private function __construct()
     {

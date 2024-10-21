@@ -6,7 +6,7 @@ class ActualizacionPass extends CI_Controller{
     {
         parent::__construct();
 		$this->load->model('app/Login_model');
-		$this->load->model('Aldair/RecuperarContrasena_model');
+		$this->load->model('quicky/RecuperarContrasena_model');
     }
     
     public function index(){

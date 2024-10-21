@@ -168,7 +168,7 @@ editorTexto.setContents(
         "attributes": {
             "color": "#000000"
         },
-        "insert": "Correo electrónico: contacto@localhost/sdi_web"
+        "insert": "Correo electrónico: contacto@localhost/quicky_coffee"
     },
     {
         "attributes": {

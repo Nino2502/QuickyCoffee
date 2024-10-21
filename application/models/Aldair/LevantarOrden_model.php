@@ -269,7 +269,7 @@ class LevantarOrden_model extends CI_Model{
 
     $this->db->select("cantidad");
     $this->db->where("id_inventario",$id_int);
-    $rs = $this->db->get("inventario_pizzas");
+    $rs = $this->db->get("Inventario_pizzas");
 
     return $rs->num_rows() >= 1 ? $rs->result() : null;
   }
@@ -281,7 +281,7 @@ class LevantarOrden_model extends CI_Model{
     $id_inventario = $array_data['id_inventario']; 
 
     $cmd = $this->db->query(
-        "UPDATE inventario_pizzas
+        "UPDATE Inventario_pizzas
          SET cantidad = ?
          WHERE id_inventario = ?", 
         array($cantidad, $id_inventario)

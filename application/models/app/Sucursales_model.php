@@ -43,7 +43,7 @@ class Sucursales_model extends CI_Model
 
 
     public function ver_ingredientes(){
-        return $this->db->get("inventario_pizzas")->result_array();
+        return $this->db->get("Inventario_pizzas")->result_array();
     }
 	
 	

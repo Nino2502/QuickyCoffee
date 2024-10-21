@@ -22,14 +22,14 @@
 	
 	
 	
-<script type="text/javascript"> function base_url() { return "http://localhost/sdi_web/" } </script>
-    <script src="http://localhost/sdi_web/static/plantilla/js/vendor/jquery-3.3.1.min.js"></script>
-    <script src="http://localhost/sdi_web/static/plantilla/js/vendor/bootstrap.bundle.min.js"></script>
+<script type="text/javascript"> function base_url() { return "http://localhost/quicky_coffee/" } </script>
+    <script src="http://localhost/quicky_coffee/static/plantilla/js/vendor/jquery-3.3.1.min.js"></script>
+    <script src="http://localhost/quicky_coffee/static/plantilla/js/vendor/bootstrap.bundle.min.js"></script>
     
 	
 	
-	<script src="http://localhost/sdi_web/static/facturacion/respuestaUno.js"></script>
-	<script src="http://localhost/sdi_web/static/toastr/toastr.min.js"></script>	
+	<script src="http://localhost/quicky_coffee/static/facturacion/respuestaUno.js"></script>
+	<script src="http://localhost/quicky_coffee/static/toastr/toastr.min.js"></script>	
 	
 	
 </body>

@@ -82,7 +82,7 @@
 	<script src="<?= base_url() ?>static/plantilla/js/scripts.js"></script>
 	
 	
-	<script src="<?= base_url() ?>static/propiosScripts/Aldair/recuperarcontraseña.js"></script>
+	<script src="<?= base_url() ?>static/propiosScripts/quicky/recuperarcontraseña.js"></script>
 	<script src="<?= base_url() ?>static/toastr/toastr.min.js"></script>
 	
 	

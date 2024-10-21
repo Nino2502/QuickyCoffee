@@ -42,4 +42,4 @@ jobs:
           paths: _site
           recurse: true
           verbosity: error
-          skip: "^(?!http://localhost/sdi_web)"
+          skip: "^(?!http://localhost/quicky_coffee)"

@@ -104,7 +104,7 @@ class CI_Config {
 			}
 			else
 			{
-				$base_url = 'http://localhost/sdi_web/';
+				$base_url = 'http://localhost/quicky_coffee/';
 			}
 
 			$this->set_item('base_url', $base_url);
