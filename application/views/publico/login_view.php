@@ -17,115 +17,115 @@
 	<link rel="stylesheet" href="<?= base_url() ?>static/toastr/toastr.min.css" />
 
 
+    <style>
+
+        .form-side{
+            margin-left: 400px;  
+            margin-right: 400px; 
+            margin-top: 200px;
+            border: 1px solid black; /* Cambia el borde a negro */
+            border-radius: 10px;     /* Redondea las esquinas del borde */
+            padding: 20px;           /* Agrega espacio interno para que el contenido no toque el borde */
+            background-color: white; /* Fondo blanco para resaltar el borde (opcional) */
+
+        }
+        #boton-login{
+            background: linear-gradient(135deg, #ff5733, #ffcc33); 
+            color: white;              /* Color del texto del botón */
+            border: none;              /* Quita el borde predeterminado */
+            border-radius: 5px;       /* Esquinas redondeadas */
+            padding: 10px 20px;       /* Espaciado interno */
+            font-size: 20px;          /* Tamaño de la fuente */
+            cursor: pointer; 
+        }
+        #letra_login {
+            color: red; /* Cambia el color del texto a rojo */
+            border: 2px solid white; /* Establece un borde blanco */
+            padding: 5px; /* Espaciado interno */
+            display: inline-block; /* Asegura que el borde se ajuste al tamaño del texto */
+            font-family: 'Montserrat', sans-serif; /* Usando Montserrat */
+            font-size: 24px; /* Ajusta el tamaño de la letra según lo desees */
+            font-weight: 700; /* Establece el grosor de la fuente en negrita */
+        }
+        .menu-izquierdo{
+
+            
+
+        }
+
+  
+        
+        </style>
 	
 	
 </head>
 
-<body class="background show-spinner" >
-	
-    <div class="fixed-background" style="background: url(<?= base_url('static/plantilla/img/italy-fondo.png') ?>) no-repeat; background-size: cover; background-position: center; width: 100vw; height: 100vh;"></div>
+<body class="background show-spinner">
 
-    <main>
-        <div class="container">
-            <div class="row h-100">
-                <div class="col-12 col-md-10 mx-auto my-auto">
-                    <div class="card auth-card">
-                    <div class="position-relative image-side" style="background: url(<?= base_url('static/plantilla/img/italy-login.jpg') ?>) no-repeat; background-size: cover; width: 50%; height: 70vh;">
-
-
-                            <!--<p class=" text-black h2" >SDI Administración</p>
-
-                            <p class="black mb-0">
-                                Favor de usar tus datos para iniciar sesión.
-                                <br>Si no tienes cuenta, favor de 
-                                <a href="<?= base_url()?>registro" class="white">registrarse aquí</a>.
-                            </p>-->
-                        </div>
-                        <div class="form-side">
-						
-							   <?php if ($this->session->flashdata('message')) : ?>
-                                <div class="alert alert-<?=$this->session->flashdata('message_type')?> alert-dismissible fade show  mb-3" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                    <?=$this->session->flashdata('message')?>
-                                </div>
-                            <?php endif; ?>
-							
-							
-                           
-
-                            <!--
-                            <a href="<?= base_url() . "store/"?>">
-                                <span class="logo-single" style="background: url(<?= base_url('static/plantilla/img/logo-black.svg') ?>) no-repeat;"></span>
-                            </a>
-                            -->
-                            
+<div class="container">
 
 
 
 
-                                <center>
 
-                                <h1 class="mb-3"><strong>the italian coffee company</strong></h1>  
-                            
-                               
-                                <h6 class="mb-4">Inicio de sesión</h6>
-
-                                </center>
-
-							
-                            <form id="formInicioSesion">
-                                <label class="form-group has-float-label mb-4">
-                                    <input class="form-control" id="correoL" name="correoL" />
-                                    <span>Correo electrónico</span>
-									<div class="invalid-tooltip">
-                                        El correo es requerido!
-                                    </div>
-                                </label>
-
-                                <label class="form-group has-float-label mb-4">
-                                    <input class="form-control" type="password" placeholder="Introduce tu contraseña" id="contraseniaL" name="contraseniaL" />
-                                    <span>Contraseña</span>
-									<div class="invalid-tooltip">
-                                        La contraseña es requerida!
-                                    </div>
-                                </label>
-
-                                <!--
-                                <div class="d-flex justify-content-between align-items-center">
-                                    
-                                       
-                                    <a href="<?= base_url()?>resetPass">¿Olvidaste tu contraseña? </a>
-                                    
-                                    
-                                    <button class="btn btn-danger btn-lg btn-shadow" type="submit" id="iniciarSesion">Iniciar sesión</button>
-                                </div>
-								-->
-
-                                <center>
-                                <button class="btn btn-success btn-lg" type="submit" id="iniciarSesion">Iniciar Sesión</button>
-
-                                </center>
-
-                                <!--
-								<div class="d-flex justify-content-between align-items-center">
-                                    <a href="<?= base_url()?>registro">Registrate aquí</a>
-                                </div>
+        <div class="form-side">
+            
 
 
-                                -->
-                            </form>
-							
-							
-							
-							
-                        </div>
-                    </div>
+            <?php if ($this->session->flashdata('message')) : ?>
+                <div class="alert alert-<?=$this->session->flashdata('message_type')?> alert-dismissible fade show mb-3" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <?=$this->session->flashdata('message')?>
                 </div>
-            </div>
+            <?php endif; ?>
+
+            <center>
+            <h1 class="curved-text">
+                <span>Quicky Coffee</span>
+
+
+            </h1>
+            <br>
+               
+            </h1>
+  
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYBQh80mvhwpf_R1izQ6NrW7fKgNycmlUiGA&s" alt="Quicky Coffee Logo" style="max-width: 100%; height: auto;"/>
+                <h6 class="mb-4" id="letra_login">Login</h6>
+            </center>
+
+
+            <form id="formInicioSesion">
+                <label class="form-group has-float-label mb-4">
+                    <input class="form-control" id="correoL" name="correoL" required />
+                    <span>Correo electrónico</span>
+                    <div class="invalid-tooltip">El correo es requerido!</div>
+                </label>
+
+                <label class="form-group has-float-label mb-4">
+                    <input class="form-control" type="password" placeholder="Introduce tu contraseña" id="contraseniaL" name="contraseniaL" required />
+                    <span>Contraseña</span>
+                    <div class="invalid-tooltip">La contraseña es requerida!</div>
+                </label>
+
+                <center>
+                    <button id="boton-login" class="btn btn-success btn-lg" type="submit" id="iniciarSesion">Iniciar Sesión</button>
+                </center>
+            </form>
         </div>
-    </main>
+        <div class="menu_izquierdo">
+                <h1>Menu izquierdo</h1>
+        </div>
+        <div class="menu_derecho">
+            <h1>Soy menu derecho</h1>
+
+        </div>
+
+
+    </div>
+	
+
 	<script type="text/javascript"> function base_url() { return "<?=base_url()?>" } </script>
     <script src="<?= base_url() ?>static/plantilla/js/vendor/jquery-3.3.1.min.js"></script>
     <script src="<?= base_url() ?>static/plantilla/js/vendor/bootstrap.bundle.min.js"></script>
