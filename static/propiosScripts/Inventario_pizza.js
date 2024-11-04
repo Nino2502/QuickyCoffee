@@ -1579,102 +1579,541 @@ function botonGraficaMajor(){
 									}
 
 									///AGOSTO --> Venta del dia AGOSTO
+									var data_1 = {
+										resultado: true,
+										mensaje: 'Resultado encontrado',
+										final: Array.from({ length: 30 }, (_, index) => ({
+											idServicio: `SDI-Sel-Cof-${212455 + index}`,
+											nombreS: `Moka de Galleta Oreo ${index + 1}`,
+											sumaCantidad: (Math.random() * (67 - 35) + 35).toFixed(2),
+											idSuc: '9',
+											ultimaFechaVenta: '2024-08-15 12:00:00'
+										}))
+									};
+	// Extraer y procesar los datos
+	var items = data_1.final; // Accede al array dentro de `final`
+
+				
+
+				
+
+
+	var quantities = items.map(function(item) {
+		return { nombre: item.nombreS, cantidad: parseFloat(item.sumaCantidad) }; // Extrae los valores numéricos junto con el nombre del producto
+	});
+
+	// Crear un arreglo de índices para x
+	const x = quantities.map((_, index) => index + 1);
+
+	const { slope, intercept } = linearRegression(quantities.map(q => q.cantidad), x);
+
+	// Generar los puntos de la línea de regresión
+	const regressionLine = x.map(xi => [xi, slope * xi + intercept]);
+	
+
+	// Crear la gráfica con Highcharts
+
+
+		// Crear la gráfica con Highcharts
+			Highcharts.chart('grafica_lineal', {
+				title: {
+					text: 'Regresión Lineal Productos Julio'
+				},
+				xAxis: {
+					categories: ['Lunes','Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo', 'Lunes', 'Martes', 'Miercoles','Jueves','Viernes','Sabado','Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo'],
+					title: {
+						text: 'Días de la Semana'
+					}
+				},
+				yAxis: {
+					title: {
+						text: 'Suma de Cantidad'
+					},
+					plotLines: [{
+						color: 'red',
+						value: intercept,
+						width: 2,
+						dashStyle: 'ShortDash',
+						label: {
+							text: 'Línea de Regresión'
+						}
+					}]
+				},
+				series: [{
+					name: 'Ventas',
+					data: x.map((xi, index) => {
+						return {
+							x: xi,
+							y: quantities[index].cantidad,
+							name: quantities[index].nombre
+						};
+					}),
+					tooltip: {
+						pointFormat: '{point.name}: {point.y}'
+					}
+				}, {
+					name: 'Línea de Regresión',
+					type: 'line',
+					data: regressionLine,
+					marker: {
+						enabled: false
+					},
+					states: {
+						hover: {
+							lineWidth: 0
+						}
+					},
+					enableMouseTracking: false
+				}]
+			});
+	
+
+				
+		}
+		if(9 == idMes){
+
+												// Función para calcular la regresión lineal
+												function linearRegression(y, x) {
+													const n = y.length;
+													const xSum = x.reduce((a, b) => a + b, 0);
+													const ySum = y.reduce((a, b) => a + b, 0);
+													const xSqSum = x.reduce((a, b) => a + b ** 2, 0);
+													const xySum = y.reduce((sum, yi, i) => sum + yi * x[i], 0);
+								
+													const slope = (n * xySum - xSum * ySum) / (n * xSqSum - xSum ** 2);
+													const intercept = (ySum - slope * xSum) / n;
+								
+													return { slope, intercept };
+												}
+
+	
+
+    var data_1 = {
+        resultado: true,
+        mensaje: 'Resultado encontrado',
+        final: Array.from({ length: 30 }, (_, index) => ({
+            idServicio: `SDI-Sel-Cof-${212455 + index}`,
+            nombreS: `Moka de Galleta Oreo ${index + 1}`,
+            sumaCantidad: (Math.random() * (67 - 35) + 35).toFixed(2),
+            idSuc: '9',
+            ultimaFechaVenta: '2024-08-15 12:00:00'
+        }))
+    };
+
+	// Extraer y procesar los datos
+	var items = data_1.final; // Accede al array dentro de `final`
+
+				
+
+				
+
+
+	var quantities = items.map(function(item) {
+		return { nombre: item.nombreS, cantidad: parseFloat(item.sumaCantidad) }; // Extrae los valores numéricos junto con el nombre del producto
+	});
+
+	// Crear un arreglo de índices para x
+	const x = quantities.map((_, index) => index + 1);
+
+	const { slope, intercept } = linearRegression(quantities.map(q => q.cantidad), x);
+
+	// Generar los puntos de la línea de regresión
+	const regressionLine = x.map(xi => [xi, slope * xi + intercept]);
+	
+
+	// Crear la gráfica con Highcharts
+
+
+		// Crear la gráfica con Highcharts
+			Highcharts.chart('grafica_lineal', {
+				title: {
+					text: 'Regresión Lineal Productos Julio'
+				},
+				xAxis: {
+					categories: ['Lunes','Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo', 'Lunes', 'Martes', 'Miercoles','Jueves','Viernes','Sabado','Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo'],
+					title: {
+						text: 'Días de la Semana'
+					}
+				},
+				yAxis: {
+					title: {
+						text: 'Suma de Cantidad'
+					},
+					plotLines: [{
+						color: 'red',
+						value: intercept,
+						width: 2,
+						dashStyle: 'ShortDash',
+						label: {
+							text: 'Línea de Regresión'
+						}
+					}]
+				},
+				series: [{
+					name: 'Ventas',
+					data: x.map((xi, index) => {
+						return {
+							x: xi,
+							y: quantities[index].cantidad,
+							name: quantities[index].nombre
+						};
+					}),
+					tooltip: {
+						pointFormat: '{point.name}: {point.y}'
+					}
+				}, {
+					name: 'Línea de Regresión',
+					type: 'line',
+					data: regressionLine,
+					marker: {
+						enabled: false
+					},
+					states: {
+						hover: {
+							lineWidth: 0
+						}
+					},
+					enableMouseTracking: false
+				}]
+			});
+	
+
+
+    
+
+		}
+		if(10 == idMes){
+
+			console.log("SOY de octubre");
+
+
+												// Función para calcular la regresión lineal
+												function linearRegression(y, x) {
+													const n = y.length;
+													const xSum = x.reduce((a, b) => a + b, 0);
+													const ySum = y.reduce((a, b) => a + b, 0);
+													const xSqSum = x.reduce((a, b) => a + b ** 2, 0);
+													const xySum = y.reduce((sum, yi, i) => sum + yi * x[i], 0);
+								
+													const slope = (n * xySum - xSum * ySum) / (n * xSqSum - xSum ** 2);
+													const intercept = (ySum - slope * xSum) / n;
+								
+													return { slope, intercept };
+												}
+
+					var data_1 = {
+						resultado: true,
+						mensaje: 'Resultado encontrado',
+						final: Array.from({ length: 30 }, (_, index) => ({
+							idServicio: `SDI-Sel-Cof-${212455 + index}`,
+							nombreS: `Moka de Galleta Oreo ${index + 1}`,
+							sumaCantidad: (Math.random() * (67 - 35) + 35).toFixed(2),
+							idSuc: '9',
+							ultimaFechaVenta: '2024-08-15 12:00:00'
+						}))
+					};
+// Extraer y procesar los datos
+var items = data_1.final; // Accede al array dentro de `final`
+
+				
+
+				
+
+
+var quantities = items.map(function(item) {
+	return { nombre: item.nombreS, cantidad: parseFloat(item.sumaCantidad) }; // Extrae los valores numéricos junto con el nombre del producto
+});
+
+// Crear un arreglo de índices para x
+const x = quantities.map((_, index) => index + 1);
+
+const { slope, intercept } = linearRegression(quantities.map(q => q.cantidad), x);
+
+// Generar los puntos de la línea de regresión
+const regressionLine = x.map(xi => [xi, slope * xi + intercept]);
+
+
+// Crear la gráfica con Highcharts
+
+
+	// Crear la gráfica con Highcharts
+		Highcharts.chart('grafica_lineal', {
+			title: {
+				text: 'Regresión Lineal Productos Julio'
+			},
+			xAxis: {
+				categories: ['Lunes','Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo', 'Lunes', 'Martes', 'Miercoles','Jueves','Viernes','Sabado','Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo'],
+				title: {
+					text: 'Días de la Semana'
+				}
+			},
+			yAxis: {
+				title: {
+					text: 'Suma de Cantidad'
+				},
+				plotLines: [{
+					color: 'red',
+					value: intercept,
+					width: 2,
+					dashStyle: 'ShortDash',
+					label: {
+						text: 'Línea de Regresión'
+					}
+				}]
+			},
+			series: [{
+				name: 'Ventas',
+				data: x.map((xi, index) => {
+					return {
+						x: xi,
+						y: quantities[index].cantidad,
+						name: quantities[index].nombre
+					};
+				}),
+				tooltip: {
+					pointFormat: '{point.name}: {point.y}'
+				}
+			}, {
+				name: 'Línea de Regresión',
+				type: 'line',
+				data: regressionLine,
+				marker: {
+					enabled: false
+				},
+				states: {
+					hover: {
+						lineWidth: 0
+					}
+				},
+				enableMouseTracking: false
+			}]
+		});
+
+
+
+		}
+		if(11 == idMes){
+
+			console.log("SOY de noviembre");
+
+
+												// Función para calcular la regresión lineal
+												function linearRegression(y, x) {
+													const n = y.length;
+													const xSum = x.reduce((a, b) => a + b, 0);
+													const ySum = y.reduce((a, b) => a + b, 0);
+													const xSqSum = x.reduce((a, b) => a + b ** 2, 0);
+													const xySum = y.reduce((sum, yi, i) => sum + yi * x[i], 0);
+								
+													const slope = (n * xySum - xSum * ySum) / (n * xSqSum - xSum ** 2);
+													const intercept = (ySum - slope * xSum) / n;
+								
+													return { slope, intercept };
+												}
 
 				var data_1 = {
 					resultado: true,
 					mensaje: 'Resultado encontrado',
-					final: [
-						{ idServicio: 'SDI-Sel-Cof-212455', nombreS: 'Moka de Galleta Oreo', sumaCantidad: (Math.random() * (67 - 35) + 35).toFixed(2), idSuc: '9', ultimaFechaVenta: '2024-08-15 12:00:00' },
-						{ idServicio: 'SDI-Sel-Cof-212456', nombreS: 'Moka de Galleta Oreo', sumaCantidad: (Math.random() * (67 - 35) + 35).toFixed(2), idSuc: '9', ultimaFechaVenta: '2024-08-15 12:00:00' },
-						{ idServicio: 'SDI-Sel-Cof-212457', nombreS: 'Moka de Galleta Oreo', sumaCantidad: (Math.random() * (67 - 35) + 35).toFixed(2), idSuc: '9', ultimaFechaVenta: '2024-08-15 12:00:00' },
-						{ idServicio: 'SDI-Sel-Cof-212458', nombreS: 'Moka de Galleta Oreo', sumaCantidad: (Math.random() * (67 - 35) + 35).toFixed(2), idSuc: '9', ultimaFechaVenta: '2024-08-15 12:00:00' },
-						{ idServicio: 'SDI-Sel-Cof-212459', nombreS: 'Moka de Galleta Oreo', sumaCantidad: (Math.random() * (67 - 35) + 35).toFixed(2), idSuc: '9', ultimaFechaVenta: '2024-08-15 12:00:00' },
-						{ idServicio: 'SDI-Sel-Cof-212460', nombreS: 'Moka de Galleta Oreo', sumaCantidad: (Math.random() * (67 - 35) + 35).toFixed(2), idSuc: '9', ultimaFechaVenta: '2024-08-15 12:00:00' },
-						{ idServicio: 'SDI-Sel-Cof-212461', nombreS: 'Moka de Galleta Oreo', sumaCantidad: (Math.random() * (67 - 35) + 35).toFixed(2), idSuc: '9', ultimaFechaVenta: '2024-08-15 12:00:00' },
-						{ idServicio: 'SDI-Sel-Cof-212462', nombreS: 'Moka de Galleta Oreo', sumaCantidad: (Math.random() * (67 - 35) + 35).toFixed(2), idSuc: '9', ultimaFechaVenta: '2024-08-15 12:00:00' },
-						{ idServicio: 'SDI-Sel-Cof-212463', nombreS: 'Moka de Galleta Oreo', sumaCantidad: (Math.random() * (67 - 35) + 35).toFixed(2), idSuc: '9', ultimaFechaVenta: '2024-08-15 12:00:00' },
-						{ idServicio: 'SDI-Sel-Cof-212464', nombreS: 'Moka de Galleta Oreo', sumaCantidad: (Math.random() * (67 - 35) + 35).toFixed(2), idSuc: '9', ultimaFechaVenta: '2024-08-15 12:00:00' }
-					]
+					final: Array.from({ length: 30 }, (_, index) => ({
+						idServicio: `SDI-Sel-Cof-${212455 + index}`,
+						nombreS: `Moka de Galleta Oreo ${index + 1}`,
+						sumaCantidad: (Math.random() * (67 - 35) + 35).toFixed(2),
+						idSuc: '9',
+						ultimaFechaVenta: '2024-08-15 12:00:00'
+					}))
 				};
+// Extraer y procesar los datos
+var items = data_1.final; // Accede al array dentro de `final`
 
-					// Extraer y procesar los datos
-					var items = data_1.final; // Accede al array dentro de `final`
+				
+
+				
+
+
+var quantities = items.map(function(item) {
+	return { nombre: item.nombreS, cantidad: parseFloat(item.sumaCantidad) }; // Extrae los valores numéricos junto con el nombre del producto
+});
+
+// Crear un arreglo de índices para x
+const x = quantities.map((_, index) => index + 1);
+
+const { slope, intercept } = linearRegression(quantities.map(q => q.cantidad), x);
+
+// Generar los puntos de la línea de regresión
+const regressionLine = x.map(xi => [xi, slope * xi + intercept]);
+
+
+// Crear la gráfica con Highcharts
+
+
+	// Crear la gráfica con Highcharts
+		Highcharts.chart('grafica_lineal', {
+			title: {
+				text: 'Regresión Lineal Productos Julio'
+			},
+			xAxis: {
+				categories: ['Lunes','Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo', 'Lunes', 'Martes', 'Miercoles','Jueves','Viernes','Sabado','Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo'],
+				title: {
+					text: 'Días de la Semana'
+				}
+			},
+			yAxis: {
+				title: {
+					text: 'Suma de Cantidad'
+				},
+				plotLines: [{
+					color: 'red',
+					value: intercept,
+					width: 2,
+					dashStyle: 'ShortDash',
+					label: {
+						text: 'Línea de Regresión'
+					}
+				}]
+			},
+			series: [{
+				name: 'Ventas',
+				data: x.map((xi, index) => {
+					return {
+						x: xi,
+						y: quantities[index].cantidad,
+						name: quantities[index].nombre
+					};
+				}),
+				tooltip: {
+					pointFormat: '{point.name}: {point.y}'
+				}
+			}, {
+				name: 'Línea de Regresión',
+				type: 'line',
+				data: regressionLine,
+				marker: {
+					enabled: false
+				},
+				states: {
+					hover: {
+						lineWidth: 0
+					}
+				},
+				enableMouseTracking: false
+			}]
+		});
+
+
+
+		}
+		if(12 == idMes){
+
+			console.log("SOY diciembre");
+
+
+												// Función para calcular la regresión lineal
+												function linearRegression(y, x) {
+													const n = y.length;
+													const xSum = x.reduce((a, b) => a + b, 0);
+													const ySum = y.reduce((a, b) => a + b, 0);
+													const xSqSum = x.reduce((a, b) => a + b ** 2, 0);
+													const xySum = y.reduce((sum, yi, i) => sum + yi * x[i], 0);
+								
+													const slope = (n * xySum - xSum * ySum) / (n * xSqSum - xSum ** 2);
+													const intercept = (ySum - slope * xSum) / n;
+								
+													return { slope, intercept };
+												}
+
+					var data_1 = {
+						resultado: true,
+						mensaje: 'Resultado encontrado',
+						final: Array.from({ length: 30 }, (_, index) => ({
+							idServicio: `SDI-Sel-Cof-${212455 + index}`,
+							nombreS: `Moka de Galleta Oreo ${index + 1}`,
+							sumaCantidad: (Math.random() * (67 - 35) + 35).toFixed(2),
+							idSuc: '9',
+							ultimaFechaVenta: '2024-08-15 12:00:00'
+						}))
+					};
+				
+	// Extraer y procesar los datos
+	var items = data_1.final; // Accede al array dentro de `final`
 
 				
 
 				
 
 
-					var quantities = items.map(function(item) {
-						return { nombre: item.nombreS, cantidad: parseFloat(item.sumaCantidad) }; // Extrae los valores numéricos junto con el nombre del producto
-					});
-	
-					// Crear un arreglo de índices para x
-					const x = quantities.map((_, index) => index + 1);
-	
-					const { slope, intercept } = linearRegression(quantities.map(q => q.cantidad), x);
-	
-					// Generar los puntos de la línea de regresión
-					const regressionLine = x.map(xi => [xi, slope * xi + intercept]);
-					
-	
-					// Crear la gráfica con Highcharts
-	
-	
-						// Crear la gráfica con Highcharts
-							Highcharts.chart('grafica_lineal', {
-								title: {
-									text: 'Regresión Lineal Productos Agosto'
-								},
-								xAxis: {
-									categories: ['Lunes','Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo', 'Lunes', 'Martes', 'Miercoles','Jueves','Viernes','Sabado','Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo'],
-									title: {
-										text: 'Días de la Semana'
-									}
-								},
-								yAxis: {
-									title: {
-										text: 'Suma de Cantidad'
-									},
-									plotLines: [{
-										color: 'red',
-										value: intercept,
-										width: 2,
-										dashStyle: 'ShortDash',
-										label: {
-											text: 'Línea de Regresión'
-										}
-									}]
-								},
-								series: [{
-									name: 'Ventas',
-									data: x.map((xi, index) => {
-										return {
-											x: xi,
-											y: quantities[index].cantidad,
-											name: quantities[index].nombre
-										};
-									}),
-									tooltip: {
-										pointFormat: '{point.name}: {point.y}'
-									}
-								}, {
-									name: 'Línea de Regresión',
-									type: 'line',
-									data: regressionLine,
-									marker: {
-										enabled: false
-									},
-									states: {
-										hover: {
-											lineWidth: 0
-										}
-									},
-									enableMouseTracking: false
-								}]
-							});
+	var quantities = items.map(function(item) {
+		return { nombre: item.nombreS, cantidad: parseFloat(item.sumaCantidad) }; // Extrae los valores numéricos junto con el nombre del producto
+	});
 
-				
+	// Crear un arreglo de índices para x
+	const x = quantities.map((_, index) => index + 1);
+
+	const { slope, intercept } = linearRegression(quantities.map(q => q.cantidad), x);
+
+	// Generar los puntos de la línea de regresión
+	const regressionLine = x.map(xi => [xi, slope * xi + intercept]);
+	
+
+	// Crear la gráfica con Highcharts
+
+
+		// Crear la gráfica con Highcharts
+			Highcharts.chart('grafica_lineal', {
+				title: {
+					text: 'Regresión Lineal Productos Julio'
+				},
+				xAxis: {
+					categories: ['Lunes','Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo', 'Lunes', 'Martes', 'Miercoles','Jueves','Viernes','Sabado','Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo'],
+					title: {
+						text: 'Días de la Semana'
+					}
+				},
+				yAxis: {
+					title: {
+						text: 'Suma de Cantidad'
+					},
+					plotLines: [{
+						color: 'red',
+						value: intercept,
+						width: 2,
+						dashStyle: 'ShortDash',
+						label: {
+							text: 'Línea de Regresión'
+						}
+					}]
+				},
+				series: [{
+					name: 'Ventas',
+					data: x.map((xi, index) => {
+						return {
+							x: xi,
+							y: quantities[index].cantidad,
+							name: quantities[index].nombre
+						};
+					}),
+					tooltip: {
+						pointFormat: '{point.name}: {point.y}'
+					}
+				}, {
+					name: 'Línea de Regresión',
+					type: 'line',
+					data: regressionLine,
+					marker: {
+						enabled: false
+					},
+					states: {
+						hover: {
+							lineWidth: 0
+						}
+					},
+					enableMouseTracking: false
+				}]
+			});
+	
+
+
+
+
 		}
 
 

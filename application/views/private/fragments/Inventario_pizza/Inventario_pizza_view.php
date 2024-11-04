@@ -96,18 +96,8 @@
     
 </div>
 
-<table border="1" cellpadding="10" cellspacing="0" width="100%" style="border-collapse: collapse; margin: 20px 0;">
-        <tr>
-            <td align="center" style="font-size: 20px; font-weight: bold; color: #333;">Gastos de Agua</td>
-            <td align="right" style="font-size: 20px; font-weight: bold; color: #333; padding-right: 30px;">12000</td>
-        </tr>
-    </table>
-    <table border="1" cellpadding="10" cellspacing="0" width="100%" style="border-collapse: collapse; margin: 20px 0;">
-        <tr>
-            <td align="center" style="font-size: 20px; font-weight: bold; color: #333;">Gasto de Gas</td>
-            <td align="right" style="font-size: 20px; font-weight: bold; color: #333; padding-right: 30px;">4500</td>
-        </tr>
-    </table>
+
+
     <table border="1" cellpadding="10" cellspacing="0" width="100%" style="border-collapse: collapse; margin: 20px 0;">
         <tr>
             <td colspan="3" align="center" style="font-size: 20px; font-weight: bold; color: #333;">Cantidad de Coffee Vendidos x Dia</td>
