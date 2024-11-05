@@ -1390,20 +1390,11 @@ function listaUnidades(){
 
             $("#divUnidades").find("select").append(`
             <option value="Selecciona">--Selecciona--</option>
+            <option value="1">Pieza(s)</option>
             `
             );
 
-            $.each(data.Unidades, function(i,o){
 
-                if(o.estatus == 1){
-                    $("#divUnidades").find("select").append(`
-                <option value="`+ o.idUni+`">`+ o.nombreUni+`</option>
-                `
-                );
-
-                }   
-
-            });
 
         }else{
 

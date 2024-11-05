@@ -2,22 +2,11 @@ $(document).ready(()=>{
 
     //listaCategoriasServicios();
 
-    cambioCheckImpresion();
-    cambioCheckPoliticas();
+ 
     listaUnidades();
-    listaPoliticas();
-    muestraAtributosSC();
-    getAtributosDeServicios();
-	cambioAgrupaServicio();
-	lista_precios_bases();
-	mostrarPreciosBases();
-	cambioCheckAtributos();
-	listaPrecios_bases();
-	lista_atributos_mas();
-	listaAtributos_adicionales();
-	mostrar_promocionales();
-	
-	lista_promocionales();
+  
+
+
 	
 	
 	//agrupacionServicios();
@@ -477,18 +466,7 @@ function  cambioCheckImpresion(){
 
 
 
-function  cambioCheckPoliticas(){
-		
-	let contenidoAsesoria = document.getElementById("divPoliticas");
-    let checkAsesoria = document.getElementById("politicas");
-        if (checkAsesoria.checked) {
-            contenidoAsesoria.style.display='block';
-        }
-        else {
-            contenidoAsesoria.style.display='none';
-        }
-	
-}
+
 
 
 
@@ -747,8 +725,7 @@ function insertaServicios(){
     desabilitaCampos();
 	desabilitaCamposPrecios();
 	
-	const noDePreciosImpresos = verificaPreSerImp();
-	const noDePreciosProducto = verificaPreDinPro();
+
 
     let id = $("#idS").val();
     let sku = $("#sku").val();
@@ -757,16 +734,11 @@ function insertaServicios(){
     let precioS = $("#precioServicios").val();
     let categoriaServicios = $("#selectCategoriaServicios").val();
     let unidad = $('#selectUnidades').val();
-    let impresion = 0;
-	let noImpresion = 0;
+    
     let inventarioMinimo = $("#inventarioMinimo").val();
 	
 		
-	let selectPrecios = $("#selectPreciosBases").val();
-	
-	let selectAtributos = $("#selectAtributosAdicionales").val();
-	
-	let selectPromociones = $("#selectPromociones").val();
+
 	
 	/*
 	let cantidadMedioMayoreo = $("#cantidadMedioMayoreo").val();
@@ -778,12 +750,10 @@ function insertaServicios(){
     let accion = $("#accion").val();
     let goValidation = true;
     let estatus = 1;
-    let costoImpresion = 0;
-    let politicaImpresion = 1;
+
     var img = $("#img")[0].files[0];
     let tags = $("#palabrasClave").val();
-	let areaImpre = $("#areaImpresion").val();
-	let idAS = null;
+
 	
 	
 	if(unidad == '5'){
@@ -843,7 +813,7 @@ function insertaServicios(){
 			let catego = $('#selectCategoriaServicios option:selected').html();
 
 			catego = catego.substring(0,3);
-			id = "SDI-" + decodeURI(catego) + "-" + decodeURI(nombreExtr.trim().replace(/[ñn]/g, 'n')) + "-" + hora + minuto + segundo;
+			id = "COF-" + decodeURI(catego) + "-" + decodeURI(nombreExtr.trim().replace(/[ñn]/g, 'n')) + "-" + hora + minuto + segundo;
 		}
 		
 		
@@ -853,86 +823,22 @@ function insertaServicios(){
 	}
 	
 	
-	let checkservicioAgrupadoCheck = document.getElementById("servicioAgrupadoCheck");
-	
-	
-	
-	if(checkservicioAgrupadoCheck.checked){
-		
-		idAS = $("#SelectAgrupaciones").val();
-		
-		if(idAS == "selecciona" ){
-			$('#errorSelectAgrupaciones').show();
-			$('#errorSelectAgrupaciones').html("Debes seleccionar al menos una agrupación");
-			$('#SelectAgrupaciones').focus();	
-			goValidation = false;
-			habilitaCampos() ;
-			
-		}
-		
-		
-		
-	}
-	
-	
-	
-	const respuestaValidaPrecios = validaCamposPrecio();
-	
-	
-	
-	const arregloPreciosImpresion = new Array();	
-	
-	if(noDePreciosImpresos >= 1){
-		
-		$('.filaSelecionada').each(function(i,e) {
-			
-			const precioImpresoOBJ = new Object();				
 
-			$(e).find("[data]").each((i,e)=>{
-				
-				let nombreDB = $(e).attr("db");
-				
-				precioImpresoOBJ[nombreDB] = $(e).val();
+	
+	
+	
 
-            });
-			
-			arregloPreciosImpresion.push(precioImpresoOBJ);
+	
+	
+	
 
-			/*$(this).children("td").each(function(i,e){            });*/
-		});
-		
-	} 
 		
 	
 	
-	const arregloPreciosProducto = new Array();	
 	
-	if(noDePreciosProducto >= 1){
-		
-		$('.filaSelecionadaPreDinPro').each(function(i,e) {
-			
-			const precioProOBJ = new Object();				
-
-			$(e).find("[dataPreDinPro]").each((i,e)=>{
-				
-				let nombreDB = $(e).attr("db");
-				
-				precioProOBJ[nombreDB] = $(e).val();
-
-            });
-			
-			arregloPreciosProducto.push(precioProOBJ);
-
-			/*$(this).children("td").each(function(i,e){            });*/
-		});	
-		
-	} 
 	
  
-	console.log("array 1 ", arregloPreciosImpresion);
-	
-	console.log("array 2 ", arregloPreciosProducto);
-	
+
 	
 
     console.log("Normal ",getAtributos());
@@ -1068,46 +974,7 @@ if(accion == "duplicar"){
 	
 	
 	
-	let conteoImpreNoImpre = 0;   
 	
-    let checkHayAtributoImpresoNoImpreso = document.getElementById("servicioNoImpresoCheck");
-	let checkHayAtributoNoImpreso = document.getElementById("servicioImpresoCheck");
-	
-        if (checkHayAtributoImpresoNoImpreso.checked || checkHayAtributoNoImpreso.checked  ) {
-			conteoImpreNoImpre ++ ;
-        }
-	
-	
-	
-	if (conteoImpreNoImpre == 0) {
-           
-            $('#errorImpresoNoImpreso').show();
-            $('#errorImpresoNoImpreso').html("Debes seleccion al menos un atributo");
-            $('#ImpresoNoImpreso').focus();	
-            goValidation = false;
-            habilitaCampos();
-        
-        }
-	
-	
-	if (checkHayAtributoImpresoNoImpreso.checked) {
-           noImpresion = 1;
-        }
-	
-    let checkParaPrecioImpresion = document.getElementById("servicioImpresoCheck");
-        if (checkParaPrecioImpresion.checked) {
-           costoImpresion =  $("#precioServiciosConImpresion").val();
-           impresion = 1;
-
-           if("0" == costoImpresion || costoImpresion.trim() == "" ){
-            $('#errorprecioServiciosConImpresion').show();
-            $('#errorprecioServiciosConImpresion').html("El precio de la impresion no puede ser 0");
-            $('#precioServiciosConImpresion').focus();	
-            goValidation = false;
-            habilitaCampos();
-        }
-
-     }
 	
 	
 	
@@ -1117,19 +984,7 @@ if(accion == "duplicar"){
 	
 	
 
-        let checkPoliticas = document.getElementById("politicas");
-        if (checkPoliticas.checked) {
-            politicaImpresion =  $("#selectPoliticas").val();
 
-			   if ("Selecciona" == politicaImpresion) {
-			   	$('#errorselectPoliticas').show();
-			   	$('#errorselectPoliticas').html("Seleccion una politica de impresion");
-			   	$('#selectPoliticas').focus();
-			   	goValidation = false;
-			   	habilitaCampos();
-			   }
-
-        }
 		
 
     
@@ -1211,9 +1066,6 @@ if(accion == "duplicar"){
     fd.append("desS", des);
     fd.append("precioS", precioS);
     fd.append("idCS", categoriaServicios);
-    fd.append("impresion", impresion);
-    fd.append("precioImpresion", costoImpresion);
-    fd.append("idPolImpre", politicaImpresion);
     fd.append("estatus", estatus);
     
     fd.append("inventarioMin", inventarioMinimo);
@@ -1227,34 +1079,15 @@ if(accion == "duplicar"){
 	*/
 	fd.append("idUnidad", unidad);
     fd.append("accion", accion);
-    fd.append("atributos", listaAtributos);
+
     fd.append("tags",tags);
-	fd.append("noImpreso",noImpresion);
+
+
 	
-	
-	fd.append("preciosBases",selectPrecios);
-	
-	console.log("Spy precios bases",selectPrecios);
-	
-	fd.append("Atributos_mas",selectAtributos);
-	
-	console.log("Soy los atributos",selectAtributos);
-	
-	fd.append("PM",selectPromociones);
-	
-	console.log("Soy las promociones  ",selectPromociones);
-	/*
-	fd.append("cantidadMedioMayoreo",cantidadMedioMayoreo);
-	fd.append("precioMedioMayoreo",precioMedioMayoreo);
-	*/
-	fd.append("areaImpresion", areaImpre);
+
+
 		
-		
-	fd.append("preciosImpresion", JSON.stringify(arregloPreciosImpresion));
-	
- 	fd.append("preciosProducto",JSON.stringify(arregloPreciosProducto));	
-		
-	fd.append("idAS", idAS);	
+
 
 
     if($("#img")[0].files.length > 0){
@@ -1356,54 +1189,48 @@ $(".custom-file-input").on("change", function() {
 
 //traigo la unidad de input hidden en la vista
 
-function listaUnidades(){
-        
+function listaUnidades() {
     let unidadAnterior = $("#idUnidad").val();
-	
-	console.log("anterior ", unidadAnterior);
+    console.log("Unidad anterior: ", unidadAnterior);
 
     $.ajax({
-        "url":base_url()+"app/Unidades/verUnidades",
-        "dataType":"JSON"
+        url: base_url() + "app/Unidades/verUnidades",
+        dataType: "JSON"
     })
-    .done((data)=>{
-
+    .done((data) => {
+        // Limpiar el contenido del <select>
         $("#selectUnidades").html("");
 
-        if(data.resultado){
+        if (data.resultado) {
+            // Agregar las opciones al <select>
+            $("#selectUnidades").append(`
+                <option value="Selecciona">--Selecciona--</option>
+                <option value="1" selected>Pieza(s)</option>
+            `);
 
-            $("#divUnidades").find("select").append(`
-            <option value="Selecciona">--Selecciona--</option>
-            `
-            );
-
-            $.each(data.Unidades, function(i,o){
-
-                if(o.estatus == 1){
-                    $("#divUnidades").find("select").append(`
-                <option value="`+ o.idUni+`" `+(unidadAnterior == o.idUni ? "selected": "" )+`>`+ o.nombreUni+`</option>
-                `
-                );
-
-                }   
-
+            // Aquí puedes agregar más opciones dinámicas basadas en `data.Unidades`
+            $.each(data.Unidades, function(i, o) {
+                if (o.estatus == 1) {
+                    $("#selectUnidades").append(`
+                        <option value="${o.idUni}">${o.nombreUni}</option>
+                    `);
+                }
             });
-			
-			
-
-        }else{
-
-            $("#divUnidades").find("select").append(`
-            <option value="Selecciona">--No existen categorias para mostrar--</option>
-            `
-            );
+        } else {
+            // Si no hay datos, mostrar un mensaje informativo
+            $("#selectUnidades").append(`
+                <option value="Selecciona">--No existen categorías para mostrar--</option>
+            `);
         }
-
     })
-    .fail();
+    .fail((jqXHR, textStatus, errorThrown) => {
+        console.error("Error en la solicitud AJAX: ", textStatus, errorThrown);
+        $("#selectUnidades").append(`
+            <option value="Selecciona">--Error al cargar unidades--</option>
+        `);
+    });
 
-muestraAnchoMaterial(unidadAnterior);
-
+    muestraAnchoMaterial(unidadAnterior);
 }
 
 function lista_promocionales(){

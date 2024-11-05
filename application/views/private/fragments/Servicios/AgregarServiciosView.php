@@ -328,7 +328,7 @@
 
 											<div class="col-sm-6">
 												<label for="message-text" class="col-form-label"> Inventario Min:</label>
-												<input value="0" type="number" class="form-control" id="inventarioMinimo">
+												<input value="0" type="number" class="form-control" id="inventarioMinimo" disabled>
 												<small class="text-danger" id="errorinventarioMinimo" style="display: none;"></small>
 											</div>
 

@@ -158,16 +158,7 @@
 										<!-- select de agrupaciones -->
 										 <div class="form-group mt-3">
                                             <div class="row">
-												
-											<div class="col-sm-2" >	
-												<div class="custom-control custom-checkbox mb-4">
-														<input type="checkbox" onchange="cambioAgrupaServicio()" class="custom-control-input" id="servicioAgrupadoCheck" 
-															   <?= $datosServicio[0]->idAS == null || $datosServicio[0]->idAS == 0 ? "": "Checked" ?> >
-														<label class="custom-control-label" for="servicioAgrupadoCheck">Agrupar Servicio </label>
-												</div>	
-												 
-											</div>
-												
+
 											
 												
 												
@@ -177,27 +168,7 @@
 												
 												<div class="row">
 													
-													<div class="col-10" id="divSelectAgrupaciones">
-														 <label> * Agrupaciones</label>
-                                                   		<select class="form-control select2-single" id="SelectAgrupaciones">
-															
-															<option value="Selecciona">--Selecciona--</option>
-                                                        <?php
-                                                        foreach($agrupacion as $agr):
-                                                        ?>
-                                                         <option  value="<?= $agr->idAgrupacionS?>" <?= $datosServicio[0]->idAS == $agr->idAgrupacionS ? "selected": "" ?>><?= $agr->nombreAgrupaS?></option>
-
-                                                        <?php endforeach ?>
-															
-															
-															
-														 </select>
-                                                    	<small class="text-danger" id="errorSelectAgrupaciones" style="display: none;"></small>
-													</div>
-													
-													<div class="col-2 pt-2">
-													<button onClick="agregaAgrupacionServicio()" type="button" class="btn btn-primary">+</button>
-													</div>
+												
 												
 												</div>
 									
@@ -217,35 +188,8 @@
 												
 												<div class="col-sm-6" id="ImpresoNoImpreso">
 														
-														<small class="text-danger" id="errorImpresoNoImpreso" style="display: none;"></small>
-														
-														
-														<h4>Selecciona si pertenece a impresos, no impresos o ambos</h4>
-															 <div>
-																 
-																 
-																 
-																 
-																 <div class="col-sm-4" >	
-																	<div class="custom-control custom-checkbox mb-4">
-																			<input type="checkbox" class="custom-control-input" <?=$datosServicio[0]->noImpreso == 1 ? "checked": ""?> id="servicioNoImpresoCheck" >
-																			<label class="custom-control-label" for="servicioNoImpresoCheck">No impreso </label>
-																	</div>	
-																</div>
-																 
-																 <div class="col-sm-4" >	
-																	<div class="custom-control custom-checkbox mb-4">
-																			<input type="checkbox" onClick="cambioCheckImpresion()" <?=$datosServicio[0]->impresion == 1 ? "checked": ""?> class="custom-control-input" id="servicioImpresoCheck">
-																			<label class="custom-control-label" for="servicioImpresoCheck">Impreso </label>
-																	</div>	
-																</div>
-																 
-																 
-																 
-																
-																 <small class="text-danger" id="errorCheckImpre" style="display: none;"></small>
-
-															 </div>
+							
+			
 
 
 													
@@ -312,20 +256,7 @@
 												-->
 											
 
-                                                    <div class="col-sm-6">
-                                                        <div class="custom-control custom-checkbox mb-4">
-															<input onchange="cambioCheckPoliticas()" type="checkbox" class="custom-control-input" <?=$datosServicio[0]->idPolImpre == 0 || $datosServicio[0]->idPolImpre == 1 ? "": "checked"?> id="politicas">
-															<label class="custom-control-label" for="politicas">¿Tiene politicas?</label>
-                                                    	</div>
 
-                                                        <div class="col-sm-6" id="divPoliticas" style="display: none;">
-                                                            <label> * Politicas</label>
-                                                            <select class="form-control select2-single" id="selectPoliticas">
-                                                            
-                                                            </select>
-                                                        </div>
-                                                        <small class="text-danger" id="errorselectPoliticas" style="display: none;"></small>
-                                                    </div>
 												
                                             </div> <!-- termina row-->
 											
@@ -414,13 +345,7 @@
 											
 											<div class="row">
 
-                                                	
-											<div class="form-group col-sm-6">
-														<label for="message-text"
-															class="col-form-label"> Area impresión:</label>
-														<input type="text" value="<?=$datosServicio[0]->areaImpresion?>" class="form-control" id="areaImpresion" placeholder="Escribe el area de impresión">
-														<small class="text-danger" id="errorareaImpresión" style="display: none;"></small>
-													</div>
+                
 											
 												
 												
@@ -547,68 +472,11 @@
                                                     
                                                       <div class="row">
                                                         <div class="col-6">
-                                                            <div class="custom-control custom-checkbox mb-4">
-                                                                <input onchange="mostrarPreciosBases()" type="checkbox" class="custom-control-input" <?= $datosServicio[0]->preciosBases != null ? 'checked': ''?> id="preciosBasesCheck">
-                                                                <label class="custom-control-label" for="preciosBasesCheck">Tiene mas precios bases</label>
-                                                            </div>
-                                                    
-                                                            <div class="col-sm-12" id="divPreciosBases"  style="display:none;">
-                                                            		<label>Selecciona precios bases</label>
-                                                                    
-                                                                    <select class="form-control select2-multiple" multiple="multiple" id="selectPreciosBases">
-
-                                                                    
-                                                                    </select>
-                                                                    <small class="text-danger" id="errorSelectPrecios" style="display:none"></small>
-
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        
-
-                                                        <div class="col-6">
-                                                        		<div class="custom-control custom-checkbox mb-4">
-                                                                	<input type="checkbox" onchange="cambioCheckAtributos()" class="custom-control-input" <?=$datosServicio[0]->Atributos_mas != null ? 'checked': ''?> id="atributosCheck">
-                                                                    <label class="custom-control-label" for="atributosCheck">Tiene mas atributos</label>
-        
-                                                                </div>
-                                                                
-                                                                <div class="col-sm-12" id="divSelectAtributos" style="display:none;">
-                                                                		<label>Selecciona atributos adicionales</label>
-                                                                        
-                                                                        <select class="form-control select2-multiple" multiple="multiple" id="selectAtributosAdicionales">
-
-                                                                        
-                                                                        </select>
-                                                                        
-                                                                        <small class="text-danger" id="errorAtributoAdicional" style="display:none;"></small>
-                                                                
-                                                                </div>
+                                                           
 
                                                         </div>
                                                         
-                                                        
-                                                        
-  														<div class="col-6">
-                                                        		<div class="custom-control custom-checkbox mb-4">
-                                                                	<input type="checkbox" onchange="mostrar_promocionales()" class="custom-control-input" <?=$datosServicio[0]->PM !== "0" ? 'checked' : '' ?> id="promocionales_promos">
-                                                                    <label class="custom-control-label" for="promocionales_promos">Productos promocionales</label>
-        
-                                                                </div>
-                                                                
-                                                                <div class="col-sm-12" id="divSelectPromocionales" style="display:none;">
-                                                                		<label>Selecciona promoccionales</label>
-                                                                        
-                                                                        <select class="form-control select2-single select2-hidden-accessible" id="selectPromociones">
-
-                                                                        
-                                                                        </select>
-                                                                        
-                                                                        <small class="text-danger" id="errorAtributoAdicional" style="display:none;"></small>
-                                                                
-                                                                </div>
-
-                                                        </div>
+                 
                                                     </div>
        
 												

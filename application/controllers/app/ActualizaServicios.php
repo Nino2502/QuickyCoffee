@@ -167,7 +167,7 @@ class ActualizaServicios extends CI_Controller{
         //$accion = $data['accion']; 
 
         $ajax_data = $this->input->post();
-        $dato1 = $ajax_data['atributos'];
+
         //$arrayAtributos = explode(",", $dato1);
 
         $contador = 0;
@@ -175,7 +175,7 @@ class ActualizaServicios extends CI_Controller{
 		$imagen = false;
 		$mensajeImagen = "";
 
-        $arrayAtributos = json_decode($dato1);
+    
 
         //echo "<pre>";
         //var_dump($ajax_data);
@@ -184,8 +184,7 @@ class ActualizaServicios extends CI_Controller{
         //die();
 
 		
-		$preciosImpresion = json_decode($ajax_data['preciosImpresion']); 
-		$preciosProductos = json_decode($ajax_data['preciosProducto']); 
+
 		
 		
 
@@ -200,8 +199,7 @@ class ActualizaServicios extends CI_Controller{
 		*/
 		
 		
-		unset($ajax_data['preciosImpresion']);
-		unset($ajax_data['preciosProducto']);
+
 
         if (isset($_FILES["image_url"]["name"])) {
             $config['upload_path'] = APPPATH . '../static/imgServicios/';
@@ -235,12 +233,10 @@ class ActualizaServicios extends CI_Controller{
 		
 
                     unset($ajax_data['accion']); 
-                    unset($ajax_data['atributos']); 
-					
-					$preciosBases_impresion = $ajax_data['preciosBases'];
+                  
 					
 					
-					$preciosArray = explode(",", $preciosBases_impresion);
+			
 					
 					
 
@@ -248,42 +244,17 @@ class ActualizaServicios extends CI_Controller{
 					
 					
 				
-					$Atributos_mas = $ajax_data['Atributos_mas'];
-					
-					$Atributos_mas_array = explode(",", $Atributos_mas);
 					
 					
 				
 	
-					$array_combinado = array_merge($preciosArray,$Atributos_mas_array);
-					
-					
+				
 					$id_Servicio = $ajax_data['idS'];
 					
 					
-					$borrar_log = $this->Servicios_model->delete_servicio($id_Servicio);
 					
-					if( $borrar_log != false){
-
-						
-						if(count($array_combinado) >= 1){
-
-							foreach($array_combinado as $adicional){
-
-								$dataCosasAdicional = ["idS" => $ajax_data['idS'], "idAtributo" => $adicional];
-								
-								
-								$array[] = $dataCosasAdicional;
-
-							}
-
-							
-							$inserta_mas_atributos = $this->Servicios_model->inserta_atributos_mas($array);
-
-						}
-						$insertado_atributos_mas = $inserta_mas_atributos != false ? $insertado = true : $insertado = false;
-
-					}
+					
+					
 					
 					
 
@@ -291,93 +262,17 @@ class ActualizaServicios extends CI_Controller{
 		
 		/* carga precios dinamicos*/
 		
-		$respuestaPrecios = false;
+	
 		
-		$this->Servicios_model->borra_PreciosDinamicos($ajax_data['idS']);
-						
-						$mensajeUno= "";
-						$mensajeDos= "";
-						
-						
-						/*Inicia carga precios dinamicos*/
-						
-							foreach ( $preciosImpresion as $valor ) {
 
-								$valor->idS = $ajax_data['idS'];
-
-							}
-
-
-
-							if ( count( $preciosImpresion ) >= 1 ) {
-
-								$rsImpre = $this->Servicios_model->insertaPreciosServicios( $preciosImpresion );
-
-								if ( $rsImpre ) {
-									$mensajeUno = " precios de impresion dinamicos agregados correctamente";
-								} else {
-									$mensajeUno = " error, no agregaron los precios dinamicos de impresion, intenta actualizando el producto";
-								}
-
-							}
-							
-							
-
-
-
-							foreach ( $preciosProductos as $valor ) {
-
-								$valor->idS = $ajax_data['idS'];
-
-							}
-
-
-							if ( count( $preciosProductos ) >= 1 ) {
-
-								$rsPro = $this->Servicios_model->insertaPreciosServicios( $preciosProductos );
-
-								if ( $rsPro ) {
-										$mensajeDos = " precios dinamicos de producto agregados correctamente";
-								} else {
-									$mensajeDos = " eroor, no agregaron los precios dinamicos de producto, intenta actualizando el producto";
-								}
-								
-								$respuestaPrecios = $rsPro;
-
-
-
-							}
-		
-						
-						
-						
-						/*Termina carga de precios dinamicos*/
-						
-		
-		/*Termina carga precios dinamicos*/
 
                     
 
-                    $this->Servicios_model->borra_servicioAtributos($id);
 
-                    if(count($arrayAtributos) >=1){
-
-                        foreach($arrayAtributos as $atributo){
-
-                            $dataDetalleAtributo = ["idS"=>$ajax_data['idS'],"idAtr"=>$atributo[0], "idDatr"=>$atributo[1]];
-                            $atributo = $this->Servicios_model->inserta_servicioAtributos($dataDetalleAtributo);
-
-                            $atributo ?  $contador ++ : "";
-                        }/* Termina for each  atributos*/
-						
-					
-						
-
-                    }/*termina if */
                     
 
 
-                    $data["resultado"]= $rs != NULL || $contador != 0 || $respuestaPrecios || $insertado_atributos_mas != false ;
+                    $data["resultado"]= $rs;
                     $data["mensaje"] = $data["resultado"] ? "Se actuzalizó correctamente" . ($imagen == true ? $mensajeImagen : "") : ($rs == NULL ? "No se actualizaron los datos" : "") . " " . ($contador == 0 ? "No se actualizaron los atributos": "")  . ($imagen == true ? $mensajeImagen : "") ;
                 
 		

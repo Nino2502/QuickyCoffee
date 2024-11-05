@@ -34,19 +34,9 @@ $(document).ready(()=>{
                             <th>Descripcion</th>
                             <th>Unidad</th>
                             <th>Precio</th>
-                            <th>No impreso</th>
-                            <th>Impreso</th>
-                            <th>Costo impre</th>
-							<th>Area impresión</th>
-                            <th>Politca</th>
-							<th>Medio Mayoreo</th>
-                            <th>Precio Medio M.</th>
-                            <th>Mayoreo</th>
-                            <th>Precio M.</th>
                             <th>Categoría</th>
                             <th>Inv. Min</th>
                             <th>Imagen</th>
-							<th>Promocionales</th>
                             
                             <th style="text-align: center">Duplicar</th>
                             <th style="text-align: center">Editar</th>
@@ -69,19 +59,9 @@ $(document).ready(()=>{
                             <td class="text-wrap" style="width: 15rem;">`+o.desS+`</td>
                             <td>`+o.nombreUni+`</td>
                             <td>`+o.precioS+`</td>
-                            <td>`+(o.noImpreso == 1 ? "<strong>Si</strong>":"No")+`</td>
-                            <td>`+(o.impresion == 1 ? "<strong>Si</strong>":"No")+`</td>
-                            <td>`+o.precioImpresion+`</td>
-							<td>`+(o.areaImpresion == "" ? "N/A":o.areaImpresion)+`</td>
-                            <td>`+(o.idPolImpre == 0  ? "Ninguna" : o.nombrePol )+`</td>
-							<td>`+o.cantidadMedioMayoreo +`</td>
-                            <td>`+o.precioMedioMayoreo +`</td>
-                            <td>`+o.cantidadMayoreo +`</td>
-                            <td>`+o.precioMayoreo +`</td>
                             <td class="text-wrap" style="width: 12rem;">`+o.nombreCS+`</td>
                             <td>`+(o.inventarioMin >= 1 ?  o.inventarioMin : "N/A")+`</td>
                             <td><img src="`+base_url()+`static/imgServicios/`+o.image_url+`"  height="50" /></td>
-							<td>`     +    (o.PM !== null ? o.nombreAtrD : "No Aplica")    + `</td>
 
 						    <td align="center"><a href="#" onclick="editar('`+o.idS+`','Duplicar')"><i class="fas fa-clone fa-2x"></i></a> </td>
                             
@@ -238,53 +218,7 @@ $(document).ready(()=>{
 
 
 
-    /*
-            axios.post(base_url()+"app/Servicios/insertaServicios", {
-                idS:id,
-                nombreS: nom,
-                desS: des,
-                precioS: precioS,
-                
-                idCS:categoriaServicios,
-                estatus: estatus,
-                
-                accion:accion
-            })
-            .then(({data})=>{
-    
-                if(data.resultado){
-
-                    console.log(data);
-    
-                    toastr["success"](data.mensaje);
-                    $("#nombreServicios").val("");
-                    $("#descripcionServicios").val("");
-                    listaServicios();
-                    console.log("ya cargo los servicios");
-                    $("#ModalAgregar").modal('hide');
-                    
-    
-                    $("#btnEnviar, #nombreServicios, #descripcionServicios, #precioServicios, #subServicioCheck, #selectCategoriaServicios", "#selectformularioDiagnostico").removeAttr("disabled");
-                    
-                }else{
-    
-                    toastr["warning"](data.mensaje);
-                    $("#btnEnviar, #nombreServicios, #descripcionServicios, #precioServicios, #subServicioCheck, #selectCategoriaServicios", "#selectformularioDiagnostico").removeAttr("disabled");
-    
-                }
-                
-            })
-            .catch(()=>{
-                (toastr["danger"]("Ha ocurrido un error vuelve a intentar"));
-                $("#btnEnviar, #nombreServicios, #descripcionServicios, #precioServicios, #subServicioCheck, #selectCategoriaServicios", "#selectformularioDiagnostico").removeAttr("disabled");
-            });
-    
-        }else{
-    
-            console.log("Falta un dato");
-            $("#btnEnviar, #nombreServicios, #descripcionServicios, #precioServicios, #subServicioCheck, #selectCategoriaServicios", "#selectformularioDiagnostico").removeAttr("disabled");
-    
-        }*/
+   
         }
     
     } // termina insertar servicio
@@ -451,6 +385,10 @@ $(document).ready(()=>{
                 $("#tr-"+id).remove();
     
                 $('#borrarModal').modal('hide');
+                location.reload();
+                
+
+
     
             } else{
                 toastr["warning"](data.mensaje);
