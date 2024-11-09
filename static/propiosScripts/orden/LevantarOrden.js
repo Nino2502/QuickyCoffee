@@ -1787,14 +1787,9 @@ function verificaUsuario() {
                 if (data.resultado) {
                     $("#selectCliente").find("select").append(`
                         <option value="Selecciona">--Selecciona--</option>
+                        <option value="0">**Publico General QUICKY COFFEE **</option>
                     `);
-                    $.each(data.usuario, function (i, o) {
 
-                        $("#selectCliente").find("select").append(`
-                            <option value="`+ "Nombre: " + o.idU + `">` + o.nombreU + " " + o.apellidos + " Teléfono: " + o.telefono + " Correo: " + o.correo + `</option>
-                        `);
-
-                    });
                 } else {
                     $("#selectCliente").find("select").append(`
                         <option value="Selecciona">--No existen categorias para mostrar--</option>

@@ -7,14 +7,7 @@
 							<a class="nav-link active" id="second-tab" data-toggle="tab" href="#second" role="tab"
 								aria-controls="second" aria-selected="false">Reportes de Ventas</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" id="tres-tab" data-toggle="tab" href="#tres" role="tab"
-								aria-controls="tres" aria-selected="true">Reportes de gastos</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" id="cuatro-tab" data-toggle="tab" href="#cuatro" role="tab"
-								aria-controls="cuatro" aria-selected="true">ventas VS gastos</a>
-						</li>
+
                        
                     </ul>
                 </div>
@@ -49,10 +42,20 @@
 
 															<option>--Selecciona--</option>
 															<option value="0" selected >Todas</option>
-															<option value="999" >Venta en línea</option>
 															<?php foreach($sucursales as $suc ): ?>
 
-															<option value="<?= $suc-> idSuc ?>"><?= $suc->nombreSuc ?>  </option>
+																<!--
+																	Solo se van a mostrar las sucursales que tenga el idSuc igual 9
+																-->
+																<?php if(($suc->idSuc) == "9"): ?>
+
+																	<option value="<?= $suc-> idSuc ?>"><?= $suc->nombreSuc ?>  </option>
+
+																
+																
+																<?php endif; ?>
+
+															
 															<?php endforeach; ?>
 
 														</select>
@@ -63,7 +66,7 @@
 
 
 													
-														<div class="form-group col-md-3">
+														<div class="form-group col-md-3" style="display: none;">
 														<label for="inputState">Cajas</label>
 														<select id="selectCaja"  class="form-control select2-single select2-hidden-accessible" tabindex="-1" aria-hidden="true">
 															<option>--Selecciona--</option>
@@ -82,10 +85,10 @@
 														<select id="selectTipoDePago"  class="form-control select2-single select2-hidden-accessible" tabindex="-1" aria-hidden="true">
 
 															<option>--Selecciona--</option>
-															<option value="todos" selected >Todos</option>
+														
 															<?php foreach($tiposDePagos as $tiposDePago ): ?>
 															
-															<?php if($tiposDePago-> idFP != "5"): ?>
+															<?php if($tiposDePago-> idFP == "1"): ?>
 															
 															<option value="<?= $tiposDePago-> idFP ?>"><?= $tiposDePago->nombreFP ?>  </option>
 															
@@ -103,21 +106,14 @@
 
 
 												
+													<br>
 
-												<button onClick="calcularVentas()" class="btn btn-sm btn-outline-primary mb-2 float-end">Reporte</button>
+											
 												
+												<br>
+												<br>
 												
-												
-												  <div class="form-group col-md-3 ">
-													<label>Fecha</label>
-													<div class="input-daterange input-group" id="datepicker">
-														<input id="rFechaInicio" type="text" class="input-sm form-control" name="start"
-															placeholder="Inicio" autocomplete="off"/>
-														<span class="input-group-addon"></span>
-														<input id="rFechaFin" type="text" class="input-sm form-control" name="end"
-															placeholder="Fin" autocomplete="off" />
-													</div>
-												</div>
+
 												
 												
 													<?php if($clientes != null): ?>
@@ -129,14 +125,24 @@
 															<option value="todos" selected >Todos</option>
 															<?php foreach($clientes as $cliente ): ?>
 
-															<option value="<?= $cliente-> idU ?>"><?= $cliente->nombreU ?>  </option>
+
+																<?php if(($cliente->idU) == "0"): ?>
+
+																<option value="<?= $cliente-> idU ?>"><?= $cliente->nombreU ?>  </option>
+
+
+
+
+																<?php endif; ?>
+
+															
 															<?php endforeach; ?>
 
 														</select>
 														</div>
 													<?php endif; ?>
 												
-												<div class="form-group col-md-3">
+												<div class="form-group col-md-3" style="display: none;">
 													<label for="inputState">Venta con factura</label>
 													<select id="selectFactura" class="form-control select2-single select2-hidden-accessible" tabindex="-1" aria-hidden="true">
 														<option>--Selecciona--</option>
@@ -144,7 +150,18 @@
 														<option value="1" >Sin Factura</option>
 														<option value="2"  >Ventas ya facturadas</option>
 													</select>
-												</div>	
+												</div>
+
+												<div class="form-group col-md-3 ">
+													<label>Fecha</label>
+													<div class="input-daterange input-group" id="datepicker">
+														<input id="rFechaInicio" type="text" class="input-sm form-control" name="start"
+															placeholder="Inicio" autocomplete="off"/>
+														<span class="input-group-addon"></span>
+														<input id="rFechaFin" type="text" class="input-sm form-control" name="end"
+															placeholder="Fin" autocomplete="off" />
+													</div>
+												</div>
 
 
 
@@ -156,6 +173,13 @@
 
 
 											</div>
+											<center>
+											<button onClick="calcularVentas()" class="btn btn-lg btn-outline-primary mb-2 float-end" 
+													style="padding: 16px 32px; font-size: 1.5rem; font-weight: bold; margin-right: 50px; border-width: 2px;">
+												Reporte
+											</button>
+
+															</center>
 
 											<div class="form-group col-md-12 pt-3" id="totales">
 

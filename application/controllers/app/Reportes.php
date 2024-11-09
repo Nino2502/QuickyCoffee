@@ -40,6 +40,8 @@ class Reportes extends CI_Controller{
 
     public function index(){
 		
+
+		/*
 						
 		$this->permiso_id = get_permiso_modulo_seccion(
             $this->estatus,
@@ -48,6 +50,10 @@ class Reportes extends CI_Controller{
             $modulo = 9,
             $seccion_id = 53
         );
+
+		*/
+
+		$this->permiso_id = true;
 		
 		
 		if (!is_null($this->permiso_id)) {
@@ -56,13 +62,24 @@ class Reportes extends CI_Controller{
 		$data['usuariosCaja'] = $this->Usuarios_model->ver_lista_colaboradores_caja();
 		$data['clientes'] = $this->Usuarios_model->ver_lista_clientes();
 		$data['sucursales'] = $this->Sucursales_model->ver_Sucursales();
+
+
+	
+
+
+
+		
 		$data['tiposDeGasto'] = $this->Tipos_De_Gastos_model->ver_Tipos_De_Gastos();
 		$data['tiposDePagos']  = $this->Tipo_de_pago_model->ver_tipo_de_pago();
+
+
+	
+
 		
 
         $data['_APP_TITLE']              = "Reportes de Ventas";        
         $data['_APP_VIEW_NAME']          = "Reportes de Ventas";
-        $data['_APP_MENU']               = get_role_menu($this->rol_id, 9, 53);// menu lateral
+        $data['_APP_MENU']               = get_role_menu($this->rol_id, 0, 0);// menu lateral
         //$data['_APP_NAV']                = $this->load->view('app/private/fragments/nav/main_nav', $data, TRUE);   // menu superior imagen usuario     
         $data['_APP_VIEW_MENU']          = $this->load->view('private/fragments/nav/main_menu', $data, TRUE);
         $data['_APP_BREADCRUMBS']        = array("Reportes de Ventas");

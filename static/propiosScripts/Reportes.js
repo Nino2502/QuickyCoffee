@@ -204,8 +204,7 @@ function calcularVentas() {
                             <td>` +
                   o.nombreEmpleado +
                   `</td>
-                            <td align='right'>$ ` +
-                  dollarUSLocale.format(o.TotalVenta) +
+                            <td align='right'>$ ` + "Quicky Coffee Sucursal Matriz" +
                   `</td>
                             <td align='right'><a href="#" onclick="VistaPrevia(` +
                   o.idVenta +
@@ -318,7 +317,7 @@ function calcularVentas() {
                     : "- " + o.Factura.toString() + " -") +
                   `</td>
                             <td>` +
-                  o.nombreEmpleado +
+                "Quicky Coffee Matriz" +
                   `</td>
                             <td align='right'>` +
                   o.TotalVenta +

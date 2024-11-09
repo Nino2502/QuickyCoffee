@@ -39,11 +39,13 @@
 
 
 												<div class="form-group col-12">
+
+												<!--
 													<button type="button" class="btn btn-primary mr-3 mb-4" onclick="modalRegistro()">
 														+ Agregar Cliente
 													</button>
 												
-
+													-->
 
 
 												
