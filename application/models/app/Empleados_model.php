@@ -77,6 +77,24 @@ class Empleados_model extends CI_Model{
 
         return false;
     }
+
+    public function editar_empleado($data) {
+        // Asegúrate de que todos los campos necesarios estén en el array
+        $updated_data = array(
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'department_id' => $data['department_name'],
+            'position_id' => $data['position_name'],
+            'status' => 1
+        );
+    
+        // Actualizar la base de datos
+        $this->db->where('employee_id', $data['employee_id']);
+        return $this->db->update('employees', $updated_data);
+    }
+    
     
 
 

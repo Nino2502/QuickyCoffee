@@ -120,6 +120,33 @@ class Empleados extends CI_controller{
             echo json_encode(['status' => 'error', 'message' => 'No se pudo actualizar el estado']);
         }
     }
+
+    public function editar_empleado() {
+        // Si es una solicitud OPTIONS, solo responde con los encabezados sin procesar la solicitud
+        if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+            exit(0); // Termina la ejecución para evitar procesamiento adicional
+        }
+
+        // Decodifica los datos JSON recibidos
+        $data = json_decode($this->input->raw_input_stream, true);
+
+        
+
+
+        if ($data && isset($data['employee_id'])) {
+            // Llamar al modelo para actualizar los datos
+            $result = $this->Empleados_model->editar_empleado($data);
+
+            if ($result) {
+                echo json_encode(['status' => 'success', 'message' => 'Empleado actualizado correctamente']);
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'Falló al actualizar el empleado']);
+            }
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Datos inválidos']);
+        }
+    }
+    
     
 
 
