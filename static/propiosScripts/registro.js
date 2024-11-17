@@ -3,6 +3,9 @@
 
 $(document).ready(()=>{
 	listaSucursal();
+
+	//alert("Soy registr de usuario");
+
 	
 	
 	
@@ -28,7 +31,13 @@ $(document).ready(()=>{
 
 		var r = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);	
 		
+		const regexMayuscula = /[A-Z]/;
+		const regexEspecial = /[!@#$%^&*(),.?":{}|<>]/;
+		const regexDosNumeros = /.*\d.*\d.*/; // Al menos dos números
+		const regexSecuenciaNumeros = /(012|123|234|345|456|567|678|789)/;
+
 		
+		///Validar la confirmacion de la contraseña
 		if("" == confirContrasenia.trim()){
 			$('#errorConfirmContrasenia').show();
 			$('#errorConfirmContrasenia').html("Ingresa la confirmación de la contraseña");
@@ -42,13 +51,41 @@ $(document).ready(()=>{
 			goValidation = false;
 			
 		}
-		
+
+
+		///Validar que sea menor a 5
 		if("" == contrasenia.trim() || contrasenia.length <5){
 			$('#errorContrasenia').show();
 			$('#errorContrasenia').html("Ingresa una contraseña mayor de 5 caracteres");
 			$('#contrasenia').focus();	
 			goValidation = false;
 		}
+
+		  // Validar mayúscula
+		  if (!regexMayuscula.test(contrasenia)) {
+			$('#errorContrasenia').show().append("La contraseña debe contener al menos una letra mayúscula.<br>");
+			goValidation = false;
+		}
+	
+		// Validar carácter especial
+		if (!regexEspecial.test(contrasenia)) {
+			$('#errorContrasenia').show().append("La contraseña debe contener al menos un carácter especial.<br>");
+			goValidation = false;
+		}
+
+		    // Validar que no tenga secuencia numérica
+		if (regexSecuenciaNumeros.test(contrasenia)) {
+				$('#errorContrasenia').show().append("La contraseña no debe contener secuencias numéricas como '123'.<br>");
+				goValidation = false;
+		}
+
+		    // Validar al menos dos números
+			if (!regexDosNumeros.test(contrasenia)) {
+				$('#errorContrasenia').show().append("La contraseña debe contener al menos dos números.<br>");
+				goValidation = false;
+			}
+
+
 		
 		if("" == correo.trim()){
 			$('#errorCorreo').show();
@@ -70,12 +107,7 @@ $(document).ready(()=>{
 			goValidation = false;
 		}
 
-		if("Selecciona" == sucursal.trim()){
-			$('#errorSucursal').show();
-			$('#errorSucursal').html("Selecciona una sucursal");
-			$('#sucursalR').focus();	
-			goValidation = false;
-		}
+
 		
 		if("" == apellidos.trim()){
 			$('#errorApellidos').show();

@@ -56,7 +56,7 @@ class Registro extends CI_Controller{
 				$telefono = $this->input->post("telefono");
 				$correoElectronico = $this->input->post("correoElectronico");
 				$contrasenia = $this->input->post("contrasenia");
-				$sucursal = $this->input->post("idSuc");
+				$sucursal = 9;
 
 				$verificaMail = $this->Registro_model->existe_correo($correoElectronico);
 				$verificaTel = $this->Registro_model->existe_tel($telefono);
@@ -86,10 +86,10 @@ class Registro extends CI_Controller{
 						"correo"         => $correoElectronico,
 						"telefono"       => $telefono,
 						"contrasenia"    => md5($contrasenia),
-						"idTU"           => '4',
+						"idTU"           => '2',
 						"estatus"        => 1,
 						"image_url" 	 => 'profile_pic.png',
-						"idSuc"          => $sucursal
+						"idSuc"          => 9
 					);
 					// var_dump($sucursal);
 					// die();

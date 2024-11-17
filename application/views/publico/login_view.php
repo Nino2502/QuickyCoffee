@@ -42,6 +42,16 @@
             font-size: 20px;
             cursor: pointer; 
         }
+        #registro_boton{
+            background: linear-gradient(135deg, #ff5733, #ffcc33);
+            color: white;
+            border: none;
+            margin-top: 8px;
+            border-radius: 5px;
+            font-size: 20px;
+            cursor: pointer;
+
+        }
 
         #letra_login {
             color: red;
@@ -129,7 +139,12 @@
             </label>
 
             <center>
-                <button id="boton-login" class="btn btn-success btn-lg" type="submit" id="iniciarSesion">Iniciar Sesión</button>
+                <button id="boton-login" class="btn btn-success btn-md" type="submit" id="iniciarSesion">Iniciar Sesión</button>
+
+                    <br>
+
+                <a href="<?= base_url() ?>registro" class="btn btn-success btn-md" id="registro_boton">Registro nuevo usuario</a>
+            
             </center>
         </form>
     </div>
@@ -143,6 +158,8 @@
             <li>Capucchino . . . $3.80</li>
         </ul>
     </div>
+
+   
 </div>
 
 <script type="text/javascript"> function base_url() { return "<?=base_url()?>" } </script>
