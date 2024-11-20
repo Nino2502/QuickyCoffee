@@ -113,6 +113,11 @@ class Inventario_coffee extends CI_Controller{
     public function insertarColaborador(){
         $json = file_get_contents('php://input');
         $data = (array)json_decode($json);
+
+
+
+     
+
         $accion = $data['accion']; 
 
 

@@ -49,6 +49,8 @@
         <div class="tab-content">
             <!-- inicia el primer tab-->
             <div class="tab-pane fade show active" id="first" role="tabpanel" aria-labelledby="first-tab">
+               
+            
                 <button type="button" class="btn btn-primary mr-3 mb-4" onclick="agregarColaborador()">
                 <i class="bi bi-plus-lg"> Agregar</i>
                 </button>

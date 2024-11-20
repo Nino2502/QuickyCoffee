@@ -6,6 +6,8 @@ $(document).ready(() => {
 
 	let idTU = $("#idTU").val();
 
+	console.log("Soy TIPO DE USUARIO . .", idTU);
+
 
 });
 function creaGrafic_Echo_porKevinElChido() {
@@ -196,6 +198,9 @@ function InsertarColaborador() {
 	).attr("disabled", "disabled");
 
 	let accion = $("#acccion").val();
+
+	console.log("	Soy la accion de editar . . ", accion);
+
 	let id_inventario = $("#id_inventario").val();
 	let nombre = $("#nombre_ingrediente").val();
 	let cantidad = $("#cantidad_ingrediente").val();
@@ -293,12 +298,14 @@ function InsertarColaborador() {
 	}
 
 	let formbody = {};
+
+
 	const IDUTU = $("#idTU").val();
 
 	if (goValidation) {
 		//para  superadministradores IDTU = 1
 		// registra a los majors  como adminsitradores
-		if (IDUTU == 1) {
+		if (IDUTU == 2) {
 			formbody = {
 				id_inventario: id_inventario,
 				nombre: nombre,
@@ -310,6 +317,9 @@ function InsertarColaborador() {
 
 
 			}
+
+			console.log("Soy formbody", formbody);
+
 		}
 
 		if (formbody != null) {
