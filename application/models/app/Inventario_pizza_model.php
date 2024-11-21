@@ -131,6 +131,29 @@ class Inventario_pizza_model extends CI_Model{
         
     }
 
+    public function coffes_dia($fecha_actual) {
+        // Seleccionar la suma de Cantidad y cualquier otra columna relevante
+        $this->db->select("SUM(detalleventas.Cantidad) as total_cantidad, DATE(ventas.FechaVentaG) as fecha");
+        
+        // Realizar el JOIN entre las tablas
+        $this->db->join("ventas", "ventas.idVenta = detalleventas.idVenta");
+        
+        // Filtrar por la fecha específica
+        $this->db->where("DATE(ventas.FechaVentaG)", $fecha_actual);
+        
+        // Ejecutar la consulta en la tabla detalleventas
+        $rs = $this->db->get("detalleventas");
+    
+        // Retornar el resultado si existe, o null si no hay registros
+        return $rs->num_rows() > 0 ? $rs->row() : null;
+    }
+    
+    
+
+  
+
+
+
 }
 
 

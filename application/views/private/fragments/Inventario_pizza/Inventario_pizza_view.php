@@ -111,7 +111,7 @@
                     echo date('d \d\e F \d\e Y');
                 ?>
             </td>
-            <td align="center" style="font-size: 24px; font-weight: bold; color: #333;">45</td>
+            <td align="center" style="font-size: 24px; font-weight: bold; color: #333;" id="coffes_dia">45</td>
             
         </tr>
     </table>

@@ -2,6 +2,8 @@ var datosGrafica;
 $(document).ready(() => {
 	listatipoatributos();
 	precio_total();
+	coffes_vendidos();
+
 	$("#cart_grafica").hide();
 
 	let idTU = $("#idTU").val();
@@ -570,7 +572,41 @@ function precio_total() {
 
 }
 
+function coffes_vendidos(){
 
+	axios(base_url() + "app/Inventario_coffee/total_coffes_vendidos")
+	.then(({ data }) => {
+
+		console.log("Soy coffes vendidos x dia", data);
+
+
+		if (data.resultado) {
+
+
+			console.log("Soy data de Precio Total . . ", data);
+
+			$("#coffes_dia").html(parseInt(data.Coffes_vendidos.total_cantidad));
+			
+
+
+			console.log("Soy los coffes vendidos x dia", data.Coffes_vendidos.total_cantidad);
+
+
+
+
+
+		} else {
+
+
+			console.log("Error no hay ventas");
+
+		}
+	})
+	.catch(error => {
+		console.log(error);
+	})
+
+}
 function botonGraficaMajor(){
 
 	console.log("Entre a function de graficas. . . ");

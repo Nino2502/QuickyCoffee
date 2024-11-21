@@ -90,6 +90,25 @@ class Inventario_coffee extends CI_Controller{
         echo json_encode($data);
 
 
+    }
+
+    public function total_coffes_vendidos(){
+
+        $fecha_actual = date("Y-m-d");
+
+
+
+        
+
+        $rs = $this->Inventario_pizza_model->coffes_dia($fecha_actual);
+
+        $data['resultado'] = $rs != null;
+        $data['mensaje'] = $data['resultado'] ? "Las cantidades vendidas son  " .$rs->total_cantidad : "No se vendio nada";
+        $data["Coffes_vendidos"] = $rs;
+        echo json_encode($data);
+
+
+
 
     }
 
